@@ -1,0 +1,74 @@
+{
+  "name": "frameworks-comparison",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/frameworks-comparison/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/frameworks-comparison"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frameworks-comparison:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frameworks-comparison:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "frameworks-comparison:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frameworks-comparison:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frameworks-comparison:build:development"
+        },
+        "production": {
+          "buildTarget": "frameworks-comparison:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../coverage/apps/frameworks-comparison"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "frameworks-comparison:build"
+      }
+    }
+  },
+  "tags": []
+}

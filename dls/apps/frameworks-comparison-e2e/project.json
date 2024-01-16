@@ -25,6 +25,6 @@
       "outputs": ["{options.outputFile}"]
     }
   },
-  "implicitDependencies": ["frameworks-comparison"],
+  "implicitDependencies": ["chakra-jake"],
   "tags": []
 }

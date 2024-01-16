@@ -1,5 +1,5 @@
 {
-  "name": "frameworks-comparison",
+  "name": "chakra-jake",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/frameworks-comparison/src",
   "projectType": "application",

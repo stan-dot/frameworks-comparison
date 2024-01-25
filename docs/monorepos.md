@@ -1,4 +1,11 @@
 
+## error with 
+runnign nx report return 
+
+do (NOT) this
+https://www.youtube.com/watch?v=zvYb7XCLQzU
+
+
 # my thoughts
 
 lage failed to download

@@ -6,7 +6,7 @@ COPY . ${APP_DIR}
 WORKDIR ${APP_DIR}
 
 # RUN npm install --legacy-peer-deps .
-# RUN npm run build 
+RUN cd dls && pnpm i 
 
 # CMD ["npm", "run", "preview"]
 CMD bash

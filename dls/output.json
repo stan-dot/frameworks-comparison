@@ -1,0 +1,292 @@
+{ 
+  "graph": {
+    "nodes": {
+      "frameworks-comparison-e2e": {
+        "name": "frameworks-comparison-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/frameworks-comparison-e2e",
+          "name": "frameworks-comparison-e2e",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "application",
+          "sourceRoot": "apps/frameworks-comparison-e2e/src",
+          "targets": {
+            "e2e": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "executor": "@nx/cypress:cypress",
+              "options": {
+                "cypressConfig": "apps/frameworks-comparison-e2e/cypress.config.ts",
+                "testingType": "e2e",
+                "devServerTarget": "frameworks-comparison:serve"
+              },
+              "configurations": {
+                "production": {
+                  "devServerTarget": "frameworks-comparison:serve:production"
+                },
+                "ci": {
+                  "devServerTarget": "frameworks-comparison:serve-static"
+                }
+              }
+            },
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            }
+          },
+          "implicitDependencies": [
+            "chakra-jake"
+          ],
+          "tags": []
+        }
+      },
+      "chakra-jake": {
+        "name": "chakra-jake",
+        "type": "app",
+        "data": {
+          "root": "apps/chakra-jake",
+          "name": "chakra-jake",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/frameworks-comparison/src",
+          "projectType": "application",
+          "targets": {
+            "build": {
+              "cache": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "executor": "@nx/vite:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "defaultConfiguration": "production",
+              "options": {
+                "outputPath": "dist/apps/frameworks-comparison"
+              },
+              "configurations": {
+                "development": {
+                  "mode": "development"
+                },
+                "production": {
+                  "mode": "production"
+                }
+              }
+            },
+            "serve": {
+              "executor": "@nx/vite:dev-server",
+              "defaultConfiguration": "development",
+              "options": {
+                "buildTarget": "frameworks-comparison:build"
+              },
+              "configurations": {
+                "development": {
+                  "buildTarget": "frameworks-comparison:build:development",
+                  "hmr": true
+                },
+                "production": {
+                  "buildTarget": "frameworks-comparison:build:production",
+                  "hmr": false
+                }
+              }
+            },
+            "preview": {
+              "executor": "@nx/vite:preview-server",
+              "defaultConfiguration": "development",
+              "options": {
+                "buildTarget": "frameworks-comparison:build"
+              },
+              "configurations": {
+                "development": {
+                  "buildTarget": "frameworks-comparison:build:development"
+                },
+                "production": {
+                  "buildTarget": "frameworks-comparison:build:production"
+                }
+              }
+            },
+            "test": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "executor": "@nx/vite:test",
+              "outputs": [
+                "{options.reportsDirectory}"
+              ],
+              "options": {
+                "reportsDirectory": "../../coverage/apps/frameworks-comparison"
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            },
+            "serve-static": {
+              "executor": "@nx/web:file-server",
+              "options": {
+                "buildTarget": "frameworks-comparison:build"
+              },
+              "configurations": {}
+            }
+          },
+          "tags": [],
+          "implicitDependencies": []
+        }
+      },
+      "chakra-stan": {
+        "name": "chakra-stan",
+        "type": "app",
+        "data": {
+          "root": "apps/chakra-stan",
+          "name": "chakra-stan",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/frameworks-comparison/src",
+          "projectType": "application",
+          "targets": {
+            "build": {
+              "cache": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "executor": "@nx/vite:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "defaultConfiguration": "production",
+              "options": {
+                "outputPath": "dist/apps/frameworks-comparison"
+              },
+              "configurations": {
+                "development": {
+                  "mode": "development"
+                },
+                "production": {
+                  "mode": "production"
+                }
+              }
+            },
+            "serve": {
+              "executor": "@nx/vite:dev-server",
+              "defaultConfiguration": "development",
+              "options": {
+                "buildTarget": "frameworks-comparison:build"
+              },
+              "configurations": {
+                "development": {
+                  "buildTarget": "frameworks-comparison:build:development",
+                  "hmr": true
+                },
+                "production": {
+                  "buildTarget": "frameworks-comparison:build:production",
+                  "hmr": false
+                }
+              }
+            },
+            "preview": {
+              "executor": "@nx/vite:preview-server",
+              "defaultConfiguration": "development",
+              "options": {
+                "buildTarget": "frameworks-comparison:build"
+              },
+              "configurations": {
+                "development": {
+                  "buildTarget": "frameworks-comparison:build:development"
+                },
+                "production": {
+                  "buildTarget": "frameworks-comparison:build:production"
+                }
+              }
+            },
+            "test": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "^production"
+              ],
+              "executor": "@nx/vite:test",
+              "outputs": [
+                "{options.reportsDirectory}"
+              ],
+              "options": {
+                "reportsDirectory": "../../coverage/apps/frameworks-comparison"
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "cache": true,
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json",
+                "{workspaceRoot}/.eslintignore",
+                "{workspaceRoot}/eslint.config.js"
+              ],
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            },
+            "serve-static": {
+              "executor": "@nx/web:file-server",
+              "options": {
+                "buildTarget": "frameworks-comparison:build"
+              },
+              "configurations": {}
+            }
+          },
+          "tags": [],
+          "implicitDependencies": []
+        }
+      }
+    },
+    "dependencies": {
+      "frameworks-comparison-e2e": [
+        {
+          "source": "frameworks-comparison-e2e",
+          "target": "chakra-jake",
+          "type": "implicit"
+        }
+      ],
+      "chakra-jake": [],
+      "chakra-stan": []
+    }
+  },
+  "affectedProjects": [],
+  "criticalPath": []
+}

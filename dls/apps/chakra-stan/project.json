@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/frameworks-comparison"
@@ -20,6 +22,12 @@
         }
       }
     },
+    "custom": {
+      "command": "echo \"Hello World!\"",
+    },
+    "dev": {
+      "command": "cd apps pnpx run dev"
+    },
     "serve": {
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
@@ -29,7 +37,9 @@
       "configurations": {
         "development": {
           "buildTarget": "frameworks-comparison:build:development",
-          "hmr": true
+          "hmr": true,
+          "hostname": "0.0.0.0",
+          "executor": "@nx/vite:dev-server"
         },
         "production": {
           "buildTarget": "frameworks-comparison:build:production",
@@ -54,14 +64,18 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "reportsDirectory": "../../coverage/apps/frameworks-comparison"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "outputs": [
+        "{options.outputFile}"
+      ]
     },
     "serve-static": {
       "executor": "@nx/web:file-server",

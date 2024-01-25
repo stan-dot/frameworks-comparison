@@ -1,4 +1,9 @@
 
+complex layouts - just on component / page level. can do all in chakra
+
+large grids
+
+
 add github actions support
 https://turbo.build/repo/docs/ci/github-actions
 
@@ -7,8 +12,6 @@ https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours
 
 
 https://ant.design/docs/react/customize-theme
-
-
 
 https://chakra-ui.com/changelog/v2.6.0#styled-system
 

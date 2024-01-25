@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { tomography } from '@repo/science'
-import BoxTest from './ChakraBox'
+import BoxTest from './stories/ChakraBox'
 
 
 function App() {

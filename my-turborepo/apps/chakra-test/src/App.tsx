@@ -3,6 +3,10 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { tomography } from '@repo/science'
+import BoxTest from './ChakraBox'
+
+
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,6 +35,7 @@ function App() {
         Click on the Vite and React logos to learn more
         from tomography {m}
       </p>
+      <BoxTest/>
     </>
   )
 }

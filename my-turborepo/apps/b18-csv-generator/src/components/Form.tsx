@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { Row } from "../types";
+import { ReadyRow } from "../utils/sampleHolderSize";
 
-const sampleHolderSize = [4, 6];
 
 export default function Form() {
-    const [seedData, setSeedData] = useState<Row[]>([]);
+    const [seedData, setSeedData] = useState<string>('test');
 
     return <>
         <h2>Title area</h2>
 
         <form>
             <h3>form area for defaults</h3>
-            <input type="radio">
-                <option>T</option>
-                <option>T</option>
-            </input>
+            <select value={seedData} onChange={e => setSeedData(e.target.value)}>
+                <option value={'r'}>r</option>
+                <option value={'T'}>T</option>
+                <option value={'T'}>T</option>
+            </select>
         </form>
 
         <>

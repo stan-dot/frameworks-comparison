@@ -25,3 +25,10 @@ Bottom section is filled in by the user :
 
 <https://chakra-ui.com/getting-started/with-react-table>
 use this for react table
+
+this for validation
+https://joi.dev/api/?v=17.12.0
+
+
+- [ ] make a multi-step form
+- [ ] first a basic, withouth hober selection

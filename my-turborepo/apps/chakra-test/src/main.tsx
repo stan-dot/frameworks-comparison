@@ -47,6 +47,7 @@ const router = createBrowserRouter([
     ),
   },
 ]);
+
 const theme = extendTheme({ colors });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

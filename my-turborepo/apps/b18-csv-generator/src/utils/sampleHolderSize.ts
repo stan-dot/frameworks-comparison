@@ -1,22 +1,34 @@
 import { ChemicalElement, elementsAndIsotopes } from "../data/elements";
 import {
-  Holder,
-  DetectorType,
-  MonocrystalType,
-  Offsets,
   DetectionModeType,
   EdgeType,
+  Holder,
 } from "./initialTypes";
 
-const sampleHolderSize: Holder = { name: "default", width: 4, height: 6 };
+const sampleHolder: Holder = { name: "default", width: 4, height: 6 };
 
-type Setup = {
-  detector: DetectorType;
-  monocrystal: MonocrystalType;
-  offsets: Offsets; // todo these depend on the holder
+
+export type ReadyRow = {
+  element: ChemicalElement; //vallidate between 13 and 93 Z
+  edge: EdgeType;
+  detectionMode: DetectionModeType;
+  sampleName: string;
+  sampleComment: string;
+  column: string;
+  row: number; // min 1
+  repetitions: number; // min 1
 };
 
-type GeneratorSetup = {
+export const defaultGeneratorSetup: GeneratorSetup = {
+  defaultDetectionMode: "T",
+  sampleNamePrefix: "sample",
+  startingCount: 0,
+  samplesNumber: 10,
+  defaultRepetitionsNumber: 2,
+  holder: sampleHolder
+};
+
+export type GeneratorSetup = {
   defaultDetectionMode: DetectionModeType;
   sampleNamePrefix: string;
   startingCount: number;
@@ -26,7 +38,7 @@ type GeneratorSetup = {
   holder: Holder;
 };
 
-function generateRows({
+export function generateRows({
   defaultDetectionMode,
   sampleNamePrefix,
   startingCount,
@@ -60,35 +72,23 @@ function generateRows({
   return rows;
 }
 
+// HELPER FUNCTIONS
 // https://www.tutorialspoint.com/convert-number-to-alphabet-letter-javascript
 function toAlphabet(num: number): string {
   if (num < 1 || num > 26 || typeof num !== "number") {
     // todo error handling
-    return "";
+    return "1";
   }
-  //  const leveller = 64;
-  //since actually A is represented by 65 and we want to represent it with one
-  //  return String.fromCharCode(num + leveller);
-  return String.fromCharCode(num);
-} // Row index, Scan, Detector, Sample, frameX, Move frameX, frameY, Move frameY, Description, Reference foil, Move reference wheel, Output, Script/command before first repetition, Number of repetitions
-//  interactive array shape calculator for column and row size
-// Element (e.g Pt)	Edge (e.g. L3)	Detection Mode (F or T)	Sample name	Sample comment	Column	Row	repetitions
+  const leveller = 64;
+  // since actually A is represented by 65 and we want to represent it with one
+  return String.fromCharCode(num + leveller);
+}
 
-export function autogenerateSampleNames(
+
+function autogenerateSampleNames(
   prefix: string,
   startingCount: number,
   samplesNumber: number
 ): string[] {
   return new Array(samplesNumber).map((_, i) => `${prefix}_${startingCount + i}`)
 }
-
-export type ReadyRow = {
-  element: ChemicalElement; //vallidate between 13 and 93 Z
-  edge: EdgeType;
-  detectionMode: DetectionModeType;
-  sampleName: string;
-  sampleComment: string;
-  column: string;
-  row: number; // min 1
-  repetitions: number; // min 1
-};

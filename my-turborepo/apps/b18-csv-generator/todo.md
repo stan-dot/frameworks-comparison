@@ -32,3 +32,7 @@ https://joi.dev/api/?v=17.12.0
 
 - [ ] make a multi-step form
 - [ ] first a basic, withouth hober selection
+
+Row index, Scan, Detector, Sample, frameX, Move frameX, frameY, Move frameY, Description, Reference foil, Move reference wheel, Output, Script/command before first repetition, Number of repetitions
+ interactive array shape calculator for column and row size
+Element (e.g Pt)	Edge (e.g. L3)	Detection Mode (F or T)	Sample name	Sample comment	Column	Row	repetitions

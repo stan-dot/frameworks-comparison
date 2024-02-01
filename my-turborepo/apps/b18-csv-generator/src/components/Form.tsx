@@ -1,25 +1,34 @@
-import { useState } from "react";
-import { ReadyRow } from "../utils/sampleHolderSize";
+import { DETECTION_MODES, DetectionModeType } from "../utils/initialTypes";
+import { GeneratorSetup } from "../utils/sampleHolderSize";
 
+type FormProps = {
+  value: GeneratorSetup;
+  handler: (g: Partial<GeneratorSetup>) => void;
+};
 
-export default function Form() {
-    const [seedData, setSeedData] = useState<string>('test');
+export default function Form({ value, handler }: FormProps) {
+  return (
+    <>
+      <h2>Input values for your samples</h2>
+      <form>
+        <h3>form area for defaults</h3>
+        <select
+          value={value.defaultDetectionMode}
+          onChange={(e) => {
+            handler({
+              defaultDetectionMode: e.target.value as DetectionModeType,
+            });
+          }}
+        >
+          {DETECTION_MODES.map((v) => {
+            return <option value={v}>{v}</option>;
+          })}
+        </select>
+      </form>
 
-    return <>
-        <h2>Title area</h2>
-
-        <form>
-            <h3>form area for defaults</h3>
-            <select value={seedData} onChange={e => setSeedData(e.target.value)}>
-                <option value={'r'}>r</option>
-                <option value={'T'}>T</option>
-                <option value={'T'}>T</option>
-            </select>
-        </form>
-
-        <>
-            <h3>actual table</h3>
-        </>
+      <>
+        <h3>actual table</h3>
+      </>
     </>
+  );
 }
-

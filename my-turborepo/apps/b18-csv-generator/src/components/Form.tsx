@@ -12,8 +12,12 @@ export default function Form({ value, handler }: FormProps) {
       <h2>Input values for your samples</h2>
       <form>
         <h3>form area for defaults</h3>
+        <label htmlFor="defaultSelectionMode">
+            Default selection (T or F)
+        </label>
         <select
           value={value.defaultDetectionMode}
+          id="defaultSelectionMode"
           onChange={(e) => {
             handler({
               defaultDetectionMode: e.target.value as DetectionModeType,

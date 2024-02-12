@@ -9,6 +9,10 @@ each file quite simple
 extractable component into a new page
 beamline config - booleans and optional stuff, central panel all the time
 
+## validation with joi
+- [ ] the sample technical UI with a validation component from joi
+
+
 ## specific paths
 
 /beamline/{beamline}/device/{ophydId} - there a screen and a redirect to the openapi spec from here <https://github.com/openapi-generators/openapi-python-client>

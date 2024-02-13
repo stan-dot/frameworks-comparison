@@ -1,4 +1,4 @@
-import { ChemicalElement, elementsAndIsotopes } from "../data/elements";
+import { ChemicalElement, allowedElements, elementsAndIsotopes } from "../data/elements";
 import { DetectionModeType, EdgeType, Holder } from "./initialTypes";
 
 const smallSampleHolder: Holder = { name: "small", width: 4, height: 6 };
@@ -71,7 +71,7 @@ export function generateRows({
     const colName = toAlphabet(colNumber);
 
     const r: ReadyRow = {
-      element: elementsAndIsotopes[0],
+      element: allowedElements[0],
       edge: "K",
       detectionMode: defaultDetectionMode,
       sampleName: n,

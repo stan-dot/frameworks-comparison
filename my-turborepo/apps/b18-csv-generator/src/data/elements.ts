@@ -10,7 +10,7 @@ export type ChemicalElement=  {
   monoisotopicMass?:number | null 
 }
 
-export const elementsAndIsotopes:ChemicalElement[] = [
+const elementsAndIsotopes:ChemicalElement[] = [
   {
     number: 1,
     isotopes: [
@@ -4392,3 +4392,7 @@ export const elementsAndIsotopes:ChemicalElement[] = [
     mass: null,
   },
 ];
+
+export const allowedElements = elementsAndIsotopes.filter(e=>
+  e.number >= 13 && e.number <= 93
+);

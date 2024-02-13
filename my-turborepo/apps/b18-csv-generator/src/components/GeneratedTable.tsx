@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { createColumnHelper } from "@tanstack/react-table";
-import { ReadyRow, getCsvContent, } from "../utils/sampleHolderSize";
-import {downloadFile} from "@repo/utils";
+import { ReadyRow, getCsvContent } from "../utils/sampleHolderSize";
+import { downloadFile } from "@repo/utils";
 import { DataTable } from "./DataTable";
 
 const r1: ReadyRow = {
@@ -55,9 +55,16 @@ const columns = [
   }),
   columnHelper.accessor("detectionMode", {
     cell: (info) => info.getValue(),
-    header: "detectionMode",
+    header: "Detection Mode",
     meta: {
       isNumeric: false,
+    },
+  }),
+  columnHelper.accessor("sampleName", {
+    cell: (info) => info.getValue(),
+    header: "Sample Name",
+    meta: {
+      isNumeric: true,
     },
   }),
 ];
@@ -71,7 +78,11 @@ function GeneratedTable() {
       <Button
         onClick={() => {
           const s = getCsvContent(data);
-          downloadFile({data:s, filename: 'b18-data.csv', fileType:'text/csv'})
+          downloadFile({
+            data: s,
+            filename: "b18-data.csv",
+            fileType: "text/csv",
+          });
         }}
       >
         Download the table

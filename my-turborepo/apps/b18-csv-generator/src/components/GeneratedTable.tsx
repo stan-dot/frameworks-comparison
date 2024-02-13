@@ -1,11 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { createColumnHelper } from "@tanstack/react-table";
-import {
-  ReadyRow,
-  downloadFile,
-  downloadRowsAsCsv,
-  getCsvContent,
-} from "../utils/sampleHolderSize";
+import { ReadyRow, getCsvContent, } from "../utils/sampleHolderSize";
+import {downloadFile} from "@repo/utils";
 import { DataTable } from "./DataTable";
 
 const r1: ReadyRow = {

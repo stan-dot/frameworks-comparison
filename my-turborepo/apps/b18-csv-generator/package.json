@@ -16,6 +16,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@repo/science": "*",
     "@repo/ui": "*",
+    "@repo/utils": "*",
     "@tanstack/react-table": "^8.11.8",
     "chemical-elements": "^2.0.3",
     "joi": "^17.12.1",

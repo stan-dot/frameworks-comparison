@@ -59,11 +59,13 @@ export function generateRows({
   defaultRepetitionsNumber,
   holder,
 }: GeneratorSetup): ReadyRow[] {
+  console.log("checking rows");
   const names: string[] = autogenerateSampleNames(
     sampleNamePrefix,
     startingCount,
     samplesNumber
   );
+  console.log("names: ", names);
 
   const rows: ReadyRow[] = names.map((n, i) => {
     const colNumber = Math.floor(i / holder.height) + 1;
@@ -82,6 +84,7 @@ export function generateRows({
     };
     return r;
   });
+  console.log("rows: ", rows);
   return rows;
 }
 
@@ -102,9 +105,8 @@ export function autogenerateSampleNames(
   startingCount: number,
   samplesNumber: number
 ): string[] {
-  return new Array(samplesNumber).map(
-    (_, i) => `${prefix}_${startingCount + i}`
-  );
+  const arr = new Array(samplesNumber).fill(prefix);
+  return arr.map((p, i) => `${p}_${startingCount + i}`);
 }
 
 export function getCsvContent(a: ReadyRow[]): string {
@@ -114,5 +116,4 @@ export function getCsvContent(a: ReadyRow[]): string {
   );
   const finalString = [headers, ...valueRows].join("\n");
   return finalString;
-
 }

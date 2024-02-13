@@ -1,6 +1,11 @@
 import { Button } from "@chakra-ui/react";
 import { createColumnHelper } from "@tanstack/react-table";
-import { ReadyRow, downloadRowsAsCsv } from "../utils/sampleHolderSize";
+import {
+  ReadyRow,
+  downloadFile,
+  downloadRowsAsCsv,
+  getCsvContent,
+} from "../utils/sampleHolderSize";
 import { DataTable } from "./DataTable";
 
 const r1: ReadyRow = {
@@ -14,7 +19,7 @@ const r1: ReadyRow = {
   },
   edge: "K",
   detectionMode: "T",
-  sampleName: "",
+  sampleName: "Helium test",
   sampleComment: "",
   column: "",
   row: 0,
@@ -27,12 +32,12 @@ const r2: ReadyRow = {
     isotopes: [],
     symbol: "",
     mass: null,
-    name: "",
+    name: "Og",
     monoisotopicMass: undefined,
   },
   edge: "K",
   detectionMode: "T",
-  sampleName: "Og",
+  sampleName: "Oganesson test",
   sampleComment: "",
   column: "",
   row: 0,
@@ -67,7 +72,14 @@ function GeneratedTable() {
       <h3>GeneratedTable is here</h3>
       <DataTable data={data} columns={columns} />
 
-      <Button onClick={() =>downloadRowsAsCsv(data)}>Download the table</Button>
+      <Button
+        onClick={() => {
+          const s = getCsvContent(data);
+          downloadFile({data:s, filename: 'b18-data.csv', fileType:'text/csv'})
+        }}
+      >
+        Download the table
+      </Button>
     </div>
   );
 }

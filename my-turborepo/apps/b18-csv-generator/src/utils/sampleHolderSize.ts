@@ -107,32 +107,35 @@ function autogenerateSampleNames(
   );
 }
 
-export function downloadAsCsv(a: Array<any>): void {
-  // https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
-  const csvContent =
-    "data:text/csv;charset=utf-8," + a.map((e) => e.join(",")).join("\n");
+export function getCsvContent(a: ReadyRow[]): string {
+  const headers: string[] = Object.getOwnPropertyNames(a[0]);
+  const valueRows = a.map((e) =>
+    [e.element.name, e.detectionMode, e.edge].join(",")
+  );
+  const finalString = [headers, ...valueRows].join("\n");
+  return finalString;
 
-  const encodedUri = encodeURI(csvContent);
-
-  const link = document.createElement("download");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "b18-data.csv");
-  document.body.appendChild(link);
-  link.click();
 }
 
-export function downloadRowsAsCsv(a: Array<ReadyRow>): void {
-  // https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
-  const headers: string[] = Object.getOwnPropertyNames(a[0]);
-  const joinedHeaderLine = headers.join(",").concat("\n");
-  const valueRows = a.map(e=>Object.values(e).join(',')).join("\n");
-  const csvContent: string = `data:text/csv;charset=utf-8,${joinedHeaderLine}"${valueRows}`;
-
-  const encodedUri = encodeURI(csvContent);
-
-  const link = document.createElement("download");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "b18-data.csv");
-  document.body.appendChild(link);
-  link.click();
+// https://theroadtoenterprise.com/blog/how-to-download-csv-and-json-files-in-react
+export function downloadFile({
+  data,
+  filename,
+  fileType,
+}: {
+  data: any;
+  filename: string;
+  fileType: string;
+}) {
+  const blob = new Blob([data], { type: fileType });
+  const a = document.createElement("a");
+  a.download = filename;
+  a.href = window.URL.createObjectURL(blob);
+  const clickEvt = new MouseEvent("click", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  });
+  a.dispatchEvent(clickEvt);
+  a.remove();
 }

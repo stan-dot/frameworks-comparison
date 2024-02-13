@@ -3,44 +3,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { ReadyRow, getCsvContent } from "../utils/sampleHolderSize";
 import { downloadFile } from "@repo/utils";
 import { DataTable } from "./DataTable";
-
-const r1: ReadyRow = {
-  element: {
-    number: 0,
-    isotopes: [],
-    symbol: "",
-    mass: null,
-    name: "He",
-    monoisotopicMass: undefined,
-  },
-  edge: "K",
-  detectionMode: "T",
-  sampleName: "Helium test",
-  sampleComment: "",
-  column: "",
-  row: 0,
-  repetitions: 0,
-};
-
-const r2: ReadyRow = {
-  element: {
-    number: 0,
-    isotopes: [],
-    symbol: "",
-    mass: null,
-    name: "Og",
-    monoisotopicMass: undefined,
-  },
-  edge: "K",
-  detectionMode: "T",
-  sampleName: "Oganesson test",
-  sampleComment: "",
-  column: "",
-  row: 0,
-  repetitions: 0,
-};
-
-const data: ReadyRow[] = [r1, r2];
+import { mockData } from "./mockData";
 
 const columnHelper = createColumnHelper<ReadyRow>();
 
@@ -67,9 +30,34 @@ const columns = [
       isNumeric: true,
     },
   }),
+  columnHelper.accessor("sampleComment", {
+    cell: (info) => info.getValue(),
+    header: "comment",
+    meta: {
+      isNumeric: false,
+    },
+  }),
+  columnHelper.accessor("column", {
+    cell: (info) => info.getValue(),
+    header: "column",
+    meta: {
+      isNumeric: true,
+    },
+  }),
+  columnHelper.accessor("row", {
+    cell: (info) => info.getValue(),
+    header: "row",
+    meta: {
+      isNumeric: true,
+    },
+  }),
 ];
 
-function GeneratedTable() {
+type GeneratedTableProps = {
+  data?: ReadyRow[];
+};
+
+function GeneratedTable({ data = mockData }: GeneratedTableProps) {
   return (
     <div>
       <h3>GeneratedTable is here</h3>

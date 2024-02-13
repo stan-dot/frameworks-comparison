@@ -1,4 +1,4 @@
-import { ChemicalElement, allowedElements, elementsAndIsotopes } from "../data/elements";
+import { ChemicalElement, allowedElements } from "../data/elements";
 import { DetectionModeType, EdgeType, Holder } from "./initialTypes";
 
 const smallSampleHolder: Holder = { name: "small", width: 4, height: 6 };
@@ -87,7 +87,7 @@ export function generateRows({
 
 // HELPER FUNCTIONS
 // https://www.tutorialspoint.com/convert-number-to-alphabet-letter-javascript
-function toAlphabet(num: number): string {
+export function toAlphabet(num: number): string {
   if (num < 1 || num > 26 || typeof num !== "number") {
     // todo error handling
     return "1";
@@ -97,7 +97,7 @@ function toAlphabet(num: number): string {
   return String.fromCharCode(num + leveller);
 }
 
-function autogenerateSampleNames(
+export function autogenerateSampleNames(
   prefix: string,
   startingCount: number,
   samplesNumber: number

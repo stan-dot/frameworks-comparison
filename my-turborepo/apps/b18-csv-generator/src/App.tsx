@@ -25,7 +25,6 @@ function App() {
 
   const rows: ReadyRow[] = generateRows(form);
 
-  // todo add back button
   // todo add verification if it's ready or going with the default values
   return (
     <>
@@ -35,17 +34,19 @@ function App() {
         <Form value={form} handler={handler} />
       )}
       <SubmitButton callback={() => setReady(true)} />
-      <button
-        style={{ backgroundColor: "green", padding: 2, margin: 2 }}
-        onClick={() => setReady(false)}
-      >
-        Go back
-      </button>
+      {ready && (
+        <ChakraProvider>
+          <button
+            style={{ backgroundColor: "green", padding: 2, margin: 2 }}
+            onClick={() => setReady(false)}
+          >
+            Go back
+          </button>
 
-      <ChakraProvider>
-        <br />
-        <GeneratedTable />
-      </ChakraProvider>
+          <br />
+          <GeneratedTable />
+        </ChakraProvider>
+      )}
     </>
   );
 }

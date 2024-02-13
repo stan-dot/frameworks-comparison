@@ -13,7 +13,7 @@ export default function Form({ value, handler }: FormProps) {
       <h2>Input values for your samples</h2>
       <FormControl>
         <h3>form area for defaults</h3>
-        <div key='form-field-1'>
+        <div key="form-field-1">
           <FormLabel htmlFor="defaultSelectionMode">
             Default selection (T or F)
           </FormLabel>
@@ -27,12 +27,16 @@ export default function Form({ value, handler }: FormProps) {
             }}
           >
             {DETECTION_MODES.map((v, i) => {
-              return <option key={`detection-mode-option-${i}`} value={v}>{v}</option>;
+              return (
+                <option key={`detection-mode-option-${i}`} value={v}>
+                  {v}
+                </option>
+              );
             })}
           </Select>
         </div>
 
-        <div key='form-field-2'>
+        <div key="form-field-2">
           <FormLabel htmlFor="sampleNamePrefix">Sample Name prefix</FormLabel>
           <Input
             id="sampleNamePrefix"
@@ -45,7 +49,7 @@ export default function Form({ value, handler }: FormProps) {
           />
         </div>
 
-        <div key='form-field-3'>
+        <div key="form-field-3">
           <FormLabel htmlFor="startingCount">
             starting number for creating the new name
           </FormLabel>
@@ -60,7 +64,7 @@ export default function Form({ value, handler }: FormProps) {
           />
         </div>
 
-        <div key='form-field-4'>
+        <div key="form-field-4">
           <FormLabel htmlFor="samplesNumber">Total number of samples</FormLabel>
           <Input
             id="samplesNumber"
@@ -73,7 +77,7 @@ export default function Form({ value, handler }: FormProps) {
           />
         </div>
 
-        <div key='form-field-5'>
+        <div key="form-field-5">
           <FormLabel htmlFor="defaultRepetitionsNumber">
             Default repetitions number
           </FormLabel>
@@ -87,7 +91,7 @@ export default function Form({ value, handler }: FormProps) {
             }}
           />
         </div>
-        <div key='form-field-6'>
+        <div key="form-field-6">
           <FormLabel htmlFor="holderSelection">Holder selection</FormLabel>
           <Select
             value={value.holder.name}
@@ -102,7 +106,11 @@ export default function Form({ value, handler }: FormProps) {
             }}
           >
             {AVAILABLE_HOLDERS.map((v, i) => {
-              return <option key={`holder-option-${i}`} value={i.toString()}>{v.name}</option>
+              return (
+                <option key={`holder-option-${i}`} value={i.toString()}>
+                  {v.name}
+                </option>
+              );
             })}
           </Select>
         </div>

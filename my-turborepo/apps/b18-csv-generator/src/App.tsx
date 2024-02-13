@@ -29,23 +29,25 @@ function App() {
   return (
     <>
       {ready ? (
-        <Selector propRows={rows} />
-      ) : (
-        <Form value={form} handler={handler} />
-      )}
-      <SubmitButton callback={() => setReady(true)} />
-      {ready && (
-        <ChakraProvider>
-          <button
-            style={{ backgroundColor: "green", padding: 2, margin: 2 }}
-            onClick={() => setReady(false)}
-          >
-            Go back
-          </button>
+        <>
+          <Selector propRows={rows} />
+          <ChakraProvider>
+            <button
+              style={{ backgroundColor: "green", padding: 2, margin: 2 }}
+              onClick={() => setReady(false)}
+            >
+              Go back
+            </button>
 
-          <br />
-          <GeneratedTable />
-        </ChakraProvider>
+            <br />
+            <GeneratedTable />
+          </ChakraProvider>
+        </>
+      ) : (
+        <>
+          <Form value={form} handler={handler} />
+          <SubmitButton callback={() => setReady(true)} />
+        </>
       )}
     </>
   );

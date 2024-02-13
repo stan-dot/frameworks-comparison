@@ -7,7 +7,7 @@ type SubmitButtonProps = {
 
 function SubmitButton({ callback }: SubmitButtonProps) {
     return (
-        <Button onClick={callback}>test</Button>
+        <Button color='red' margin={4} onClick={callback}>Submit</Button>
     )
 }
 

@@ -1,6 +1,6 @@
-import { number } from "joi";
+import { FormControl, FormLabel, Input, Select } from "@chakra-ui/react";
 import { DETECTION_MODES, DetectionModeType } from "../utils/initialTypes";
-import { GeneratorSetup, AVAILABLE_HOLDERS } from "../utils/sampleHolderSize";
+import { AVAILABLE_HOLDERS, GeneratorSetup } from "../utils/sampleHolderSize";
 
 type FormProps = {
   value: GeneratorSetup;
@@ -11,13 +11,13 @@ export default function Form({ value, handler }: FormProps) {
   return (
     <>
       <h2>Input values for your samples</h2>
-      <form>
+      <FormControl>
         <h3>form area for defaults</h3>
         <div key='form-field-1'>
-          <label htmlFor="defaultSelectionMode">
+          <FormLabel htmlFor="defaultSelectionMode">
             Default selection (T or F)
-          </label>
-          <select
+          </FormLabel>
+          <Select
             value={value.defaultDetectionMode}
             id="defaultSelectionMode"
             onChange={(e) => {
@@ -29,12 +29,12 @@ export default function Form({ value, handler }: FormProps) {
             {DETECTION_MODES.map((v, i) => {
               return <option key={`detection-mode-option-${i}`} value={v}>{v}</option>;
             })}
-          </select>
+          </Select>
         </div>
 
         <div key='form-field-2'>
-          <label htmlFor="sampleNamePrefix">Sample Name prefix</label>
-          <input
+          <FormLabel htmlFor="sampleNamePrefix">Sample Name prefix</FormLabel>
+          <Input
             id="sampleNamePrefix"
             type="text"
             maxLength={5}
@@ -46,10 +46,10 @@ export default function Form({ value, handler }: FormProps) {
         </div>
 
         <div key='form-field-3'>
-          <label htmlFor="startingCount">
+          <FormLabel htmlFor="startingCount">
             starting number for creating the new name
-          </label>
-          <input
+          </FormLabel>
+          <Input
             id="startingCount"
             type="number"
             max={5}
@@ -61,8 +61,8 @@ export default function Form({ value, handler }: FormProps) {
         </div>
 
         <div key='form-field-4'>
-          <label htmlFor="samplesNumber">Total number of samples</label>
-          <input
+          <FormLabel htmlFor="samplesNumber">Total number of samples</FormLabel>
+          <Input
             id="samplesNumber"
             type="number"
             max={50}
@@ -74,10 +74,10 @@ export default function Form({ value, handler }: FormProps) {
         </div>
 
         <div key='form-field-5'>
-          <label htmlFor="defaultRepetitionsNumber">
+          <FormLabel htmlFor="defaultRepetitionsNumber">
             Default repetitions number
-          </label>
-          <input
+          </FormLabel>
+          <Input
             id="defaultRepetitionsNumber"
             type="number"
             max={2}
@@ -88,8 +88,8 @@ export default function Form({ value, handler }: FormProps) {
           />
         </div>
         <div key='form-field-6'>
-          <label htmlFor="holderSelection">Holder selection</label>
-          <select
+          <FormLabel htmlFor="holderSelection">Holder selection</FormLabel>
+          <Select
             value={value.holder.name}
             id="holderSelection"
             onChange={(e) => {
@@ -102,11 +102,11 @@ export default function Form({ value, handler }: FormProps) {
             }}
           >
             {AVAILABLE_HOLDERS.map((v, i) => {
-              return <option key={`holder-option-${i}`} value={i}>{v.name}</option>;
+              return <option key={`holder-option-${i}`} value={i.toString()}>{v.name}</option>
             })}
-          </select>
+          </Select>
         </div>
-      </form>
+      </FormControl>
     </>
   );
 }

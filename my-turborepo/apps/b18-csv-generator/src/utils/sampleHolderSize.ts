@@ -9,7 +9,7 @@ const sampleHolder: Holder = { name: "default", width: 4, height: 6 };
 
 
 export type ReadyRow = {
-  element: ChemicalElement; //vallidate between 13 and 93 Z
+  element: ChemicalElement; //validate between 13 and 93 Z
   edge: EdgeType;
   detectionMode: DetectionModeType;
   sampleName: string;

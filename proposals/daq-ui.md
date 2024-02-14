@@ -5,7 +5,6 @@
 - [ ] see the different layouts / perspectives
 - [ ] link out into a new window
 
-
 ## tech stack
 - [ ] vite
 - [ ] cypress

@@ -29,6 +29,6 @@ describe("to number", () => {
   });
   it("letter T", () => {
     const r = toAlphabet(25);
-    expect(r).toBe("T");
+    expect(r).toBe("Y");
   });
 });

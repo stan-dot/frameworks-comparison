@@ -27,7 +27,7 @@ export type ReadyRow = {
   detectionMode: DetectionModeType;
   sampleName: string;
   sampleComment: string;
-  column: string;
+  column_letter: string;
   row: number; // min 1
   repetitions: number; // min 1
 };
@@ -78,7 +78,7 @@ export function generateRows({
       detectionMode: defaultDetectionMode,
       sampleName: n,
       sampleComment: "",
-      column: colName,
+      column_letter: colName,
       row: rowNumber,
       repetitions: defaultRepetitionsNumber,
     };

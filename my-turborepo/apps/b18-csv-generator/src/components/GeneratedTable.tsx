@@ -4,12 +4,19 @@ import { ReadyRow, getCsvContent } from "../utils/sampleHolderSize";
 import { downloadFile } from "@repo/utils";
 import { DataTable } from "./DataTable";
 import { mockData } from "./mockData";
+import ElementPicker from "./ElementPicker";
+import { ChemicalElement } from "../data/elements";
 
 const columnHelper = createColumnHelper<ReadyRow>();
 
 const columns = [
   columnHelper.accessor("element.name", {
-    cell: (info) => info.getValue(),
+    cell: (info) => (
+      <div>
+        {info.getValue()}
+        {/* <ElementPicker callback={() => console.log(info.cell.id)} /> */}
+      </div>
+    ),
     header: "Element",
   }),
   columnHelper.accessor("edge", {
@@ -17,7 +24,7 @@ const columns = [
     header: "Edge",
   }),
   columnHelper.accessor("detectionMode", {
-    cell: (info) => info.getValue(),
+    cell: (info) => <p style={{ color: "red" }}>{info.getValue()}</p>,
     header: "Detection Mode",
     meta: {
       isNumeric: false,
@@ -37,11 +44,11 @@ const columns = [
       isNumeric: false,
     },
   }),
-  columnHelper.accessor("column", {
+  columnHelper.accessor("column_letter", {
     cell: (info) => info.getValue(),
     header: "column",
     meta: {
-      isNumeric: true,
+      isNumeric: false,
     },
   }),
   columnHelper.accessor("row", {

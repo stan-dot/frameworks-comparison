@@ -99,7 +99,7 @@ export default function Form({ value, handler }: FormProps) {
             onChange={(e) => {
               const n: number = parseInt(e.target.value);
               const newHolder = AVAILABLE_HOLDERS[n];
-              window.alert(newHolder.name);
+              // window.alert(newHolder.name);
               handler({
                 holder: newHolder,
               });

@@ -11,6 +11,8 @@ import {
 } from "./utils/sampleHolderSize";
 import { Box, ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
 import GeneratedTable from "./components/GeneratedTable";
+import { CustomControlsExample } from "./components/CustomControlsExample";
+import EditableTable from "./components/EditableTable";
 
 function App() {
   const [form, setForm] = useState<GeneratorSetup>(defaultGeneratorSetup);
@@ -24,30 +26,25 @@ function App() {
   };
 
   const rows: ReadyRow[] = generateRows(form);
+  console.log("new rows sample name: ", rows[0].sampleName);
 
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
 
+  return <EditableTable />;
   // todo add verification if it's ready or going with the default values
   if (isLargerThan1280) {
     return (
       <HStack>
+        {/* <CustomControlsExample /> */}
         <Box>
-          <Selector propRows={rows} />
+          {/* <Selector propRows={rows} /> */}
           <ChakraProvider>
-            <button
-              style={{ backgroundColor: "green", padding: 2, margin: 2 }}
-              onClick={() => setReady(false)}
-            >
-              Go back
-            </button>
             <br />
-            <GeneratedTable />
+            <GeneratedTable data={rows} />
           </ChakraProvider>
         </Box>
         <Box>
           <Form value={form} handler={handler} />
-          {/* todo this button would also reset and does not really submit, might need to change the name */}
-          <SubmitButton callback={() => setReady(true)} />
         </Box>
       </HStack>
     );
@@ -73,6 +70,7 @@ function App() {
       ) : (
         <>
           <Form value={form} handler={handler} />
+          {/* todo this button would also reset and does not really submit, might need to change the name */}
           <SubmitButton callback={() => setReady(true)} />
         </>
       )}

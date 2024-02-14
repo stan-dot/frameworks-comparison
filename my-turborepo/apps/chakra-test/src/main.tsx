@@ -52,18 +52,17 @@ const router = createBrowserRouter([
         errorElement: <div>Oops! There was an error.</div>,
       },
       {
-        errorElement: <ErrorPage/>,
-        children:[
-          {index:true, element:<Index/>},
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <Index /> },
           {
-            path: 'contacts/:contactId',
-            element: <Contact/>,
+            path: "contacts/:contactId",
+            element: <Contact />,
             loader: contactLoader,
-            action: contactAction
-          }
-
-        ]
-      }
+            action: contactAction,
+          },
+        ],
+      },
       {
         index: true,
         element: <Index />,

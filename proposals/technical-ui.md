@@ -12,7 +12,6 @@ beamline config - booleans and optional stuff, central panel all the time
 ## validation with joi
 - [ ] the sample technical UI with a validation component from joi
 
-
 ## specific paths
 
 /beamline/{beamline}/device/{ophydId} - there a screen and a redirect to the openapi spec from here <https://github.com/openapi-generators/openapi-python-client>
@@ -36,10 +35,3 @@ experiment types are requsable
 
 /beamline/{beamline}/experiment/{experimentType}/id/{experimentId}/scan/{scanId}
 
-## skeuomorphic element 
-
-pros
-
-- can see the ranges
-- can see adjustment level fast
-- can color code when it is moving

@@ -10,7 +10,8 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component"
+    "generate:component": "turbo gen react-component",
+    "test": "npx vitest src"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

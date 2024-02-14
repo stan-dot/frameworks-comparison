@@ -7,11 +7,13 @@ export function TestTable() {
     <DataTable columns={columns} data={data} />
   </>;
 }
+
 type UnitConversion = {
   fromUnit: string;
   toUnit: string;
   factor: number;
 };
+
 const data: UnitConversion[] = [
   {
     fromUnit: "inches",
@@ -29,6 +31,7 @@ const data: UnitConversion[] = [
     factor: 0.91444,
   },
 ];
+
 const columnHelper = createColumnHelper<UnitConversion>();
 const columns = [
   columnHelper.accessor("fromUnit", {

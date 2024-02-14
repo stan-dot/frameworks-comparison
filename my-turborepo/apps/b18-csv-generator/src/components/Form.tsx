@@ -37,10 +37,11 @@ export default function Form({ value, handler }: FormProps) {
         </div>
 
         <div key="form-field-2">
-          <FormLabel htmlFor="sampleNamePrefix">Sample Name prefix</FormLabel>
+          <FormLabel htmlFor="sampleNamePrefix">Sample Name prefix (between 0 and 5)</FormLabel>
           <Input
             id="sampleNamePrefix"
             type="text"
+            minLength={0}
             maxLength={5}
             value={value.sampleNamePrefix}
             onChange={(e) => {
@@ -79,7 +80,7 @@ export default function Form({ value, handler }: FormProps) {
 
         <div key="form-field-5">
           <FormLabel htmlFor="defaultRepetitionsNumber">
-            Default repetitions number
+            Default repetitions number (min 1)
           </FormLabel>
           <Input
             id="defaultRepetitionsNumber"

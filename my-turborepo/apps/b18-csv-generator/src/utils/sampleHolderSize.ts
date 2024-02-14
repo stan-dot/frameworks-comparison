@@ -59,13 +59,11 @@ export function generateRows({
   defaultRepetitionsNumber,
   holder,
 }: GeneratorSetup): ReadyRow[] {
-  console.log("checking rows");
   const names: string[] = autogenerateSampleNames(
     sampleNamePrefix,
     startingCount,
     samplesNumber
   );
-  console.log("names: ", names);
 
   const rows: ReadyRow[] = names.map((n, i) => {
     const colNumber = Math.floor(i / holder.height) + 1;
@@ -84,7 +82,6 @@ export function generateRows({
     };
     return r;
   });
-  console.log("rows: ", rows);
   return rows;
 }
 

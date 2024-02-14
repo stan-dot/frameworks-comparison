@@ -1,7 +1,9 @@
+import { Box, ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
 import SubmitButton from "@repo/ui/submit-button";
 import { useState } from "react";
 import "./App.css";
 import Form from "./components/Form";
+import GeneratedTable from "./components/GeneratedTable";
 import Selector from "./components/Selector";
 import {
   GeneratorSetup,
@@ -9,10 +11,6 @@ import {
   defaultGeneratorSetup,
   generateRows,
 } from "./utils/sampleHolderSize";
-import { Box, ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
-import GeneratedTable from "./components/GeneratedTable";
-import { CustomControlsExample } from "./components/CustomControlsExample";
-import EditableTable from "./components/EditableTable";
 
 function App() {
   const [form, setForm] = useState<GeneratorSetup>(defaultGeneratorSetup);
@@ -30,7 +28,7 @@ function App() {
 
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
 
-  return <EditableTable />;
+  // return <EditableTable />;
   // todo add verification if it's ready or going with the default values
   if (isLargerThan1280) {
     return (

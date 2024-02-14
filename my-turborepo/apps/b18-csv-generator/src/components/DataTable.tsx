@@ -1,14 +1,38 @@
-import * as React from "react";
-import { Table, Thead, Tbody, Tr, Th, Td, chakra } from "@chakra-ui/react";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import {
-  useReactTable,
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionPanel,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+  chakra,
+} from "@chakra-ui/react";
+import {
+  ColumnDef,
+  RowData,
+  SortingState,
   flexRender,
   getCoreRowModel,
-  ColumnDef,
-  SortingState,
-  getSortedRowModel
+  getSortedRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
+import * as React from "react";
+
+import "@tanstack/react-table"; //or vue, svelte, solid, etc.
+import ElementPicker from "./ElementPicker";
+
+declare module "@tanstack/react-table" {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    isNumeric: boolean;
+    editable?: boolean;
+    element?: boolean;
+  }
+}
 
 export type DataTableProps<Data extends object> = {
   data: Data[];
@@ -17,7 +41,7 @@ export type DataTableProps<Data extends object> = {
 
 export function DataTable<Data extends object>({
   data,
-  columns
+  columns,
 }: DataTableProps<Data>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const table = useReactTable({
@@ -27,8 +51,8 @@ export function DataTable<Data extends object>({
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     state: {
-      sorting
-    }
+      sorting,
+    },
   });
 
   return (
@@ -70,7 +94,32 @@ export function DataTable<Data extends object>({
           <Tr key={row.id}>
             {row.getVisibleCells().map((cell) => {
               // see https://tanstack.com/table/v8/docs/api/core/column-def#meta to type this correctly
-              const meta: any = cell.column.columnDef.meta;
+              const meta = cell.column.columnDef.meta;
+              if (meta?.editable && meta.element) {
+                return (
+                  <Td key={cell.id} isNumeric={meta?.isNumeric}>
+                    <>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                      <Accordion>
+                        <AccordionButton>
+                          edit
+                          <AccordionIcon />
+                        </AccordionButton>
+                        <AccordionPanel pb={4}>
+                          <ElementPicker
+                            callback={() =>
+                              console.log("trying to change the element")
+                            }
+                          />
+                        </AccordionPanel>
+                      </Accordion>
+                    </>
+                  </Td>
+                );
+              }
               return (
                 <Td key={cell.id} isNumeric={meta?.isNumeric}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

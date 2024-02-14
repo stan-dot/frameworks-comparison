@@ -1,5 +1,5 @@
 import React from "react";
-import EditContact, {action as editAction} from "./routes/edit.tsx";
+import EditContact, { action as editAction } from "./routes/edit.tsx";
 
 import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
@@ -11,7 +11,12 @@ import Root, {
   action as rootAction,
 } from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
-import Contact, { loader as contactLoader } from "./routes/contact.tsx";
+import Contact, {
+  loader as contactLoader,
+  action as contactAction,
+} from "./routes/contact.tsx";
+import DeleteContact, { action as deleteAction } from "./routes/destroy.tsx";
+import Index from "./routes/index.tsx";
 
 const colors = {
   brand: {
@@ -31,13 +36,38 @@ const router = createBrowserRouter([
         path: "contacts/:contactId",
         element: <Contact />,
         loader: contactLoader,
+        action: contactAction,
       },
       {
         path: "contacts/:contactId/edit",
-        element:<EditContact/>,
+        element: <EditContact />,
         loader: contactLoader,
-        action: editAction
+        action: editAction,
+      },
+      {
+        path: "contacts/:contactId/destroy",
+        element: <DeleteContact />,
+        loader: contactLoader,
+        action: deleteAction,
+        errorElement: <div>Oops! There was an error.</div>,
+      },
+      {
+        errorElement: <ErrorPage/>,
+        children:[
+          {index:true, element:<Index/>},
+          {
+            path: 'contacts/:contactId',
+            element: <Contact/>,
+            loader: contactLoader,
+            action: contactAction
+          }
+
+        ]
       }
+      {
+        index: true,
+        element: <Index />,
+      },
     ],
     loader: rootLoader,
     action: rootAction,

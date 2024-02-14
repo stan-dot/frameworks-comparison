@@ -21,3 +21,7 @@
 <https://github.com/DiamondLightSource/SynchWeb/blob/master/client/package.json>
 
 <https://github.com/dls-controls/cs-web-lib/blob/master/package.json>
+
+get jsons
+https://github.com/github-modules/get-repo-package-json
+

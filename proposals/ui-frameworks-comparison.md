@@ -1,7 +1,11 @@
 
-complex layouts - just on component / page level. can do all in chakra
 
-large grids
+## criteria
+- complex layouts - just on component / page level. can do all in chakra
+- large grids
+- accessibility
+- customizability
+- support
 
 
 add github actions support

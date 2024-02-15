@@ -1,5 +1,5 @@
 import { tomography } from "@repo/science";
-import { Button as PopupButton } from "@repo/ui";
+import { Button as PopupButton } from "@repo/ui/button";
 import { Button, DatePicker, Flex, Layout } from "antd";
 import React from "react";
 import "./App.css";

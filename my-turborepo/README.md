@@ -2,13 +2,10 @@
 
 This is an official starter Turborepo.
 
-## Using this example
+## Adding a new package
 
-Run the following command:
+https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
 
-```sh
-npx create-turbo@latest
-```
 
 ## What's inside?
 

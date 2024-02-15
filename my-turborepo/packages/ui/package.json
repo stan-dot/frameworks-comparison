@@ -7,7 +7,7 @@
     "./card": "./src/card.tsx",
     "./submit-button": "./src/SubmitButton.tsx",
     "./code": "./src/code.tsx",
-    "./component-1": "./src/components/Component1.tsx"
+    "./test-components": "./src/test-components.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

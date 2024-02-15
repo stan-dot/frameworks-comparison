@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
-function BaseLayout() {
-  return (
-    <div>BaseLayout</div>
-  )
+type BaseLayoutProps = {
+  navChild: React.ReactNode;
+  topChild: React.ReactNode;
+  bottomChild: React.ReactNode;
+};
+
+function BaseLayout({ navChild, topChild, bottomChild }: BaseLayoutProps) {
+  return <div>BaseLayout</div>;
 }
 
-export default BaseLayout
+export default BaseLayout;

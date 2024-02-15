@@ -24,4 +24,9 @@
 
 get jsons
 https://github.com/github-modules/get-repo-package-json
+dependencies
+https://www.npmjs.com/package/got
+https://github.com/sindresorhus/ky
+https://github.com/github-modules/get-repo-package-json/blob/master/index.js
+https://github.com/github-modules/github-url-to-object/blob/master/index.js
 

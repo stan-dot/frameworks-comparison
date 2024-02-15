@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Component1 } from "@repo/ui";
+import { Button } from "@repo/ui";
+import Baselayout from './BaseLayout';
 const layouts = ["base", "i20"] as const;
 
 export type LayoutType = (typeof layouts)[number];

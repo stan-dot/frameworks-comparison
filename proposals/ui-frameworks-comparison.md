@@ -7,6 +7,21 @@
 - customizability
 - support
 
+## accessibility focus
+https://darekkay.com/blog/accessible-ui-frameworks/
+MUI is good here
+also React Spectrum
+
+salesforce ux design system is not ts
+https://github.com/salesforce-ux/design-system
+
+and it's quite small in terms of stars
+https://github.com/salesforce/design-system-react
+
+
+
+
+## try deploying
 
 add github actions support
 https://turbo.build/repo/docs/ci/github-actions

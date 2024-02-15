@@ -44,7 +44,7 @@ export function TopLevel() {
 
   return (
     <Layout>
-      <Header style={{ display: "flex", alignItems: "center" }}>
+      <Header style={{ display: "absolute", alignItems: "left" }}>
         <div className="demo-logo" />
         <Menu
           theme="dark"

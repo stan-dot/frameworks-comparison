@@ -1,13 +1,42 @@
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { tomography } from "@repo/science";
-import { Button } from "@repo/ui/button";
+import { Button as RepoButton } from "@repo/ui/button";
 import "./App.css";
+import Baselayout from "./layouts/BaseLayout";
+import { Component1, Component2, Component3 } from "@repo/ui/test-components";
+import { ButtonGroup, Link, Typography } from "@mui/material";
+import { useState } from "react";
+import I20layout from "./layouts/I20Layout";
+
+const layouts = ["base", "i20"] as const;
+
+export type LayoutType = (typeof layouts)[number];
 
 function App() {
   const m = tomography();
 
+  const [currentLayout, setCurrentLayout] = useState<LayoutType>("base");
+
   return (
     <>
+      <nav>
+        <ButtonGroup>
+          <Typography>Switch typography</Typography>
+          <Button
+            onClick={() => setCurrentLayout("base")}
+            disabled={currentLayout === "base"}
+          >
+            go to base
+          </Button>
+          <Button
+            onClick={() => setCurrentLayout("i20")}
+            disabled={currentLayout === "i20"}
+          >
+            go to i20
+          </Button>
+        </ButtonGroup>
+      </nav>
       <div style={{ width: "100%" }}>
         <Box
           sx={{
@@ -27,29 +56,24 @@ function App() {
         >
           {"I'm a grid container!"}
         </Box>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 1,
-            gridTemplateRows: "auto",
-            gridTemplateAreas: `"header header header header"
-  "main main . sidebar"
-  "footer footer footer footer"`,
-          }}
-        >
-          <Box sx={{ gridArea: "header", bgcolor: "primary.main" }}>Header</Box>
-          <Box sx={{ gridArea: "main", bgcolor: "secondary.main" }}>Main</Box>
-          <Box sx={{ gridArea: "sidebar", bgcolor: "error.main" }}>Sidebar</Box>
-          <Box sx={{ gridArea: "footer", bgcolor: "warning.dark" }}>Footer</Box>
-        </Box>
+        {currentLayout === "base" && (
+          <Baselayout
+            navChild={<Component1 />}
+            topChild={<Component2 />}
+            bottomChild={<Component3 />}
+          />
+        )}
+        {currentLayout == "i20" && (
+          <I20layout
+            navChild={<Component1 />}
+            topChild={<Component2 />}
+            bottomChild={<Component3 />}
+          />
+        )}
+        <RepoButton appName={"vite"}>
+          <p>nothing, but from tomography we get: {m}</p>
+        </RepoButton>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <Button appName={"vite"}>
-        <p>nothing, but from tomography we get: {m}</p>
-      </Button>
     </>
   );
 }

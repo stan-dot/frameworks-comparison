@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Component1, Component2, Component3 } from "@repo/ui/test-components";
 import Baselayout from "./BaseLayout";
+import { Flex } from "antd";
 const layouts = ["base", "i20"] as const;
 
 export type LayoutType = (typeof layouts)[number];
@@ -11,15 +12,13 @@ function RootContainer() {
   return (
     <div style={{ display: "absolute" }}>
       <LayoutSwitcher current={currentLayout} callback={setCurrentLayout} />
-      <Box maxWidth={"80%"}>
-        {currentLayout === "base" && (
-          <Baselayout
-            navChild={<Component1 />}
-            topChild={<Component2 />}
-            bottomChild={<Component3 />}
-          />
-        )}
-      </Box>
+      {currentLayout === "base" && (
+        <Baselayout
+          navChild={<Component1 />}
+          topChild={<Component2 />}
+          bottomChild={<Component3 />}
+        />
+      )}
     </div>
   );
 }
@@ -34,7 +33,7 @@ function LayoutSwitcher({
   callback: (l: LayoutType) => void;
 }) {
   return (
-    <HStack width={250}>
+    <Flex gap="middle" vertical={false}>
       {layouts.map((l) => {
         return (
           <button
@@ -52,6 +51,6 @@ function LayoutSwitcher({
           </button>
         );
       })}
-    </HStack>
+    </Flex>
   );
 }

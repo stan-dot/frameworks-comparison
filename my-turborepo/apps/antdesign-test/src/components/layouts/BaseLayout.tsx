@@ -1,3 +1,4 @@
+import { Divider, Row } from "antd";
 import React from "react";
 
 type BaseLayoutProps = {
@@ -7,7 +8,15 @@ type BaseLayoutProps = {
 };
 
 function BaseLayout({ navChild, topChild, bottomChild }: BaseLayoutProps) {
-  return <div>BaseLayout</div>;
+  return (
+    <div>
+      <Divider orientation="left">Horizontal</Divider>
+      <Row gutter={16}>{navChild}</Row>
+      <Row>{topChild}</Row>
+
+      <Row>{bottomChild}</Row>
+    </div>
+  );
 }
 
 export default BaseLayout;

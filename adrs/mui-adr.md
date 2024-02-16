@@ -1,5 +1,4 @@
 
-
 ## criteria
 - complex layouts - just on component / page level. can do all in chakra
 - large grids
@@ -19,35 +18,13 @@ and it's quite small in terms of stars
 https://github.com/salesforce/design-system-react
 
 
-
-
 ## try deploying
 
 add github actions support
 https://turbo.build/repo/docs/ci/github-actions
 
-themes - to be loaded everywhere
-https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours--docs
 
-
-https://ant.design/docs/react/customize-theme
-
-https://chakra-ui.com/changelog/v2.6.0#styled-system
-
-https://chakra-ui.com/docs/components/grid#spanning-columns
-
-running a sample vtk inside
-https://kitware.github.io/vtk-js/examples/ZipHttpReader.html
-
-web components test
-
-https://www.webcomponents.org/introduction
-
-htmx test
-https://htmx.org/docs/#validation
-
-
-# alternative frameworks
+# alternative frameworks - not always the best for aria
 https://github.com/nextui-org/nextui
 
 https://github.com/mui/material-ui
@@ -71,3 +48,21 @@ https://github.com/nextui-org/nextui
 
 https://github.com/adobe/react-spectrum
 
+themes - to be loaded everywhere
+https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours--docs
+
+https://ant.design/docs/react/customize-theme
+
+https://chakra-ui.com/changelog/v2.6.0#styled-system
+
+https://chakra-ui.com/docs/components/grid#spanning-columns
+
+running a sample vtk inside
+https://kitware.github.io/vtk-js/examples/ZipHttpReader.html
+
+web components test
+
+https://www.webcomponents.org/introduction
+
+htmx test
+https://htmx.org/docs/#validation

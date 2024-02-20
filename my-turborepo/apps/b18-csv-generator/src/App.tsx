@@ -1,4 +1,5 @@
 import { Box, ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
+import { PeriodicTable } from "@repo/refactored-periodic-table/refactored-periodic-table";
 import SubmitButton from "@repo/ui/submit-button";
 import { useState } from "react";
 import "./App.css";
@@ -39,6 +40,7 @@ function App() {
           <ChakraProvider>
             <br />
             <GeneratedTable data={rows} />
+            <PeriodicTable callback={(e) => { window.alert(`clicked element: ${e.Name}`) }} />
           </ChakraProvider>
         </Box>
         <Box>

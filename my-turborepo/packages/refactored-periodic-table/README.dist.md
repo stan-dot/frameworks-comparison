@@ -3,24 +3,20 @@ Periodic Table of Elements
 ## Install
 
 ```
-  npm install @celadora/periodic-table
+  npm install @dls/periodic-table
 ```
 
 ## Usage
 ```tsx
-  import PeriodicTable, { OnClick } from '@celadora/periodic-table';
+  import PeriodicTable, { OnClick } from '@repo/refactored-periodic-table';
 
   function App() {
-    const handleClick: OnClick = (e, element) => {
+    const handleClick = ( element) => {
       console.log(element);
     }
 
     return (
       <PeriodicTable onClick={handleClick} squareSize={55} margin={2} /> 
     )
-
   }
 ```
-
-## Demo
-[Demo](https://lagslug.github.io/PeriodicTable-React/)

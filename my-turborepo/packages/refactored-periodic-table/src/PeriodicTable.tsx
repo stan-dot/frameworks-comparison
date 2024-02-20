@@ -7,11 +7,11 @@ import { ElementType } from "./elements";
 
 type PeriodicTableProps = {
   callback: (element: ElementType) => void;
-  squareSize: number;
-  margin: number;
+  squareSize?: number;
+  margin?: number;
 };
 
-export default function PeriodicTable({
+export function PeriodicTable({
   callback,
   squareSize = SQUARE_SIZE,
   margin = MARGIN,

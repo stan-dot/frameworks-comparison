@@ -1,5 +1,8 @@
 # todo
 
+- [ ] react spectrum 
+- [ ] bootstrap
+
 - [ ] turbo docker deployment - standalone and `turbo prune {appname} --docker` <https://turbo.build/repo/docs/handbook/deploying-with-docker>
 - [ ] split libraries into smart and display? to have stateful components treated separately
 

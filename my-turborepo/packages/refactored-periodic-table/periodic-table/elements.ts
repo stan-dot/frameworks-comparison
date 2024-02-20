@@ -1,4 +1,19 @@
-export default [
+
+export type ElementType = {
+  'Number': string;
+  'Type': string;
+  'Atomic Weight': string;
+  'Name': string;
+  'Symbol': string;
+  'Melting Point': string;
+  'Boiling Point': string;
+  'Density': string;
+  'Earth': string;
+  'Group': string;
+  'Electron Configuration': string;
+}
+
+export const elements: ElementType[] = [
   {
     "Number": "1",
     "Type": "nonmetal",

@@ -1,5 +1,5 @@
 import { ValidatorResult, validate } from "jsonschema"
-import schema from './schema.json';
+import schema from '../schema.json';
 
 export function validatePackageJson(obj: Record<any, any>): boolean {
     const r: ValidatorResult = validate(obj, schema);

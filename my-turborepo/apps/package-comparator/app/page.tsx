@@ -1,10 +1,8 @@
-import { Button } from "@repo/ui/button";
 import { Card } from "@repo/ui/card";
 import { Code } from "@repo/ui/code";
-import Image from "next/image";
-import { Gradient } from "./Gradient";
+import Link from "next/link";
+import { Hero } from "./Hero";
 import styles from "./page.module.css";
-import FixedSizeGrid from "./components/FixedSizeGrid";
 
 type Link = {
   title: string;
@@ -22,7 +20,7 @@ const LINKS: Link[] = [
     title: "Learn",
     href: "https://turbo.build/repo/docs/handbook",
     description: "Learn more about Turbo monorepos with the official handbook.",
-  },
+  }
 ];
 
 export default function Page(): JSX.Element {
@@ -34,34 +32,7 @@ export default function Page(): JSX.Element {
           <Code className={styles.code}>Package json comparison</Code>
         </p>
       </div>
-
-      <Button appName="web" className={styles.button}>
-        Click me!
-      </Button>
-
-      <div className={styles.hero}>
-        <div className={styles.heroContent}>
-          <div className={styles.logos}>
-            <div className={styles.circles}>
-              <Image
-                alt=""
-                height={614}
-                src="circles.svg"
-                width={614}
-                style={{ pointerEvents: "none" }}
-              />
-            </div>
-            <div className={styles.logoGradientContainer}>
-              <Gradient className={styles.logoGradient} conic small />
-            </div>
-
-            <div className={styles.logo}>
-              <p> logo here</p>
-            </div>
-          </div>
-          <Gradient className={styles.backgroundGradient} conic />
-        </div>
-      </div>
+      <Hero />
 
       <div className={styles.grid}>
         {LINKS.map(({ title, href, description }) => (
@@ -70,7 +41,7 @@ export default function Page(): JSX.Element {
           </Card>
         ))}
       </div>
-      <FixedSizeGrid />
     </main>
   );
 }
+

@@ -11,3 +11,4 @@ ls
 podman build --format docker $NAME
 podman tag $NAME $PUBLISH_URL
 podman push $PUBLISH_URL
+

@@ -1,9 +1,15 @@
-"use client"
+"use client";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { parsePackageJson } from "../logic";
+import { PackageData, parsePackageJson } from "../logic";
 
-const FileUploaderComponent: React.FC = () => {
+type FileUploaderComponentProps = {
+  callback: (d: PackageData) => void;
+};
+
+export function FileUploaderComponent({
+  callback,
+}: FileUploaderComponentProps) {
   const [files, setFiles] = useState<File[]>([]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +24,7 @@ const FileUploaderComponent: React.FC = () => {
       const packageData = await parsePackageJson(file);
       console.log(packageData);
       // Handle the parsed package data as needed
+      callback(packageData);
     }
   };
 
@@ -34,6 +41,4 @@ const FileUploaderComponent: React.FC = () => {
       </Button>
     </div>
   );
-};
-
-export default FileUploaderComponent;
+}

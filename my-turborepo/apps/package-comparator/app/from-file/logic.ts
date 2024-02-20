@@ -6,20 +6,19 @@ export function validatePackageJson(obj: Record<any, any>): boolean {
     return r.valid;
 }
 
-
-type PackageJsonData = {
+export type PackageJsonData = {
     name: string;
     dependencies?: Record<string, string>;
     devDependencies?: Record<string, string>;
 };
 
-type PackageLine = {
+export type PackageLine = {
     name: string;
     version: string;
 };
 
-type PackageData = {
-    name: string;
+export type PackageData = {
+    projectName: string;
     dependencies: PackageLine[];
     devDependencies: PackageLine[];
 };
@@ -37,7 +36,7 @@ export async function parsePackageJson(file: Blob): Promise<PackageData> {
         : [];
 
     return {
-        name: json.name,
+        projectName: json.name,
         dependencies,
         devDependencies,
     };

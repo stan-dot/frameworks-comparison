@@ -1,4 +1,4 @@
-import React from "react";
+import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 import {
   ButtonGroup,
   Editable,
@@ -9,7 +9,6 @@ import {
   Input,
   useEditableControls
 } from "@chakra-ui/react";
-import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
 
 
 export function CustomControlsExample() {

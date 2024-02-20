@@ -6,6 +6,10 @@ This is an official starter Turborepo.
 
 https://turbo.build/repo/docs/handbook/sharing-code/internal-packages
 
+## publishing guidelines
+https://confluence.diamond.ac.uk/display/CLOUD/Container+Registry
+
+also see example script in ["apps/b18-csv-generator/package.json"]
 
 ## What's inside?
 

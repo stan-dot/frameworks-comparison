@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 
 //
 import './index.css';
@@ -7,14 +6,14 @@ import './index.css';
 //
 import {
   Column,
-  Table,
   ColumnDef,
-  useReactTable,
+  RowData,
+  Table,
+  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  flexRender,
-  RowData,
+  useReactTable,
 } from '@tanstack/react-table';
 import { Person, makeData } from './makeData';
 

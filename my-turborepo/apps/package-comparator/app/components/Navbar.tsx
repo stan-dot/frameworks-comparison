@@ -7,7 +7,7 @@ function Navbar() {
     return (
         <div>
             <AppBar>
-                <Box>
+                <Box padding={2} color={'violet'}>
                     <Link href={'./from-file'} >from file</Link>
                 </Box>
             </AppBar>

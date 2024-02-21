@@ -2,13 +2,16 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { PackageData, parsePackageJson } from "../logic";
+import ConfirmModal from "@repo/ui/confirm-modal";
 
 type FileUploaderComponentProps = {
-  callback: (d: PackageData) => void;
+  addCallback: (d: PackageData) => void;
+  resetCallback: () => void;
 };
 
 export function FileUploaderComponent({
-  callback,
+  addCallback,
+  resetCallback,
 }: FileUploaderComponentProps) {
   const [files, setFiles] = useState<File[]>([]);
 
@@ -24,7 +27,7 @@ export function FileUploaderComponent({
       const packageData = await parsePackageJson(file);
       console.log(packageData);
       // Handle the parsed package data as needed
-      callback(packageData);
+      addCallback(packageData);
     }
   };
 
@@ -39,6 +42,11 @@ export function FileUploaderComponent({
       <Button variant="contained" onClick={handleParseClick}>
         Parse Package.json Files
       </Button>
+      <ConfirmModal
+        question="reset"
+        title={"Are you sure?"}
+        onConfirm={resetCallback}
+      />
     </div>
   );
 }

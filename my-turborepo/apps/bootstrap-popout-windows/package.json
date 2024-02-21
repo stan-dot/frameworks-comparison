@@ -15,11 +15,11 @@
     "@repo/science": "*",
     "@repo/typescript-config": "*",
     "@repo/ui": "*",
-    "@tanstack/react-router": "^1.16.6",
-    "@tanstack/router-devtools": "^1.16.6",
+    "@types/react-router-dom": "^5.3.3",
     "bootstrap": "^5.3.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
     "@tanstack/router-vite-plugin": "^1.16.5",

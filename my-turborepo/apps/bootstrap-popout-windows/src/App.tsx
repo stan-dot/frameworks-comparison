@@ -1,11 +1,9 @@
+import { tomography } from "@repo/science";
+import { Button } from "@repo/ui/button";
 import { useState } from "react";
+import "./App.css";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import { tomography } from "@repo/science";
-import "./App.css";
-import { Button } from "@repo/ui/button";
-import { Router, RouterProvider } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/router-devtools";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -37,12 +35,6 @@ function App() {
       <Button appName={"vite"}>
         <p>nothing, but from tomography we get: {m}</p>
       </Button>
-      <RouterProvider router={router} />
-      <TanStackRouterDevtoolsPanel
-        router={router}
-        style={styles}
-        className={className}
-      />
     </>
   );
 }

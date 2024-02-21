@@ -1,12 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import { tomography } from '@repo/science';
-import './App.css'
-import { Button } from '@repo/ui/button';
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import { tomography } from "@repo/science";
+import "./App.css";
+import { Button } from "@repo/ui/button";
+import { Router, RouterProvider } from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/router-devtools";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const m = tomography();
 
   return (
@@ -32,9 +34,17 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <Button appName={'vite'}><p>nothing, but from tomography we get: {m}</p></Button>
+      <Button appName={"vite"}>
+        <p>nothing, but from tomography we get: {m}</p>
+      </Button>
+      <RouterProvider router={router} />
+      <TanStackRouterDevtoolsPanel
+        router={router}
+        style={styles}
+        className={className}
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

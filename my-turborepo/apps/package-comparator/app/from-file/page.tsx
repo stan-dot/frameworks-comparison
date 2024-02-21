@@ -7,6 +7,7 @@ import { PackageData, PackageLine } from "./logic";
 import PackageVersionDataGrid from "./components/PackageVersionDataGrid";
 import { InvertedPackageDataGrid } from "./components/InvertedPackageDataGrid";
 import { Typography } from "@mui/material";
+import Ranking from "./components/Ranking";
 
 const firstCol: GridColDef = {
     field: "dependency name",
@@ -27,6 +28,7 @@ function page() {
     return (
         <div className={styles.main}>
             <FileUploaderComponent addCallback={onUpload} resetCallback={reset} />
+            <Ranking packageDataArray={data} />
             <div id="another-grid" style={{ width: "100%" }}>
                 <Typography variant="h3" >Table</Typography>
                 <div style={{ height: 450, width: "100%" }}>

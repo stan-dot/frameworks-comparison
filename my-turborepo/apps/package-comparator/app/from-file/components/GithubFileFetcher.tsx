@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { PackageData, parsePackageJson } from "../logic";
 import { Box, Button, Input } from "@mui/material";
+import ConfirmModal from "@repo/ui/confirm-modal";
+import { diamondUrls } from "./diamondUrls";
 
 type GithubFileFetcherProps = {
   onPackageDataFetched: (d: PackageData) => void;
@@ -24,9 +26,7 @@ const GitHubFileFetcher = ({
 
     try {
       // Convert GitHub URL to raw content URL
-      const rawUrl = url
-        .replace("github.com", "raw.githubusercontent.com")
-        .replace("/blob/", "/");
+      const rawUrl = getRawUrl(url);
 
       const response = await fetch(rawUrl);
       if (!response.ok) throw new Error("Failed to fetch file from GitHub");
@@ -43,6 +43,18 @@ const GitHubFileFetcher = ({
     }
   };
 
+  const handlePrepopulate = async () => {
+    diamondUrls.forEach(async (url) => {
+      const raw = getRawUrl(url);
+      const r = await fetch(raw);
+      if (!r.ok) throw new Error("Failed to fetch file from GitHub");
+
+      const blob = await r.blob();
+      const packageData = await parsePackageJson(blob);
+      onPackageDataFetched(packageData);
+    });
+  };
+
   return (
     <Box margin={2} padding={2}>
       <Input
@@ -52,8 +64,19 @@ const GitHubFileFetcher = ({
         placeholder="Enter GitHub file URL"
       />
       <Button onClick={handleFetchClick}>Fetch Package Data</Button>
+
+      <ConfirmModal
+        question={"Prepopulate with Diamond frontend projects"}
+        title={`This will show ${diamondUrls.length} projects`}
+        onConfirm={handlePrepopulate}
+      />
     </Box>
   );
 };
 
 export default GitHubFileFetcher;
+function getRawUrl(url: string) {
+  return url
+    .replace("github.com", "raw.githubusercontent.com")
+    .replace("/blob/", "/");
+}

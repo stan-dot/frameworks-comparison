@@ -3,6 +3,7 @@ import { Code } from "@repo/ui/code";
 import Link from "next/link";
 import { Hero } from "./Hero";
 import styles from "./page.module.css";
+import { Typography } from "@mui/material";
 
 type Link = {
   title: string;
@@ -20,17 +21,25 @@ const LINKS: Link[] = [
     title: "Learn",
     href: "https://turbo.build/repo/docs/handbook",
     description: "Learn more about Turbo monorepos with the official handbook.",
-  }
+  },
 ];
 
 export default function Page(): JSX.Element {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
-          page to compare package jsons between different projescts&nbsp;
-          <Code className={styles.code}>Package json comparison</Code>
-        </p>
+        <Typography variant="h1">
+          <Link href="/from-file">
+            <Code>package.json</Code>
+          </Link>
+          comparison
+        </Typography>
+      </div>
+
+      <div className={styles.logo}>
+        <Typography variant="h2">
+          <Link href={"from-file"}>Enter</Link>
+        </Typography>
       </div>
       <Hero />
 
@@ -44,4 +53,3 @@ export default function Page(): JSX.Element {
     </main>
   );
 }
-

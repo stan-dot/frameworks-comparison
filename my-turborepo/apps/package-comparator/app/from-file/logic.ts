@@ -10,6 +10,7 @@ export type PackageJsonData = {
     name: string;
     dependencies?: Record<string, string>;
     devDependencies?: Record<string, string>;
+    url?: string
 };
 
 export type PackageLine = {
@@ -21,6 +22,7 @@ export type PackageData = {
     projectName: string;
     dependencies: PackageLine[];
     devDependencies: PackageLine[];
+    url?: string
 };
 
 export async function parsePackageJson(file: Blob): Promise<PackageData> {
@@ -55,5 +57,6 @@ export function parseTextIntoPackageData(text: string): PackageData {
         projectName: json.name,
         dependencies,
         devDependencies,
+        url: json.url
     };
 }

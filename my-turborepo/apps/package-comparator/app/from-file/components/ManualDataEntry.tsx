@@ -43,7 +43,7 @@ const ManualDataEntry = ({ onPackageDataProcessed }: ManualDataEntryProps) => {
           maxRows={20}
           style={{ width: "100%" }}
         />
-        <Button onClick={handleProcessClick}>Process Data</Button>
+        <Button onClick={handleProcessClick}>Process Text Data</Button>
       </Stack>
     </Box>
   );

@@ -1,18 +1,22 @@
-
-import { AppBar, Box } from '@mui/material'
-import Link from 'next/link'
-import React from 'react'
+import { AppBar, Box, Stack, useTheme } from "@mui/material";
+import Link from "next/link";
+import React from "react";
 
 function Navbar() {
-    return (
-        <div>
-            <AppBar>
-                <Box padding={2} color={'violet'}>
-                    <Link href={'./from-file'} >from file</Link>
-                </Box>
-            </AppBar>
-        </div>
-    )
+  return (
+    <div>
+      <AppBar>
+        <Stack padding={2} color={"white"} direction="row">
+          <Box paddingX={4}>
+            <Link href={"/"}>Home</Link>
+          </Box>
+          <Box paddingX={4}>
+            <Link href={"/from-file"}>Compare projects</Link>
+          </Box>
+        </Stack>
+      </AppBar>
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;

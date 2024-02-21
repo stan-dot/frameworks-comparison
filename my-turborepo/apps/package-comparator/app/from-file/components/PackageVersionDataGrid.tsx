@@ -1,70 +1,90 @@
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { PackageData } from "../logic";
+import { Link, List, ListItem } from "@mui/material";
 
 // Step 1: Data Transformation
 const transformDataForDataGrid = (
-    data: PackageData[]
-): { rows: any[]; columns: GridColDef[] } => {
-    const uniquePackages = new Set<string>();
+  data: PackageData[]
+): { rows: any[]; columns: GridColDef[]; uniquePackages: Set<string> } => {
+  const uniquePackages = new Set<string>();
 
-    // Find unique package names and create columns
-    data.forEach(({ dependencies, devDependencies }) => {
-        dependencies.concat(devDependencies).forEach(({ name }) => {
-            uniquePackages.add(name);
-        });
+  // Find unique package names and create columns
+  data.forEach(({ dependencies, devDependencies }) => {
+    dependencies.concat(devDependencies).forEach(({ name }) => {
+      uniquePackages.add(name);
     });
+  });
 
-    const columns: GridColDef[] = [
-        {
-            field: "projectName",
-            headerName: "Project Name",
-            width: 150,
-            editable: false,
-        },
-        ...Array.from(uniquePackages).map((packageName) => ({
-            field: packageName,
-            headerName: packageName,
-            width: 130,
-            editable: false,
-        })),
-    ];
+  const columns: GridColDef[] = [
+    {
+      field: "projectName",
+      headerName: "Project Name",
+      width: 150,
+      editable: false,
+    },
+    ...Array.from(uniquePackages).map((packageName) => ({
+      field: packageName,
+      headerName: packageName,
+      width: 130,
+      editable: false,
+    })),
+  ];
 
-    const rows = data.map((project, index) => {
-        const row: Record<string, any> = {
-            id: index,
-            projectName: project.projectName,
-        };
-        uniquePackages.forEach((packageName) => {
-            const packageVersion =
-                project.dependencies
-                    .concat(project.devDependencies)
-                    .find((pkg) => pkg.name=== packageName)?.version||
-                "n/a";
-            row[packageName] = packageVersion;
-        });
-        return row;
+  const rows = data.map((project, index) => {
+    const row: Record<string, any> = {
+      id: index,
+      projectName: project.projectName,
+    };
+    uniquePackages.forEach((packageName) => {
+      const packageVersion =
+        project.dependencies
+          .concat(project.devDependencies)
+          .find((pkg) => pkg.name === packageName)?.version || "n/a";
+      row[packageName] = packageVersion;
     });
+    return row;
+  });
 
-    return { rows, columns };
+  return { rows, columns, uniquePackages };
 };
 
 type PackageVersionDataGridProps = {
-    data: PackageData[];
+  data: PackageData[];
 };
 
 export default function PackageVersionDataGrid({
-    data,
+  data,
 }: PackageVersionDataGridProps) {
-    const { rows, columns } = transformDataForDataGrid(data);
-    return (
-        <div style={{ height: 400, width: "100%" }}>
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                checkboxSelection
-                disableRowSelectionOnClick
-            />
-        </div>
-    );
+  const { rows, columns, uniquePackages } = transformDataForDataGrid(data);
+  const arr = Array.from(uniquePackages);
+  return (
+    <div style={{ height: 400, width: "100%" }}>
+      {/* <PackagesList arr={arr} /> */}
+
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        checkboxSelection
+        disableRowSelectionOnClick
+      />
+    </div>
+  );
+}
+
+export function PackagesList({ arr }: { arr: string[] }) {
+  {
+    /* unique packages displayed */
+  }
+  return (
+    <List>
+      {arr.map((s, i) => {
+        return (
+          <ListItem key={`package-list-item-${i}`}>
+            <Link href={`https://npmjs.com/package/${s}`}>{s}</Link>
+          </ListItem>
+        );
+      })}
+    </List>
+  );
 }

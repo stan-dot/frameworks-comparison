@@ -47,7 +47,8 @@ export default function ConfirmModal({ question, title, description, onConfirm }
                         <Button variant="contained" onClick={() => {
                             onConfirm()
                             handleClose()
-                        }}>
+                        }}
+                        color='warning'>
                             Confirm?
                         </Button>
                         <Button variant="contained" onClick={handleClose}>

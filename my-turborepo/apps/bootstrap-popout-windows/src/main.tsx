@@ -17,6 +17,7 @@ import Contact, {
 } from "./routes/contact.tsx";
 import DeleteContact, { action as deleteAction } from "./routes/destroy.tsx";
 import Index from "./routes/index.tsx";
+import MultipleComponentScreen from "./routes/multiple-component-screen.tsx";
 
 const colors = {
   brand: {
@@ -39,7 +40,15 @@ const router = createBrowserRouter([
         action: contactAction,
       },
       {
-        path: "contacts/:contactId/edit",
+        path: "multiple-component-screen",
+        element: <MultipleComponentScreen />,
+      },
+      {
+        path: "single-component-screen/:componentId",
+        element: <MultipleComponentScreen />,
+      },
+      {
+        path: "contacts/:contactid/edit",
         element: <EditContact />,
         loader: contactLoader,
         action: editAction,

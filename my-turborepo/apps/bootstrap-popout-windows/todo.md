@@ -1,4 +1,11 @@
 
+# popup todo
+- [x] add a button to go to the multiple component screen
+- [ ] add a layout component using bootstrap and accepting 4 children 
+- [ ] per beamline
+
+
+
 # features
 
 - [ ] official or alternative themes
@@ -10,6 +17,7 @@
 - [ ] cypress
 - [ ] storybook
 - [ ] prisma x supabase or just supabase
+- [ ] likely 
 
 # frontend routing proposal - and API too
 

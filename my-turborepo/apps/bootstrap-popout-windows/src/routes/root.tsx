@@ -62,6 +62,11 @@ export default function Root() {
             <div id="search-spinner" aria-hidden hidden={!searching} />
             <div className="sr-only" aria-live="polite"></div>
           </Form>
+          <div>
+            <NavLink to={`multiple-component-screen`}>
+              go to test srcreen
+            </NavLink>
+          </div>
         </div>
         <nav>
           {contacts.length ? (

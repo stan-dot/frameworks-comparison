@@ -19,3 +19,6 @@ The chakra-test and b-18-csv generator are example packages, with the latter bui
 vite-project can be used as a template with no effort, just with `npx turbo gen workspace --copy`
 https://turbo.build/repo/docs/core-concepts/monorepos/code-generation
 
+
+## deployment
+    turbo docker deployment - standalone and `turbo prune {appname} --docker` <https://turbo.build/repo/docs/handbook/deploying-with-docker>

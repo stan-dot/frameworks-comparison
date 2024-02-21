@@ -31,7 +31,7 @@ function page() {
   return (
     <div className={styles.main}>
       {/* INPUT STUFF */}
-      <Stack direction="column">
+      <Stack direction="column" spacing={2}>
         <Typography variant="h3">Add one more project to compare</Typography>
         <Stack direction="row" spacing={4}>
           <ManualDataEntry onPackageDataProcessed={onUpload} />

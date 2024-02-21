@@ -10,6 +10,7 @@ import { Stack, Typography } from "@mui/material";
 import Ranking from "./components/Ranking";
 import GitHubFileFetcher from "./components/GithubFileFetcher";
 import ConfirmModal from "@repo/ui/confirm-modal";
+import ManualDataEntry from "./components/ManualDataEntry";
 
 const firstCol: GridColDef = {
   field: "dependency name",
@@ -29,29 +30,36 @@ function page() {
 
   return (
     <div className={styles.main}>
-      <Stack direction="row" spacing={4}>
+      {/* INPUT STUFF */}
+      <Stack direction="column">
         <Typography variant="h3">Add one more project to compare</Typography>
-        <GitHubFileFetcher onPackageDataFetched={onUpload} />
-        <FileUploaderComponent addCallback={onUpload} />
-        <ConfirmModal
-          question="reset"
-          title={"Are you sure?"}
-          onConfirm={reset}
-        />
+        <Stack direction="row" spacing={4}>
+          <ManualDataEntry onPackageDataProcessed={onUpload} />
+          <GitHubFileFetcher onPackageDataFetched={onUpload} />
+          <FileUploaderComponent addCallback={onUpload} />
+          <ConfirmModal
+            question="reset"
+            title={"Are you sure?"}
+            onConfirm={reset}
+          />
+        </Stack>
       </Stack>
-      <Ranking packageDataArray={data} />
-      <div id="another-grid" style={{ width: "100%" }}>
-        <Typography variant="h3">Table</Typography>
-        <div style={{ height: 450, width: "100%" }}>
-          <PackageVersionDataGrid data={data} />
+      {/* DISPLAY STUFF */}
+      <>
+        <Ranking packageDataArray={data} />
+        <div id="another-grid" style={{ width: "100%" }}>
+          <Typography variant="h3">Table</Typography>
+          <div style={{ height: 450, width: "100%" }}>
+            <PackageVersionDataGrid data={data} />
+          </div>
         </div>
-      </div>
-      <div id="inverted-grid" style={{ width: "100%" }}>
-        <Typography variant="h3">Inverted Table</Typography>
-        <div style={{ height: 450, width: "100%" }}>
-          <InvertedPackageDataGrid data={data} />
+        <div id="inverted-grid" style={{ width: "100%" }}>
+          <Typography variant="h3">Inverted Table</Typography>
+          <div style={{ height: 450, width: "100%" }}>
+            <InvertedPackageDataGrid data={data} />
+          </div>
         </div>
-      </div>
+      </>
     </div>
   );
 }

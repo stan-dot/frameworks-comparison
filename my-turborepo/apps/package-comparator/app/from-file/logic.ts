@@ -1,5 +1,5 @@
-import { ValidatorResult, validate } from "jsonschema"
-import schema from '../schema.json';
+import { ValidatorResult, validate } from "jsonschema";
+import schema from "../schema.json";
 
 export function validatePackageJson(obj: Record<any, any>): boolean {
     const r: ValidatorResult = validate(obj, schema);
@@ -25,14 +25,30 @@ export type PackageData = {
 
 export async function parsePackageJson(file: Blob): Promise<PackageData> {
     const text = await file.text();
+    if (!text) {
+        console.error("File processing error");
+        throw new Error();
+    }
+
+    const r = parseTextIntoPackageData(text);
+    return r;
+}
+
+export function parseTextIntoPackageData(text: string): PackageData {
     const json: PackageJsonData = JSON.parse(text);
 
     const dependencies = json.dependencies
-        ? Object.entries(json.dependencies).map(([name, version]) => ({ name, version }))
+        ? Object.entries(json.dependencies).map(([name, version]) => ({
+            name,
+            version,
+        }))
         : [];
 
     const devDependencies = json.devDependencies
-        ? Object.entries(json.devDependencies).map(([name, version]) => ({ name, version }))
+        ? Object.entries(json.devDependencies).map(([name, version]) => ({
+            name,
+            version,
+        }))
         : [];
 
     return {
@@ -41,4 +57,3 @@ export async function parsePackageJson(file: Blob): Promise<PackageData> {
         devDependencies,
     };
 }
-

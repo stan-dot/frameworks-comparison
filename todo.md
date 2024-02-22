@@ -2,7 +2,7 @@
 
 ## frameworks comparison todo and summary
 
-- [ ] make this use the official color palette
+- [x] make apps use the official color palette
 https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours--docs
 
 - [x] antdesign - bad accessbility, rejected
@@ -12,4 +12,10 @@ https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours
 - [ ] react spectrum - what, the chatbot? - yes, the basic one with hermes endpoints with webui
 
 ## potential to discuss with others
+
 - [ ] split libraries into smart and display? to have stateful components treated separately
+
+## deployed apps
+
+Jake's app for XAS standards
+<http://ws454:5174/submit>

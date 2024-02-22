@@ -29,12 +29,13 @@ one more abstraction layer tbh
 
 bit sounds like too much for now. going with turborepo for now
 
-## monorepo
 
-discussion
+## discussion
 <https://www.reddit.com/r/reactjs/comments/yhzf3f/nx_vs_turborepo_concerned_about_betting_on_either/>
 
 - [ ] turborepo <https://turbo.build/> <https://github.com/vercel/turbo> 24k from vercel - not our use case quite
 - [ ] vs nx <https://github.com/nrwl/nx>
 - [ ] rushstack - less known microsoft product <https://github.com/microsoft/rushstack>
 
+turborepo reviewed
+<https://news.ycombinator.com/item?id=30958653>

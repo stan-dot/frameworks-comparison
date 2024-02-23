@@ -1,27 +1,32 @@
-
 # popup todo
 
 - [x] add a button to go to the multiple component screen
 - [ ] add a layout component using bootstrap and accepting 4 children
 - [ ] per beamline
 
+## links
+
+chat
+https://chat.openai.com/g/g-n7Rs0IK86-grimoire/c/a517d3aa-0831-4f43-a240-2d959dd6059c
+
+https://react-bootstrap.netlify.app/docs/getting-started/introduction
+
+examples
+https://github.com/react-bootstrap/code-sandbox-examples
+https://codesandbox.io/examples/package/react-bootstrap
+
 # features
 
 - [ ] official or alternative themes
 - [ ] see the different layouts / perspectives
 - [ ] link out into a new window
+- [ ] add technical UI validation component from joi
+      https://react-bootstrap.netlify.app/docs/getting-started/introduction/#customize-bootstrap
+- [ ] save meatadata to supabase 
+<https://github.com/supabase-community/supabase-kubernetes>
 
-## tech stack
-
-- [ ] vite
-- [ ] cypress
-- [ ] storybook
-- [ ] prisma x supabase or just supabase
-- [ ] likely
-
-# frontend routing proposal - and API too
-
-## case
+# frontend routing proposal 
+possibly to mirror the API struture
 
 what is easier to maintain - a system with overhead with many confg files?
 or regular `tsx` that's hundreds of files but easier to update?
@@ -29,10 +34,6 @@ or regular `tsx` that's hundreds of files but easier to update?
 each file quite simple
 extractable component into a new page
 beamline config - booleans and optional stuff, central panel all the time
-
-## validation with joi
-
-- [ ] the sample technical UI with a validation component from joi
 
 ## specific paths
 
@@ -59,4 +60,3 @@ experiment types are requsable
 
 # metadata db
 
-<https://github.com/supabase-community/supabase-kubernetes>

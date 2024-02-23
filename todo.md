@@ -19,3 +19,12 @@ https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours
 
 Jake's app for XAS standards
 <http://ws454:5174/submit>
+
+
+## tech stack
+
+- [ ] vite
+- [ ] cypress
+- [ ] storybook
+- [ ] prisma x supabase or just supabase
+- [ ] likely

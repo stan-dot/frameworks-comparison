@@ -1,23 +1,22 @@
 import React from "react";
-import EditContact, { action as editAction } from "./routes/edit.tsx";
-
-import { createBrowserRouter, Router, RouterProvider } from "react-router-dom";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import EditContact, { action as editAction } from "./routes/contacts/edit.tsx";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import "./index.css";
-import Root, {
-  loader as rootLoader,
-  action as rootAction,
-} from "./routes/root.tsx";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App.tsx";
 import ErrorPage from "./error-page.tsx";
+import "./index.css";
 import Contact, {
-  loader as contactLoader,
   action as contactAction,
-} from "./routes/contact.tsx";
-import DeleteContact, { action as deleteAction } from "./routes/destroy.tsx";
+  loader as contactLoader,
+} from "./routes/contacts/contact.tsx";
+import DeleteContact, { action as deleteAction } from "./routes/contacts/destroy.tsx";
 import Index from "./routes/index.tsx";
 import MultipleComponentScreen from "./routes/multiple-component-screen.tsx";
+import Root, {
+  action as rootAction,
+  loader as rootLoader,
+} from "./routes/root.tsx";
 
 const colors = {
   brand: {
@@ -48,7 +47,7 @@ const router = createBrowserRouter([
         element: <MultipleComponentScreen />,
       },
       {
-        path: "contacts/:contactid/edit",
+        path: "contacts/:contactId/edit",
         element: <EditContact />,
         loader: contactLoader,
         action: editAction,

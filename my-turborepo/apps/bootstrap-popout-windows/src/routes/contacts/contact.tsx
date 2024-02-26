@@ -1,11 +1,12 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { getContact, updateContact } from "../contacts";
-import { Favorite } from "../stories/Favorite";
+import { getContact, updateContact } from "../../contacts";
+import { Favorite } from "../../stories/Favorite";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
+  window.alert(params.contactId);
   if (!contact) {
-    throw new Response("", { status: 404, statusText: "Not found" });
+    throw new Response("", { status: 404, statusText: "Contact Not found" });
   }
   return { contact };
 }

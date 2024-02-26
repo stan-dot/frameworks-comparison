@@ -12,12 +12,11 @@ https://chat.openai.com/g/g-n7Rs0IK86-grimoire/c/a517d3aa-0831-4f43-a240-2d959dd
 https://react-bootstrap.netlify.app/docs/getting-started/introduction
 
 examples
-https://github.com/react-bootstrap/code-sandbox-examples
 https://codesandbox.io/examples/package/react-bootstrap
 
 # features
 
-- [ ] official or alternative themes
+- [ ] themes https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours--docs
 - [ ] see the different layouts / perspectives
 - [ ] link out into a new window
 - [ ] add technical UI validation component from joi

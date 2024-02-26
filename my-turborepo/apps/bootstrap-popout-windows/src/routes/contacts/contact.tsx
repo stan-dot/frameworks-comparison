@@ -4,7 +4,7 @@ import { Favorite } from "../../stories/Favorite";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
-  window.alert(params.contactId);
+  // window.alert(params.contactId);
   if (!contact) {
     throw new Response("", { status: 404, statusText: "Contact Not found" });
   }

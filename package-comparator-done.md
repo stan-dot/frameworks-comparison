@@ -1,5 +1,5 @@
 
-## for later
+## for later  - potentially into project issues
 
 - [ ] differeniate between dev and regular deps
 
@@ -24,7 +24,7 @@ an option to prepopulate jsons
 <https://github.com/DiamondLightSource/SynchWeb/blob/master/client/package.json>
 <https://github.com/dls-controls/cs-web-lib/blob/master/package.json>
 
-## get jsons package - just raw fetch, api not necessary
+## get jsons package - just raw fetch, api not necessary - into an ADR
 
 <https://github.com/github-modules/get-repo-package-json>
 dependencies
@@ -43,7 +43,7 @@ dependencies
 <https://github.com/benfred/venn.js>
 <https://www.benfrederickson.com/venn-diagrams-with-d3.js/>
 
-### done
+### done - into pre-done issues
 
 - [x] read in a ___ and get a package json
   - [x] json

@@ -22,6 +22,12 @@ import ContactsRoot from "./routes/contacts/contacts-root.tsx";
 import Devices, {
   loader as DevicesLoader,
 } from "./routes/beamline/devices/Devices.tsx";
+import Plans, {
+  loader as PlansLoader,
+} from "./routes/beamline/plans/Plans.tsx";
+import SpecificPlan, {
+  loader as SpecificPlanLoader,
+} from "./routes/beamline/plans/SpecificPlan.tsx";
 
 const colors = {
   brand: {
@@ -68,6 +74,12 @@ const router = createBrowserRouter([
         element: <MultipleComponentScreen />,
       },
       { path: "devices", element: <Devices />, loader: DevicesLoader },
+      { path: "plans", element: <Plans />, loader: PlansLoader },
+      {
+        path: "plans/:planName",
+        element: <SpecificPlan />,
+        loader: SpecificPlanLoader,
+      },
       {
         path: "single-component-screen/:componentId",
         element: <MultipleComponentScreen />,

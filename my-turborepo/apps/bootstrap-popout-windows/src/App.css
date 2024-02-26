@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+/* Custom styles for GridLayout */
+.container-fluid > .row:not(:last-child) {
+  margin-bottom: 16px; /* Adjust based on your gap preference */
+}
+
+[style*="--bs-gap:"] > * {
+  padding-right: var(--bs-gap, .75rem);
+  padding-left: var(--bs-gap, .75rem);
+}

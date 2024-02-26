@@ -59,3 +59,9 @@ experiment types are requsable
 
 # metadata db
 
+
+## terrible!
+
+the useloader data is too bad!
+https://github.com/remix-run/react-router/discussions/9792
+

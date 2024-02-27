@@ -43,6 +43,8 @@ and the POST request is given that
 should just get a raw swagger page rendered inside? before a custom ui is built
 /beamline/{beamline}/synoptic
 /beamline/{beamline}/technicalUI
+/beamline/{beamline}/plans/planId
+/beamline/{beamline}/devices
 /beamline/{beamline}/experiment/{experimentType}?layout=standard
 there a joined controls, DAQ and analytics components - one experiment, one screen
 

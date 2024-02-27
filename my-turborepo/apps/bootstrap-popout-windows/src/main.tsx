@@ -77,7 +77,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "beamline/",
+        path: "beamlines/",
         element: <BeamlinesList />,
         loader: BeamlinesListLoader,
         children: [

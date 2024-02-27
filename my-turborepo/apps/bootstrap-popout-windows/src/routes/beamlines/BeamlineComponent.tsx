@@ -16,6 +16,7 @@ export const BeamlineComponent = ({
           href={url}
           className="card-link"
           style={{ textDecoration: "underline" }}
+          target="_blank"
         >
           Beamline URL
         </a>

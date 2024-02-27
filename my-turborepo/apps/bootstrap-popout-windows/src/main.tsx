@@ -5,20 +5,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import ErrorPage from "./error-page.tsx";
 import "./index.css";
-import Contact, {
-  action as contactAction,
-  loader as contactLoader,
-} from "./routes/contacts/contact.tsx";
-import DeleteContact, {
-  action as deleteAction,
-} from "./routes/contacts/destroy.tsx";
-import EditContact, { action as editAction } from "./routes/contacts/edit.tsx";
-import MultipleComponentScreen from "./routes/multiple-component-screen.tsx";
-import Root, {
-  action as rootAction,
-  loader as rootLoader,
-} from "./routes/root.tsx";
-import ContactsRoot from "./routes/contacts/contacts-root.tsx";
+import BeamlinePanel, {
+  loader as BeamlineLoader,
+} from "./routes/beamlines/BeamlinePanel.tsx";
+import BeamlinesList, {
+  loader as BeamlinesListLoader,
+} from "./routes/beamlines/BeamlinesList.tsx";
 import Devices, {
   loader as DevicesLoader,
 } from "./routes/beamlines/devices/Devices.tsx";
@@ -28,12 +20,8 @@ import Plans, {
 import SpecificPlan, {
   loader as SpecificPlanLoader,
 } from "./routes/beamlines/plans/SpecificPlan.tsx";
-import BeamlinesList, {
-  loader as BeamlinesListLoader,
-} from "./routes/beamlines/BeamlinesList.tsx";
-import BeamlinePanel, {
-  loader as BeamlineLoader,
-} from "./routes/beamlines/BeamlinePanel.tsx";
+import MultipleComponentScreen from "./routes/multiple-component-screen.tsx";
+import Root, { loader as rootLoader } from "./routes/root.tsx";
 
 const colors = {
   brand: {
@@ -49,33 +37,6 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "contacts/",
-        element: <ContactsRoot />,
-        children: [
-          {
-            path: ":contactId",
-            element: <Contact />,
-            loader: contactLoader,
-            action: contactAction,
-          },
-
-          {
-            path: ":contactId/edit",
-            element: <EditContact />,
-            loader: contactLoader,
-            action: editAction,
-          },
-          {
-            path: ":contactId/destroy",
-            element: <DeleteContact />,
-            loader: contactLoader,
-            action: deleteAction,
-            errorElement: <div>Oops! There was an error.</div>,
-          },
-        ],
-      },
-
       {
         path: "beamlines/",
         element: <BeamlinesList />,
@@ -120,18 +81,10 @@ const router = createBrowserRouter([
       },
       {
         errorElement: <ErrorPage />,
-        children: [
-          {
-            path: "contacts/:contactId",
-            element: <Contact />,
-            loader: contactLoader,
-            action: contactAction,
-          },
-        ],
+        children: [],
       },
     ],
     loader: rootLoader,
-    action: rootAction,
   },
   {
     path: "app",

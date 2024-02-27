@@ -14,11 +14,12 @@ import { BeamlineInfo } from "./beamlines/types";
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
-  let beamlines: BeamlineInfo[] = [];
-  if (q) {
+  let beamlines: BeamlineInfo[] = ALL_BEAMLINES;
+  if (q !== null)  {
     const regex = new RegExp(q, "i");
     beamlines = ALL_BEAMLINES.filter((b) => regex.test(b.name));
   }
+  console.log(beamlines)
   return { beamlines, q };
 }
 
@@ -72,7 +73,7 @@ export default function Root() {
           {beamlines.length ? (
             <ul>
               {beamlines.map((b, i) => (
-                <li key={`beamline-${b}`}>
+                <li key={`beamline-${b.name}`}>
                   <NavLink
                     to={`beamlines/${b.name}`}
                     className={({ isActive, isPending }) =>

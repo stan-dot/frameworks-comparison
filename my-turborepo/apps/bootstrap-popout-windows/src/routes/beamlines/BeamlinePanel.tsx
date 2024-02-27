@@ -1,16 +1,14 @@
 import { usePolling } from "@repo/utils/use-polling";
-import { Suspense, useState } from "react";
-import { redirect, useLoaderData } from "react-router-dom";
-import { ALL_BEAMLINES } from "./data";
-import { BeamlineInfo, DeviceType, WorkerStateType } from "./types";
-import { BeamlineCard } from "./BeamlineCard";
+import { useState } from "react";
 import { Stack } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-import { useDevices } from "../../hooks/useDevices";
+import { redirect, useLoaderData } from "react-router-dom";
 import { DevicesList } from "../../components/DevicesList";
-import { PlanList } from "./plans/PlanList";
+import { useDevices } from "../../hooks/useDevices";
 import { usePlans } from "../../hooks/usePlans";
+import { ALL_BEAMLINES } from "./data";
+import { PlanList } from "./plans/PlanList";
 import { Plan } from "./plans/Plans";
+import { BeamlineInfo, DeviceType, WorkerStateType } from "./types";
 
 const workerStateColors: Record<WorkerStateType, string> = {
   IDLE: "text-secondary",
@@ -74,18 +72,17 @@ function BeamlinePanel() {
     <div>
       BeamlinePanel
       <h2>{beamlineInfo.name}</h2>
-      <p>{lastUpdatedWorker}</p>
       <h6 className="card-subtitle mb-2 text-muted">
-        Worker State:{" "}
+        Worker last polled:{" "}
         <span
           className={workerStateColors[lastUpdatedWorker as WorkerStateType]}
         >
           {lastUpdatedWorker}
         </span>
       </h6>
-      <Stack direction="horizontal">
+      <Stack direction="horizontal" gap={6} >
         <DevicesList devices={devices} />
-        <PlanList plans={plans} />
+        <PlanList plans={plans} beamlineName={beamlineInfo.name} />
       </Stack>
     </div>
   );

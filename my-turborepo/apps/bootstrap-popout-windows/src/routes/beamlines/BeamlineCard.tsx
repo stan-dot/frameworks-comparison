@@ -23,7 +23,7 @@ export const BeamlineCard = ({
           >
             Beamline external URL
           </a>
-          <NavLink to={`${name}`}>go to {name} screen</NavLink>
+          <NavLink to={`../${name}`}>go to {name} screen</NavLink>
         </Stack>
         {experimentTypes.length > 0 && (
           <h6 className="card-subtitle mb-2 mt-2">

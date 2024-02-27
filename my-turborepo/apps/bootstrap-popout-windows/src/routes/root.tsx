@@ -5,9 +5,9 @@ import {
   Outlet,
   useLoaderData,
   useNavigation,
-  useSubmit
+  useSubmit,
 } from "react-router-dom";
-import AppDrawer from "../components/AppDrawer";
+import AppDrawer from "../components/drawer/AppDrawer";
 import { ALL_BEAMLINES } from "./beamlines/data";
 import { BeamlineInfo } from "./beamlines/types";
 
@@ -15,11 +15,11 @@ export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   let beamlines: BeamlineInfo[] = ALL_BEAMLINES;
-  if (q !== null)  {
+  if (q !== null) {
     const regex = new RegExp(q, "i");
     beamlines = ALL_BEAMLINES.filter((b) => regex.test(b.name));
   }
-  console.log(beamlines)
+  console.log(beamlines);
   return { beamlines, q };
 }
 
@@ -63,13 +63,11 @@ export default function Root() {
             <div id="search-spinner" aria-hidden hidden={!searching} />
             <div className="sr-only" aria-live="polite"></div>
           </Form>
-          <div>
-            <NavLink to={`multiple-component-screen`}>
-              go to test srcreen
-            </NavLink>
-          </div>
         </div>
         <nav>
+          <h3>
+            <NavLink to={"beamlines/list"}>Beamlines</NavLink>
+          </h3>
           {beamlines.length ? (
             <ul>
               {beamlines.map((b, i) => (
@@ -99,6 +97,7 @@ export default function Root() {
       >
         <Outlet />
       </div>
+      {/* <footer>made @Diamond 2024</footer> */}
     </>
   );
 }

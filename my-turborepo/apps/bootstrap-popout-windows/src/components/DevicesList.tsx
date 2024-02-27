@@ -14,7 +14,7 @@ type DevicesListProps = {
 
 export const DevicesList = ({ devices }: DevicesListProps) => {
   return (
-    <Accordion>
+    <Accordion className="p-2 m-2">
       <ol className="list-group list-group-numbered">
         {devices.map((device, index) => (
           <li key={index} className="list-group-item">

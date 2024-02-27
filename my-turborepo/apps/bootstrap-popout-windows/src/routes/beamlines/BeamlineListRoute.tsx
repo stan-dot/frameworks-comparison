@@ -1,36 +1,34 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { BeamlineCard } from "./BeamlineCard";
-import { ALL_BEAMLINES as hardcodedBeamlines } from "./data";
+import { ALL_BEAMLINES } from "./data";
 import { BeamlineInfo } from "./types";
 
-export async function loader() {
+export async function loader({ params }) {
+  const name = params.beamlineName;
   let beamlines: BeamlineInfo[] = [];
   try {
     // todo update to async
-    beamlines = hardcodedBeamlines;
+    beamlines = ALL_BEAMLINES;
   } catch (error) {
     console.error("network error");
   }
-  return { beamlines };
+  return { beamlines, name };
 }
 
-function BeamlinesList() {
+function BeamlinesListRoute() {
   const { beamlines } = useLoaderData() as { beamlines: BeamlineInfo[] };
   return (
     <div>
-      <div id="sidebar">
+      <>
         BeamlinesList
         {beamlines.map((b, i) => (
           <div key={`beamline-summary-${i}`}>
             <BeamlineCard beamlineInfo={b} />
           </div>
         ))}
-      </div>
-      <div id="detail">
-        <Outlet />
-      </div>
+      </>
     </div>
   );
 }
 
-export default BeamlinesList;
+export default BeamlinesListRoute;

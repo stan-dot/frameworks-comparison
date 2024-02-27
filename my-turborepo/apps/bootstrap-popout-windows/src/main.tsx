@@ -8,9 +8,7 @@ import "./index.css";
 import BeamlinePanel, {
   loader as BeamlineLoader,
 } from "./routes/beamlines/BeamlinePanel.tsx";
-import BeamlinesList, {
-  loader as BeamlinesListLoader,
-} from "./routes/beamlines/BeamlinesList.tsx";
+import BeamlineWrapper from "./routes/beamlines/BeamlineWrapper.tsx";
 import Devices, {
   loader as DevicesLoader,
 } from "./routes/beamlines/devices/Devices.tsx";
@@ -20,8 +18,10 @@ import Plans, {
 import SpecificPlan, {
   loader as SpecificPlanLoader,
 } from "./routes/beamlines/plans/SpecificPlan.tsx";
-import MultipleComponentScreen from "./routes/multiple-component-screen.tsx";
 import Root, { loader as rootLoader } from "./routes/root.tsx";
+import BeamlinesListRoute, {
+  loader as AllBeamlinesLoader,
+} from "./routes/beamlines/BeamlineListRoute.tsx";
 
 const colors = {
   brand: {
@@ -39,9 +39,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: "beamlines/",
-        element: <BeamlinesList />,
-        loader: BeamlinesListLoader,
+        element: <BeamlineWrapper />,
         children: [
+          {
+            path: "list",
+            element: <BeamlinesListRoute />,
+            loader: AllBeamlinesLoader,
+          },
           {
             path: ":beamlineName",
             element: <BeamlinePanel />,
@@ -72,14 +76,6 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "multiple-component-screen",
-        element: <MultipleComponentScreen />,
-      },
-      {
-        path: "single-component-screen/:componentId",
-        element: <MultipleComponentScreen />,
-      },
-      {
         errorElement: <ErrorPage />,
         children: [],
       },
@@ -91,7 +87,7 @@ const router = createBrowserRouter([
     element: (
       <div>
         <h1>Hello world</h1>
-        <App />
+        {/* <App /> */}
       </div>
     ),
   },

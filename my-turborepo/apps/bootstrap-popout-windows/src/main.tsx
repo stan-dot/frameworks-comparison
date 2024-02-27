@@ -28,6 +28,10 @@ import Plans, {
 import SpecificPlan, {
   loader as SpecificPlanLoader,
 } from "./routes/beamline/plans/SpecificPlan.tsx";
+import BeamlinesList, {
+  loader as BeamlinesListLoader,
+} from "./routes/beamline/BeamlinesList.tsx";
+import BeamlinePreview from "./routes/beamline/BeamlinePreview.tsx";
 
 const colors = {
   brand: {
@@ -69,16 +73,40 @@ const router = createBrowserRouter([
           },
         ],
       },
+
+      {
+        path: "beamline/",
+        element: <BeamlinesList />,
+        loader: BeamlinesListLoader,
+        children: [
+          { path: ":beamlineName", element: <BeamlinePreview /> },
+          { path: ":beamlineName/synoptic", element: <BeamlinePreview /> },
+          { path: ":beamlineName/technical-ui", element: <BeamlinePreview /> },
+          { path: ":beamlineName/experiment", element: <BeamlinePreview /> },
+          {
+            path: ":beamlineName/experiment/:experimentId",
+            element: <BeamlinePreview />,
+          },
+          {
+            path: ":beamlineName/devices",
+            element: <Devices />,
+            loader: DevicesLoader,
+          },
+          {
+            path: ":beamlineName/plans",
+            element: <Plans />,
+            loader: PlansLoader,
+          },
+          {
+            path: ":beamlineName/planName",
+            element: <SpecificPlan />,
+            loader: SpecificPlanLoader,
+          },
+        ],
+      },
       {
         path: "multiple-component-screen",
         element: <MultipleComponentScreen />,
-      },
-      { path: "devices", element: <Devices />, loader: DevicesLoader },
-      { path: "plans", element: <Plans />, loader: PlansLoader },
-      {
-        path: "plans/:planName",
-        element: <SpecificPlan />,
-        loader: SpecificPlanLoader,
       },
       {
         path: "single-component-screen/:componentId",

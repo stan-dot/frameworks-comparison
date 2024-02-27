@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./src/downloadFile.ts"
+    "./download-file": "./src/downloadFile.ts",
+    "./use-polling": "./src/hooks/usePolling.ts"
   },
   "scripts": {
     "dev": "echo 'Add dev script here'",

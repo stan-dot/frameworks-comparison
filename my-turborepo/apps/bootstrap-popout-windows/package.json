@@ -15,6 +15,7 @@
     "@repo/science": "*",
     "@repo/typescript-config": "*",
     "@repo/ui": "*",
+    "@repo/utils": "*",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",

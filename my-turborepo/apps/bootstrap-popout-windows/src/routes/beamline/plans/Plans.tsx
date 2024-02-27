@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { BLUESKY_API_URL } from "../../../beamline-config";
 import { PlanList } from "./PlanList";
@@ -28,11 +27,11 @@ export type Plan = {
 };
 
 function Plans() {
-  const { plans } = useLoaderData();
+  const { plans } = useLoaderData() as { plans: Plan[] };
 
   return (
     <div>
-      first plan name: 
+      first plan name:
       <p>{plans && plans[0].name}</p>
       <PlanList plans={plans} />
     </div>

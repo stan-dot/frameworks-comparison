@@ -17,7 +17,7 @@ export const PlanList: React.FC<PlanProps> = ({ plans }) => {
                 <Card>
                   <Card.Text>{plan.description}</Card.Text>
                   <Card.Link
-                    href={`/plans/${plan.name}`}
+                    href={`plans/${plan.name}`}
                     className="btn btn-link"
                   >
                     See it live!

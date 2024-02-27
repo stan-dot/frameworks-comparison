@@ -3,7 +3,7 @@ import { BeamlineInfo } from "./types";
 import { Stack } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export const BeamlineSummaryComponent = ({
+export const BeamlineCard = ({
   beamlineInfo,
 }: {
   beamlineInfo: BeamlineInfo;
@@ -19,6 +19,7 @@ export const BeamlineSummaryComponent = ({
             href={url}
             className="card-link"
             style={{ textDecoration: "underline" }}
+          target="_blank"
           >
             Beamline external URL
           </a>

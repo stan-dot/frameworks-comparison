@@ -1,8 +1,8 @@
 # popup todo
 
+- [x] per beamline
 - [x] add a button to go to the multiple component screen
 - [ ] add a layout component using bootstrap and accepting 4 children
-- [ ] per beamline
 
 ## links
 
@@ -21,18 +21,9 @@ https://codesandbox.io/examples/package/react-bootstrap
 - [ ] link out into a new window
 - [ ] add technical UI validation component from joi
       https://react-bootstrap.netlify.app/docs/getting-started/introduction/#customize-bootstrap
-- [ ] save meatadata to supabase 
-<https://github.com/supabase-community/supabase-kubernetes>
+- [ ] save meatadata to supabase
+      <https://github.com/supabase-community/supabase-kubernetes>
 
-# frontend routing proposal 
-possibly to mirror the API struture
-
-what is easier to maintain - a system with overhead with many confg files?
-or regular `tsx` that's hundreds of files but easier to update?
-
-each file quite simple
-extractable component into a new page
-beamline config - booleans and optional stuff, central panel all the time
 
 ## specific paths
 
@@ -61,9 +52,7 @@ experiment types are requsable
 
 # metadata db
 
-
 ## terrible!
 
 the useloader data is too bad!
 https://github.com/remix-run/react-router/discussions/9792
-

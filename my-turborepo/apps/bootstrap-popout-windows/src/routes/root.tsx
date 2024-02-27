@@ -1,29 +1,32 @@
+import { useEffect } from "react";
 import {
   Form,
   NavLink,
   Outlet,
-  redirect,
   useLoaderData,
   useNavigation,
-  useSubmit,
+  useSubmit
 } from "react-router-dom";
-import { createContact, getContacts } from "../contacts";
-import { useEffect } from "react";
+import AppDrawer from "../components/AppDrawer";
+import { ALL_BEAMLINES } from "./beamlines/data";
+import { BeamlineInfo } from "./beamlines/types";
 
 export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
-  const contacts = await getContacts(q);
-  return { contacts, q };
-}
-
-export async function action() {
-  const contact = await createContact();
-  return redirect(`/contacts/${contact.id}/edit`);
+  let beamlines: BeamlineInfo[] = [];
+  if (q) {
+    const regex = new RegExp(q, "i");
+    beamlines = ALL_BEAMLINES.filter((b) => regex.test(b.name));
+  }
+  return { beamlines, q };
 }
 
 export default function Root() {
-  const { contacts, q } = useLoaderData();
+  const { beamlines, q } = useLoaderData() as {
+    beamlines: BeamlineInfo[];
+    q: string | null;
+  };
   const navigation = useNavigation();
 
   const submit = useSubmit();
@@ -39,12 +42,9 @@ export default function Root() {
     <>
       <div id="sidebar">
         <h1>Bootstrap test</h1>
+        <AppDrawer />
 
         <div>
-          <Form method="post">
-            <button type="submit">New</button>
-          </Form>
-
           <Form id="search-form" role="search">
             <input
               id="q"
@@ -69,31 +69,25 @@ export default function Root() {
           </div>
         </div>
         <nav>
-          {contacts.length ? (
+          {beamlines.length ? (
             <ul>
-              {contacts.map((contact) => (
-                <li key={contact.id}>
+              {beamlines.map((b, i) => (
+                <li key={`beamline-${b}`}>
                   <NavLink
-                    to={`contacts/${contact.id}`}
+                    to={`beamlines/${b.name}`}
                     className={({ isActive, isPending }) =>
                       isActive ? "active" : isPending ? "pending" : ""
                     }
                   >
-                    {contact.first || contact.last ? (
-                      <>
-                        {contact.first} {contact.last}
-                      </>
-                    ) : (
-                      <i>No Name</i>
-                    )}{" "}
-                    {contact.favorite && <span>★</span>}
+                    <h5>{b.name}</h5>
+                    {/* {b.favorite && <span>★</span>} */}
                   </NavLink>
                 </li>
               ))}
             </ul>
           ) : (
             <p>
-              <i>No contacts</i>
+              <i>No beamlines</i>
             </p>
           )}
         </nav>

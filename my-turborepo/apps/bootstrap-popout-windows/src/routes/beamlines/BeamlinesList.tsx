@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData } from "react-router-dom";
-import { BeamlineSummaryComponent } from "./BeamlineSummaryComponent";
-import { beamlines as hardcodedBeamlines } from "./data";
+import { BeamlineCard } from "./BeamlineCard";
+import { ALL_BEAMLINES as hardcodedBeamlines } from "./data";
 import { BeamlineInfo } from "./types";
 
 export async function loader() {
@@ -22,7 +22,7 @@ function BeamlinesList() {
         BeamlinesList
         {beamlines.map((b, i) => (
           <div key={`beamline-summary-${i}`}>
-            <BeamlineSummaryComponent beamlineInfo={b} />
+            <BeamlineCard beamlineInfo={b} />
           </div>
         ))}
       </div>

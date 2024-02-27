@@ -10,10 +10,12 @@ export type WorkerStateType = (typeof workerStates)[number];
 
 export type BeamlineInfo = {
   name: string;
-  url: string;
+  apiUrl: string;
+  infoUrl:string;
   experimentTypes: ExperimentType[];
   description: string;
   workerState: WorkerStateType;
+  ready: boolean
 };
 
 type TaskStatus = {
@@ -38,4 +40,13 @@ type TaskData = {
 export type SessionData = {
   startTimestamp: Date;
   tasks: TaskData[];
+};
+
+export type DeviceType = {
+  name: string;
+  protocols: string[];
+};
+
+export type DevicesResponse = {
+  devices: DeviceType[];
 };

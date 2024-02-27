@@ -1,9 +1,16 @@
 import { usePolling } from "@repo/utils/use-polling";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { redirect, useLoaderData } from "react-router-dom";
-import { beamlines } from "./data";
-import { BeamlineInfo, WorkerStateType } from "./types";
-import { BeamlineComponent } from "./BeamlineComponent";
+import { ALL_BEAMLINES } from "./data";
+import { BeamlineInfo, DeviceType, WorkerStateType } from "./types";
+import { BeamlineCard } from "./BeamlineCard";
+import { Stack } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { useDevices } from "../../hooks/useDevices";
+import { DevicesList } from "../../components/DevicesList";
+import { PlanList } from "./plans/PlanList";
+import { usePlans } from "../../hooks/usePlans";
+import { Plan } from "./plans/Plans";
 
 const workerStateColors: Record<WorkerStateType, string> = {
   IDLE: "text-secondary",
@@ -23,7 +30,7 @@ export async function loader({ params }) {
   let beamlineInfo: BeamlineInfo | undefined = undefined;
   try {
     // todo change to network discovery
-    const bi = beamlines.find((b) => b.name === name);
+    const bi = ALL_BEAMLINES.find((b) => b.name === name);
     if (bi) {
       beamlineInfo = bi;
     }
@@ -34,7 +41,7 @@ export async function loader({ params }) {
   return { beamlineInfo };
 }
 
-function BeamlinePreview() {
+function BeamlinePanel() {
   const { beamlineInfo } = useLoaderData() as { beamlineInfo: BeamlineInfo };
   const [_, setWorkerState] = useState<string>(beamlineInfo.workerState);
 
@@ -44,6 +51,7 @@ function BeamlinePreview() {
         signal: abortSignal,
       });
       const resp = await res.json();
+      console.log(resp);
       if (res.ok && resp.ok) {
         setWorkerState(resp.data);
       } else {
@@ -57,11 +65,14 @@ function BeamlinePreview() {
     }
   }
 
+  const devices: DeviceType[] = useDevices(beamlineInfo.apiUrl);
+  const plans: Plan[] = usePlans(beamlineInfo.apiUrl);
+
   const lastUpdatedWorker = usePolling(fetchWorkerState);
 
   return (
     <div>
-      BeamlinePreview
+      BeamlinePanel
       <h2>{beamlineInfo.name}</h2>
       <p>{lastUpdatedWorker}</p>
       <h6 className="card-subtitle mb-2 text-muted">
@@ -72,9 +83,12 @@ function BeamlinePreview() {
           {lastUpdatedWorker}
         </span>
       </h6>
-      <BeamlineComponent beamlineInfo={beamlineInfo} />
+      <Stack direction="horizontal">
+        <DevicesList devices={devices} />
+        <PlanList plans={plans} />
+      </Stack>
     </div>
   );
 }
 
-export default BeamlinePreview;
+export default BeamlinePanel;

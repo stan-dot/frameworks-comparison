@@ -1,46 +1,36 @@
 import axios, { AxiosResponse } from "axios";
-import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import { BLUESKY_API_URL } from "../../../beamline-config";
+import { redirect, useLoaderData } from "react-router-dom";
+import { ALL_BEAMLINES } from "../data";
+import { DeviceType, DevicesResponse } from "../types";
+import { DevicesList } from "../../../components/DevicesList";
 
-export async function loader() {
-  let devices: DeviceType[] = DEFAULT_DEVICES;
+export async function loader({ params }) {
+  let devices: DeviceType[] = [];
+  const name = params.beamlineName;
   try {
-    const response: AxiosResponse = await axios.get(
-      `${BLUESKY_API_URL}/devices`
-    );
+    // todo change to network discovery
+    const bi = ALL_BEAMLINES.find((b) => b.name === name);
+    if (!bi) {
+      throw Error("no such beamline");
+    }
+    const response: AxiosResponse = await axios.get(`${bi!.apiUrl}/devices`);
     console.log(response);
     const data = response.data as DevicesResponse;
     devices = data.devices;
   } catch (error) {
     console.error("network error");
+    redirect("/beamline/list");
   }
   return { devices };
 }
 
-type DeviceType = {
-  name: string;
-  protocols: string[];
-};
-
-type DevicesResponse = {
-  devices: DeviceType[];
-};
-
-const DEFAULT_DEVICES: DeviceType[] = [
-  {
-    name: "test Device",
-    protocols: [],
-  },
-];
-
 function Devices() {
-  const { devices } = useLoaderData();
+  const { devices } = useLoaderData() as { devices: DeviceType[] };
 
   return (
     <div>
-      Devices
-      <p>{devices && devices[0].name}</p>
+      <h3>Devices</h3>
+      <DevicesList devices={devices} />
     </div>
   );
 }

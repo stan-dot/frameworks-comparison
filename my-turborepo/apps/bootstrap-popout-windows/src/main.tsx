@@ -31,9 +31,9 @@ import SpecificPlan, {
 import BeamlinesList, {
   loader as BeamlinesListLoader,
 } from "./routes/beamlines/BeamlinesList.tsx";
-import BeamlinePreview, {
+import BeamlinePanel, {
   loader as BeamlineLoader,
-} from "./routes/beamlines/BeamlinePreview.tsx";
+} from "./routes/beamlines/BeamlinePanel.tsx";
 
 const colors = {
   brand: {
@@ -83,15 +83,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":beamlineName",
-            element: <BeamlinePreview />,
+            element: <BeamlinePanel />,
             loader: BeamlineLoader,
           },
-          { path: ":beamlineName/synoptic", element: <BeamlinePreview /> },
-          { path: ":beamlineName/technical-ui", element: <BeamlinePreview /> },
-          { path: ":beamlineName/experiment", element: <BeamlinePreview /> },
+          { path: ":beamlineName/synoptic", element: <BeamlinePanel /> },
+          { path: ":beamlineName/technical-ui", element: <BeamlinePanel /> },
+          { path: ":beamlineName/experiment", element: <BeamlinePanel /> },
           {
             path: ":beamlineName/experiment/:experimentId",
-            element: <BeamlinePreview />,
+            element: <BeamlinePanel />,
           },
           {
             path: ":beamlineName/devices",
@@ -104,7 +104,7 @@ const router = createBrowserRouter([
             loader: PlansLoader,
           },
           {
-            path: ":beamlineName/planName",
+            path: ":beamlineName/plans/:planName",
             element: <SpecificPlan />,
             loader: SpecificPlanLoader,
           },

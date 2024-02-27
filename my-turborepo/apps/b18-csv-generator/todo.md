@@ -4,7 +4,6 @@
 - [ ] add adjustments to element
 - [ ] add adjustments to edge
 - [ ] add adjustments to comment
-- [ ] add a a 'use element in sample name' checkbox to the form
 
 ## done
 
@@ -14,3 +13,6 @@
       only the stages that are set for experiments that day are moving
 - [x] make a multi-step form
 - [x] first a basic, withouth holder selection
+
+### not really
+- [ ] add a a 'use element in sample name' checkbox to the form

@@ -42,6 +42,7 @@ export const defaultGeneratorSetup: GeneratorSetup = {
 };
 
 export type GeneratorSetup = {
+  defaultElement:ChemicalElement;
   defaultDetectionMode: DetectionModeType;
   sampleNamePrefix: string;
   startingCount: number;

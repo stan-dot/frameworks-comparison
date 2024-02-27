@@ -1,8 +1,8 @@
 import { Button } from "@chakra-ui/react";
-import { downloadFile } from "@repo/utils";
+import { downloadFile } from "@repo/utils/download-file";
 import { createColumnHelper } from "@tanstack/react-table";
 import { ReadyRow, getCsvContent } from "../utils/sampleHolderSize";
-import { DataTable } from "./DataTable";
+import { SamplesTable } from "./SamplesTable";
 import { mockData } from "./mockData";
 
 const columnHelper = createColumnHelper<ReadyRow>();
@@ -74,7 +74,7 @@ function GeneratedTable({ data = mockData }: GeneratedTableProps) {
   return (
     <div>
       <h3>GeneratedTable is here</h3>
-      <DataTable data={data} columns={columns} />
+      <SamplesTable data={data} columns={columns} />
 
       <Button
         onClick={() => {

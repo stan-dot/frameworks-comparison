@@ -1,10 +1,10 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { DataTable } from "./components/DataTable";
+import { SamplesTable } from "./components/SamplesTable";
 
 export function TestTable() {
   return <>
     <h3>Test table about unit conversions</h3>
-    <DataTable columns={columns} data={data} />
+    <SamplesTable columns={columns} data={data} />
   </>;
 }
 

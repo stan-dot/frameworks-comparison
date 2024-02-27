@@ -37,7 +37,9 @@ export default function Form({ value, handler }: FormProps) {
         </div>
 
         <div key="form-field-2">
-          <FormLabel htmlFor="sampleNamePrefix">Sample Name prefix (between 0 and 5)</FormLabel>
+          <FormLabel htmlFor="sampleNamePrefix">
+            Sample Name prefix (between 0 and 5)
+          </FormLabel>
           <Input
             id="sampleNamePrefix"
             type="text"

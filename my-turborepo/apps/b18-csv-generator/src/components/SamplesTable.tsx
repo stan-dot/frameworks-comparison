@@ -21,10 +21,38 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import * as React from "react";
 
-import "@tanstack/react-table"; //or vue, svelte, solid, etc.
 import ElementPicker from "./ElementPicker";
+import { useEffect, useState } from "react";
+import { ReadyRow } from "../utils/sampleHolderSize";
+import { useSkipper } from "./editable-table/useSkipper";
+
+// Give our default column cell renderer editing superpowers!
+const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
+  cell: ({ getValue, row: { index }, column: { id }, table }) => {
+    const initialValue = getValue();
+    // We need to keep and update the state of the cell normally
+    const [value, setValue] = useState(initialValue);
+
+    // When the input is blurred, we'll call our table meta's updateData function
+    const onBlur = () => {
+      table.options.meta?.updateData(index, id, value);
+    };
+
+    // If the initialValue is changed external, sync it up with our state
+    useEffect(() => {
+      setValue(initialValue);
+    }, [initialValue]);
+
+    return (
+      <input
+        value={value as string}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={onBlur}
+      />
+    );
+  },
+};
 
 declare module "@tanstack/react-table" {
   interface ColumnMeta<TData extends RowData, TValue> {
@@ -34,24 +62,44 @@ declare module "@tanstack/react-table" {
   }
 }
 
-export type DataTableProps<Data extends object> = {
-  data: Data[];
-  columns: ColumnDef<Data, any>[];
+export type DataTableProps = {
+  data: ReadyRow[];
+  columns: ColumnDef<ReadyRow, any>[];
 };
 
-export function DataTable<Data extends object>({
-  data,
-  columns,
-}: DataTableProps<Data>) {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+export function SamplesTable({ data: initialData, columns }: DataTableProps) {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [data, setData] = useState<ReadyRow[]>(initialData);
+
+  const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper();
   const table = useReactTable({
     columns,
     data,
+    defaultColumn,
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     state: {
       sorting,
+    },
+    autoResetPageIndex,
+    debugTable: true,
+    meta: {
+      updateData: (rowIndex, columnId, value) => {
+        // Skip page index reset until after next rerender
+        skipAutoResetPageIndex();
+        setData((old) =>
+          old.map((row, index) => {
+            if (index === rowIndex) {
+              return {
+                ...old[rowIndex]!,
+                [columnId]: value,
+              };
+            }
+            return row;
+          })
+        );
+      },
     },
   });
 

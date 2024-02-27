@@ -21,17 +21,19 @@ import Root, {
 import ContactsRoot from "./routes/contacts/contacts-root.tsx";
 import Devices, {
   loader as DevicesLoader,
-} from "./routes/beamline/devices/Devices.tsx";
+} from "./routes/beamlines/devices/Devices.tsx";
 import Plans, {
   loader as PlansLoader,
-} from "./routes/beamline/plans/Plans.tsx";
+} from "./routes/beamlines/plans/Plans.tsx";
 import SpecificPlan, {
   loader as SpecificPlanLoader,
-} from "./routes/beamline/plans/SpecificPlan.tsx";
+} from "./routes/beamlines/plans/SpecificPlan.tsx";
 import BeamlinesList, {
   loader as BeamlinesListLoader,
-} from "./routes/beamline/BeamlinesList.tsx";
-import BeamlinePreview from "./routes/beamline/BeamlinePreview.tsx";
+} from "./routes/beamlines/BeamlinesList.tsx";
+import BeamlinePreview, {
+  loader as BeamlineLoader,
+} from "./routes/beamlines/BeamlinePreview.tsx";
 
 const colors = {
   brand: {
@@ -79,7 +81,11 @@ const router = createBrowserRouter([
         element: <BeamlinesList />,
         loader: BeamlinesListLoader,
         children: [
-          { path: ":beamlineName", element: <BeamlinePreview /> },
+          {
+            path: ":beamlineName",
+            element: <BeamlinePreview />,
+            loader: BeamlineLoader,
+          },
           { path: ":beamlineName/synoptic", element: <BeamlinePreview /> },
           { path: ":beamlineName/technical-ui", element: <BeamlinePreview /> },
           { path: ":beamlineName/experiment", element: <BeamlinePreview /> },

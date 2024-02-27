@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import { BeamlineSummaryComponent } from "./BeamlineSummaryComponent";
 import { beamlines as hardcodedBeamlines } from "./data";
 import { BeamlineInfo } from "./types";
@@ -20,10 +20,11 @@ function BeamlinesList() {
     <div>
       <div id="sidebar">
         BeamlinesList
-        {beamlines.map((b) => {
-          return <BeamlineSummaryComponent beamlineInfo={b} />;
-        })}
-        <NavLink to={`${"j20"}`}>go to j20 screen</NavLink>
+        {beamlines.map((b, i) => (
+          <div key={`beamline-summary-${i}`}>
+            <BeamlineSummaryComponent beamlineInfo={b} />
+          </div>
+        ))}
       </div>
       <div id="detail">
         <Outlet />

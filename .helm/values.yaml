@@ -1,0 +1,84 @@
+replicaCount: 1
+# Files that should be made available to the backend
+filePath: /dls
+# Name of the secret (or sealed secret) with database, authentication and message queue credentials
+secretName: "pato-db"
+
+# Used internally, but if you opt not to use an ingress, these will be exposed
+ports:
+  auth: 8050
+  frontend: 8080
+  backend: 8000
+
+# Containers, "auth" is optional
+containers:
+  - name: backend
+    repository: gcr.io/diamond-pubreg/pato/backend
+    pullPolicy: IfNotPresent
+    tag: v1.3.2-alpha.2-e637f849
+    portName: api
+    resources:
+      limits:
+        cpu: "0.5"
+        memory: 1G
+      requests:
+        cpu: "0.5"
+        memory: 1G
+
+    env:
+      - name: CONFIG_PATH
+        value: /config/config_api_prod.json
+
+  - name: frontend
+    repository: gcr.io/diamond-pubreg/pato/frontend
+    tag: v1.6.2-alpha.2-731ac869
+    portName: http
+    resources:
+      limits:
+        cpu: "0.5"
+        memory: 0.5G
+      requests:
+        cpu: "0.5"
+        memory: 0.5G
+  - name: auth
+    repository: gcr.io/diamond-pubreg/pato/microauth
+    tag: v0.9.2-39dcdafe
+    portName: auth
+    resources:
+      limits:
+        cpu: "0.5"
+        memory: 1G
+      requests:
+        cpu: "0.5"
+        memory: 1G
+    env:
+      - name: CONFIG_PATH
+        value: /config/config_auth_prod.json
+imagePullSecrets: []
+# Security context configuration
+podSecurityContext: {}
+
+service:
+  type: LoadBalancer
+
+ingress:
+  parentHost: ebic-pato.diamond.ac.uk
+  enabled: true
+  hosts:
+    - name: frontend
+      path: /(?!(api|auth)).*
+      noRewrite: true
+      pathType: ImplementationSpecific
+    - name: backend
+      path: /api/(.*)
+      pathType: ImplementationSpecific
+    - name: auth
+      path: /auth/(.*)
+      pathType: Prefix
+      noRewrite: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

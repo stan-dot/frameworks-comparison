@@ -38,7 +38,7 @@ export default function Root() {
   return (
     <>
       <div id="sidebar">
-        <h1>React Router Contacts</h1>
+        <h1>Bootstrap test</h1>
 
         <div>
           <Form method="post">

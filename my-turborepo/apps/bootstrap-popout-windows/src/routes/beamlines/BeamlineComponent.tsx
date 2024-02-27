@@ -12,7 +12,11 @@ export const BeamlineComponent = ({
       <div className="card-body">
         <h5 className="card-title">{name}</h5>
         <p className="card-text">{description}</p>
-        <a href={url} className="card-link">
+        <a
+          href={url}
+          className="card-link"
+          style={{ textDecoration: "underline" }}
+        >
           Beamline URL
         </a>
         <ul className="list-group list-group-flush">

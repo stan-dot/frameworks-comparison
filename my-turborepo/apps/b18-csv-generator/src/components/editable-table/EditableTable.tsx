@@ -1,9 +1,5 @@
-import React from 'react';
-
-//
-import './index.css';
-
-//
+import React from "react";
+import "./index.css";
 import {
   ColumnDef,
   RowData,
@@ -12,12 +8,12 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
-} from '@tanstack/react-table';
-import { Person, makeData } from '../makeData';
-import { Filter } from './Filter';
-import { useSkipper } from './useSkipper';
+} from "@tanstack/react-table";
+import { Person, makeData } from "../makeData";
+import { Filter } from "./Filter";
+import { useSkipper } from "./useSkipper";
 
-declare module '@tanstack/react-table' {
+declare module "@tanstack/react-table" {
   interface TableMeta<TData extends RowData> {
     updateData: (rowIndex: number, columnId: string, value: unknown) => void;
   }
@@ -56,46 +52,46 @@ export default function EditableTable() {
   const columns = React.useMemo<ColumnDef<Person>[]>(
     () => [
       {
-        header: 'Name',
+        header: "Name",
         footer: (props) => props.column.id,
         columns: [
           {
-            accessorKey: 'firstName',
+            accessorKey: "firstName",
             footer: (props) => props.column.id,
           },
           {
             accessorFn: (row) => row.lastName,
-            id: 'lastName',
+            id: "lastName",
             header: () => <span>Last Name</span>,
             footer: (props) => props.column.id,
           },
         ],
       },
       {
-        header: 'Info',
+        header: "Info",
         footer: (props) => props.column.id,
         columns: [
           {
-            accessorKey: 'age',
-            header: () => 'Age',
+            accessorKey: "age",
+            header: () => "Age",
             footer: (props) => props.column.id,
           },
           {
-            header: 'More Info',
+            header: "More Info",
             columns: [
               {
-                accessorKey: 'visits',
+                accessorKey: "visits",
                 header: () => <span>Visits</span>,
                 footer: (props) => props.column.id,
               },
               {
-                accessorKey: 'status',
-                header: 'Status',
+                accessorKey: "status",
+                header: "Status",
                 footer: (props) => props.column.id,
               },
               {
-                accessorKey: 'progress',
-                header: 'Profile Progress',
+                accessorKey: "progress",
+                header: "Profile Progress",
                 footer: (props) => props.column.id,
               },
             ],
@@ -195,33 +191,33 @@ export default function EditableTable() {
           onClick={() => table.setPageIndex(0)}
           disabled={!table.getCanPreviousPage()}
         >
-          {'<<'}
+          {"<<"}
         </button>
         <button
           className="border rounded p-1"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          {'<'}
+          {"<"}
         </button>
         <button
           className="border rounded p-1"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          {'>'}
+          {">"}
         </button>
         <button
           className="border rounded p-1"
           onClick={() => table.setPageIndex(table.getPageCount() - 1)}
           disabled={!table.getCanNextPage()}
         >
-          {'>>'}
+          {">>"}
         </button>
         <span className="flex items-center gap-1">
           <div>Page</div>
           <strong>
-            {table.getState().pagination.pageIndex + 1} of{' '}
+            {table.getState().pagination.pageIndex + 1} of{" "}
             {table.getPageCount()}
           </strong>
         </span>
@@ -260,5 +256,3 @@ export default function EditableTable() {
     </div>
   );
 }
-
-

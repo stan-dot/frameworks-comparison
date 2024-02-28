@@ -53,3 +53,12 @@ https://spectromicroscopy.com/
 https://github.com/mlerotic/spectromicroscopy
 
 https://www.silx.org/doc/PyMca/dev/index.html
+
+connector running some scripts
+https://gitlab.diamond.ac.uk/scisoft/beamlines/i20/gda-zocalo-connectorGo
+
+## event model
+https://blueskyproject.io/event-model/main/user/explanations/data-model.html
+
+https://blueskyproject.io/bluesky/documents.html
+

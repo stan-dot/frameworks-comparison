@@ -1,5 +1,16 @@
 # React + TypeScript + Vite
 
+## dev notes
+
+theme support
+<https://react-spectrum.adobe.com/react-spectrum/theming.html>
+
+layout support
+<https://react-spectrum.adobe.com/react-spectrum/layout.html>
+
+
+## continued
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

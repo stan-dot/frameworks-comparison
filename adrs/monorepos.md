@@ -39,3 +39,17 @@ bit sounds like too much for now. going with turborepo for now
 
 turborepo reviewed
 <https://news.ycombinator.com/item?id=30958653>
+
+
+## for python programs
+
+DEMETER not really suported - and in Perl
+https://bruceravel.github.io/demeter/
+https://github.com/bruceravel/demeter
+
+
+spectromicroscopy - all pytohn, not the best maintained one
+https://spectromicroscopy.com/
+https://github.com/mlerotic/spectromicroscopy
+
+https://www.silx.org/doc/PyMca/dev/index.html

@@ -11,9 +11,10 @@ const BaseLayout: React.FC<LayoutProps> = ({
 }) => {
   return (
     <div className="container my-custom-theme">
+      <h5>base layout example</h5>
       <div className="row">
         <div className="col-8">
-          <PopoutLink path={"../element=nav"} />
+          <PopoutLink path={"element=nav"} />
           {navChild}
         </div>
         <div className="col-4 d-none d-md-block">
@@ -22,11 +23,11 @@ const BaseLayout: React.FC<LayoutProps> = ({
       </div>
       <div className="row">
         <div className="col-md-4 d-none d-md-block">
-          <PopoutLink path={"../element=top"} />
+          <PopoutLink path={"element=top"} />
           {topChild}
         </div>
         <div className="col-md-8">
-          <PopoutLink path={"../element=bottom"} />
+          <PopoutLink path={"element=bottom"} />
           {bottomChild}
         </div>
       </div>

@@ -11,6 +11,7 @@ const serviceLinks: ServiceLink[] = [
   },
   { url: "https://tizayi.github.io/dedi-web/", name: "Dedi-web" },
   { url: "https://dev-portal.diamond.ac.uk/", name: "dev-portal" },
+  { name: "XAS standards", url: "<http://ws454:5174/submit>" }
 ];
 
 function AppDrawer() {

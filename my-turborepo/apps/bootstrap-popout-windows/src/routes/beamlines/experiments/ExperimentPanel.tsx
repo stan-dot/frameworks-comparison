@@ -13,12 +13,14 @@ const oneChildRendering = ["nav", "top", "bottom", "all"] as const;
 export type OneComponentIndicator = (typeof oneChildRendering)[number];
 
 function ExperimentPanel() {
-  let [searchParams, setSearchParams] = useSearchParams();
-
+  let [searchParams, _] = useSearchParams();
   const layout: LayoutType =
     (searchParams.get("layout") as LayoutType) ?? "base";
 
   const oneComponent: OneComponentIndicator = (searchParams.get('component') as OneComponentIndicator) ?? "all";
+  console.log('search params: ', searchParams);
+  console.log('layout: ', layout);
+  console.log('one component: ', oneComponent);
 
   return (
     <div>
@@ -42,10 +44,12 @@ function ExperimentPanel() {
 
 
 function LayoutManager({ layout, layoutParams }: { layout: LayoutType, layoutParams: LayoutProps }) {
+  console.log('layout in manager: ', layout);
   return (
     <div>
-      {layout === "base" ?? <BaseLayout {...layoutParams} />}
-      {layout === "i10" ?? <I10Layout {...layoutParams} />}
+      <h4> Layout manager</h4>
+      {layout === "base" && <BaseLayout {...layoutParams} />}
+      {layout === "i10" && <I10Layout {...layoutParams} />}
     </div>
   )
 }

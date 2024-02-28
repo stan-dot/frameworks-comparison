@@ -1,9 +1,9 @@
 # fast changes - possibly all through a modal
 
 - [ ] for the decompression - either just router logic (simpler) or some complex custom system
-- [ ] add adjustments to element
-- [ ] add adjustments to edge
-- [ ] add adjustments to comment
+- [ ] add editability to element
+- [ ] add editability to edge
+- [ ] add editability to comment
 
 ## done
 
@@ -15,4 +15,5 @@
 - [x] first a basic, withouth holder selection
 
 ### not really
+
 - [ ] add a a 'use element in sample name' checkbox to the form

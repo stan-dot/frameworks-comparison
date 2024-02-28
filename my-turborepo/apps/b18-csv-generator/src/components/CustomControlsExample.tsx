@@ -20,12 +20,12 @@ export function CustomControlsExample() {
 
     return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
-        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
-        <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
+        <IconButton aria-label="check-icon" icon={<CheckIcon />} {...getSubmitButtonProps()} />
+        <IconButton aria-label="close-icon" icon={<CloseIcon />} {...getCancelButtonProps()} />
       </ButtonGroup>
     ) : (
       <Flex justifyContent="center">
-        <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
+        <IconButton aria-label="icon-button" size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
       </Flex>
     );
   }

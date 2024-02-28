@@ -1,4 +1,3 @@
-import React from "react";
 import ElementSquare from "./ElementSquare";
 import { RowOfElementSquares } from "./RowOfElementSquares";
 import { Rectangle } from "./Square";

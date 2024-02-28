@@ -1,4 +1,3 @@
-import React from "react";
 import { Square } from "./Square";
 import Element from "./Element";
 import { MARGIN, SQUARE_SIZE } from "./constants";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DETECTION_MODES,
   DETECTORS,
@@ -18,7 +18,7 @@ type SelectorProps = {
 };
 
 function Selector({ propRows }: SelectorProps) {
-  const [selection, setSelection] = useState<SelectionHandler>();
+  const [selection, _] = useState<SelectionHandler>();
 
   const [rows, setRows] = useState<ReadyRow[]>(propRows);
 
@@ -26,9 +26,9 @@ function Selector({ propRows }: SelectorProps) {
     // todo on selection approval change update the rows
   }, [selection, rows]);
 
-  const handleDeltaSelection = (e: React.ChangeEvent) => {
-    setSelection(e.target.value);
-  };
+  // const handleDeltaSelection = (e: React.ChangeEvent) => {
+  //   setSelection(e.target.value);
+  // };
 
   // todo add table headers
   return (
@@ -49,7 +49,7 @@ function Selector({ propRows }: SelectorProps) {
                     setRows((rows) => {
                       const v = e.target.value;
                       // todo add alerts library
-                      if (!DETECTION_MODES.includes(v)) return rows;
+                      if (!DETECTION_MODES.includes(v as DetectionModeType)) return rows;
                       rows[i].detectionMode = v as DetectionModeType;
                       return rows;
                     })

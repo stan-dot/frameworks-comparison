@@ -1,4 +1,3 @@
-import React from 'react';
 import { Column, Table } from '@tanstack/react-table';
 
 export function Filter({

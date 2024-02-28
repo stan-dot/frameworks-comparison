@@ -7,7 +7,7 @@ const r1: ReadyRow = {
   detectionMode: "T",
   sampleName: "Helium test",
   sampleComment: "Test comment 1",
-  column_letter: 2,
+  column_letter: 'A',
   row: 3,
   repetitions: 1,
 };
@@ -18,7 +18,7 @@ const r2: ReadyRow = {
   detectionMode: "T",
   sampleName: "Oganesson test",
   sampleComment: "Test comment 2",
-  column_letter: 3,
+  column_letter: 'B',
   row: 4,
   repetitions: 2,
 };

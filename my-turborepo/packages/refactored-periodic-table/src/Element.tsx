@@ -1,5 +1,4 @@
 import { ElementType, elements } from "./elements";
-import React from "react";
 
 type Props = {
   atomicNumber: number;

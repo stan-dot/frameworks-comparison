@@ -1,8 +1,8 @@
+import "./App.css";
 import { Box, ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
 import { PeriodicTable } from "@repo/refactored-periodic-table/refactored-periodic-table";
 import SubmitButton from "@repo/ui/submit-button";
 import { useState } from "react";
-import "./App.css";
 import Form from "./components/Form";
 import GeneratedTable from "./components/GeneratedTable";
 import Selector from "./components/Selector";
@@ -29,8 +29,9 @@ function App() {
   console.log("new rows sample name: ", rows[0].sampleName);
 
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
+  console.log('rows: ', rows);
 
-  // return <EditableTable />;
+  return <EditableTable />;
   // todo add verification if it's ready or going with the default values
   if (isLargerThan1280) {
     return (

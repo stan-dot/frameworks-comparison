@@ -39,6 +39,7 @@ export const defaultGeneratorSetup: GeneratorSetup = {
   samplesNumber: 10,
   defaultRepetitionsNumber: 2,
   holder: smallSampleHolder,
+  defaultElement: allowedElements[0]
 };
 
 export type GeneratorSetup = {

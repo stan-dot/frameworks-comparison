@@ -9,6 +9,7 @@ import { ALL_BEAMLINES } from "./data";
 import { PlanList } from "./plans/PlanList";
 import { Plan } from "./plans/Plans";
 import { BeamlineInfo, DeviceType, WorkerStateType } from "./types";
+import { Link } from "react-router-dom";
 
 const workerStateColors: Record<WorkerStateType, string> = {
   IDLE: "text-secondary",
@@ -72,6 +73,14 @@ function BeamlinePanel() {
     <div>
       BeamlinePanel
       <h2>{beamlineInfo.name}</h2>
+      <nav id="beamline-nav">
+        <Stack direction='horizontal' gap={5}>
+          <Link to={"./synoptic"} className="italics" style={{ textDecoration: 'underline' }}  >Synoptics</Link>
+          <Link to={"./technical-ui"} className="italics" style={{ textDecoration: 'underline' }}  >Technical UI</Link>
+          <Link to={"./experiments"} className="italics" style={{ textDecoration: 'underline' }}  >Experiment</Link>
+        </Stack>
+
+      </nav>
       <h6 className="card-subtitle mb-2 text-muted">
         Worker last polled:{" "}
         <span

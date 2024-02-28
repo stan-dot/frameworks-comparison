@@ -2,9 +2,11 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import App from "./App.tsx";
 import ErrorPage from "./error-page.tsx";
 import "./index.css";
+import BeamlinesListRoute, {
+  loader as AllBeamlinesLoader,
+} from "./routes/beamlines/BeamlineListRoute.tsx";
 import BeamlinePanel, {
   loader as BeamlineLoader,
 } from "./routes/beamlines/BeamlinePanel.tsx";
@@ -19,9 +21,9 @@ import SpecificPlan, {
   loader as SpecificPlanLoader,
 } from "./routes/beamlines/plans/SpecificPlan.tsx";
 import Root, { loader as rootLoader } from "./routes/root.tsx";
-import BeamlinesListRoute, {
-  loader as AllBeamlinesLoader,
-} from "./routes/beamlines/BeamlineListRoute.tsx";
+import ExperimentPanel from "./routes/beamlines/experiments/ExperimentPanel.tsx";
+import Synoptics from "./routes/beamlines/synoptic/Synoptics.tsx";
+import TechnicalUi from "./routes/beamlines/technical-ui/TechnicalUi.tsx";
 
 const colors = {
   brand: {
@@ -51,11 +53,11 @@ const router = createBrowserRouter([
             element: <BeamlinePanel />,
             loader: BeamlineLoader,
           },
-          { path: ":beamlineName/synoptic", element: <BeamlinePanel /> },
-          { path: ":beamlineName/technical-ui", element: <BeamlinePanel /> },
-          { path: ":beamlineName/experiment", element: <BeamlinePanel /> },
+          { path: ":beamlineName/synoptic", element: <Synoptics /> },
+          { path: ":beamlineName/technical-ui", element: <TechnicalUi /> },
+          { path: ":beamlineName/experiments", element: <ExperimentPanel /> },
           {
-            path: ":beamlineName/experiment/:experimentId",
+            path: ":beamlineName/experiments/:experimentId",
             element: <BeamlinePanel />,
           },
           {

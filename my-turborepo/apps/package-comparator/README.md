@@ -1,3 +1,13 @@
+
+## deployment instructions
+
+https://github.com/vercel/next.js/tree/canary/examples/with-docker#deploying-to-google-cloud-run
+
+dockerfile source
+https://turbo.build/repo/docs/handbook/deploying-with-docker#example
+
+
+
 ## Getting Started
 
 First, run the development server:

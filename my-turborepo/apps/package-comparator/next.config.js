@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   transpilePackages: ["@repo/ui"],
-  output: 'export'
+  output: 'standalone'
 };

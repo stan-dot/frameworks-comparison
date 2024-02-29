@@ -1,4 +1,3 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -24,14 +23,6 @@ import SpecificPlan, {
 import Synoptics from "./routes/beamlines/synoptic/Synoptics.tsx";
 import TechnicalUi from "./routes/beamlines/technical-ui/TechnicalUi.tsx";
 import Root, { loader as rootLoader } from "./routes/root.tsx";
-
-const colors = {
-  brand: {
-    900: "#1a365d",
-    800: "#153e75",
-    700: "#2a69ac",
-  },
-};
 
 const router = createBrowserRouter([
   {
@@ -95,12 +86,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-const theme = extendTheme({ colors });
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ChakraProvider>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

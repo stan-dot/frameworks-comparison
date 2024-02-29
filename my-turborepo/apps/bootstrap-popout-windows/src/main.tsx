@@ -14,16 +14,16 @@ import BeamlineWrapper from "./routes/beamlines/BeamlineWrapper.tsx";
 import Devices, {
   loader as DevicesLoader,
 } from "./routes/beamlines/devices/Devices.tsx";
+import ExperimentPanel from "./routes/beamlines/experiments/ExperimentPanel.tsx";
 import Plans, {
   loader as PlansLoader,
 } from "./routes/beamlines/plans/Plans.tsx";
 import SpecificPlan, {
   loader as SpecificPlanLoader,
 } from "./routes/beamlines/plans/SpecificPlan.tsx";
-import Root, { loader as rootLoader } from "./routes/root.tsx";
-import ExperimentPanel from "./routes/beamlines/experiments/ExperimentPanel.tsx";
 import Synoptics from "./routes/beamlines/synoptic/Synoptics.tsx";
 import TechnicalUi from "./routes/beamlines/technical-ui/TechnicalUi.tsx";
+import Root, { loader as rootLoader } from "./routes/root.tsx";
 
 const colors = {
   brand: {

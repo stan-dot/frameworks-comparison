@@ -3,7 +3,7 @@ import { BeamlineCard } from "./BeamlineCard";
 import { ALL_BEAMLINES } from "./data";
 import { BeamlineInfo } from "./types";
 
-export async function loader({ params }) {
+export async function loader({ params }: { params: any }) {
   const name = params.beamlineName;
   let beamlines: BeamlineInfo[] = [];
   try {

@@ -3,7 +3,7 @@ import { redirect, useLoaderData } from "react-router-dom";
 import { ALL_BEAMLINES } from "../data";
 import { Plan } from "./Plans";
 
-export async function loader({ params }) {
+export async function loader({ params }: { params: any }) {
   console.log(params);
   let plan: Plan | undefined = undefined;
   const name = params.beamlineName;

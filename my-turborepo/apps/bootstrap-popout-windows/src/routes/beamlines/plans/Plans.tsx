@@ -1,10 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import { useLoaderData } from "react-router-dom";
-import { BLUESKY_API_URL } from "../../../beamline-config";
-import { PlanList } from "./PlanList";
 import { ALL_BEAMLINES } from "../data";
+import { PlanList } from "./PlanList";
 
-export async function loader({ params }) {
+export async function loader({ params }: { params: any }) {
   const name = params.beamlineName;
   let plans: Plan[] = [];
   try {

@@ -1,4 +1,3 @@
-import React from "react";
 import { DeviceType } from "../routes/beamlines/types";
 import { Accordion } from "react-bootstrap";
 

@@ -4,7 +4,7 @@ import { ALL_BEAMLINES } from "../data";
 import { DeviceType, DevicesResponse } from "../types";
 import { DevicesList } from "../../../components/DevicesList";
 
-export async function loader({ params }) {
+export async function loader({ params }: {params: any}) {
   let devices: DeviceType[] = [];
   const name = params.beamlineName;
   try {

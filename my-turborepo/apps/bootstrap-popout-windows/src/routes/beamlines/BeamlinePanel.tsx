@@ -24,7 +24,7 @@ const workerStateColors: Record<WorkerStateType, string> = {
   UNKNOWN: "text-dark",
 };
 
-export async function loader({ params }) {
+export async function loader({ params }: { params: any }) {
   const name = params.beamlineName;
   let beamlineInfo: BeamlineInfo | undefined = undefined;
   try {

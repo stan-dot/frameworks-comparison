@@ -11,7 +11,7 @@ import AppDrawer from "../components/drawer/AppDrawer";
 import { ALL_BEAMLINES } from "./beamlines/data";
 import { BeamlineInfo } from "./beamlines/types";
 
-export async function loader({ request }) {
+export async function loader({ request }: { request: any }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   let beamlines: BeamlineInfo[] = ALL_BEAMLINES;
@@ -36,7 +36,10 @@ export default function Root() {
     navigation.location &&
     new URLSearchParams(navigation.location.search).has("q");
   useEffect(() => {
-    document.getElementById("q")!.value = q;
+    if (q) {
+
+      (document.getElementById("q") as HTMLInputElement)['value'] = q;
+    }
   }, [q]);
 
   return (
@@ -54,7 +57,7 @@ export default function Root() {
               placeholder="Search"
               type="search"
               name="q"
-              defaultValue={q}
+              defaultValue={q ?? undefined}
               onChange={(e) => {
                 const isFirstSearch = q == null;
                 submit(e?.currentTarget.form, { replace: !isFirstSearch });
@@ -70,7 +73,7 @@ export default function Root() {
           </h3>
           {beamlines.length ? (
             <ul>
-              {beamlines.map((b, i) => (
+              {beamlines.map((b, _) => (
                 <li key={`beamline-${b.name}`}>
                   <NavLink
                     to={`beamlines/${b.name}`}

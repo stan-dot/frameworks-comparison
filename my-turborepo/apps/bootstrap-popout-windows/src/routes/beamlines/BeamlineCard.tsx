@@ -8,7 +8,7 @@ export const BeamlineCard = ({
 }: {
   beamlineInfo: BeamlineInfo;
 }) => {
-  const { name, url, experimentTypes } = beamlineInfo;
+  const { name, infoUrl, experimentTypes } = beamlineInfo;
 
   return (
     <div className="card" style={{ width: "15rem", marginBottom: "1rem" }}>
@@ -16,10 +16,10 @@ export const BeamlineCard = ({
         <h5 className="card-title">{name}</h5>
         <Stack>
           <a
-            href={url}
+            href={infoUrl}
             className="card-link"
             style={{ textDecoration: "underline" }}
-          target="_blank"
+            target="_blank"
           >
             Beamline external URL
           </a>

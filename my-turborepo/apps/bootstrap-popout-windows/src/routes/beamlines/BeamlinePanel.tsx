@@ -46,7 +46,7 @@ function BeamlinePanel() {
 
   async function fetchWorkerState(abortSignal: AbortSignal) {
     try {
-      const res = await fetch(`${beamlineInfo.url}/worker/state`, {
+      const res = await fetch(`${beamlineInfo.apiUrl}/worker/state`, {
         signal: abortSignal,
       });
       const resp = await res.json();

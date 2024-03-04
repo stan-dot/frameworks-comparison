@@ -2,6 +2,7 @@ import React from "react";
 import { LayoutProps } from "./LayoutProps";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PopoutLink } from "./PopoutLink";
+import { Container } from "react-bootstrap";
 
 // BaseLayout component with Bootstrap
 const BaseLayout: React.FC<LayoutProps> = ({
@@ -10,9 +11,9 @@ const BaseLayout: React.FC<LayoutProps> = ({
   bottomChild,
 }) => {
   return (
-    <div className="container my-custom-theme">
+    <Container>
       <h5>base layout example</h5>
-      <div className="row">
+      <div className="row m-2 p-2">
         <div className="col-8">
           <PopoutLink path={"?element=nav"} />
           {navChild}
@@ -21,7 +22,7 @@ const BaseLayout: React.FC<LayoutProps> = ({
           {/* This column intentionally left blank for layout */}
         </div>
       </div>
-      <div className="row">
+      <div className="row m-2 p-2">
         <div className="col-md-4 d-none d-md-block">
           <PopoutLink path={"?element=top"} />
           {topChild}
@@ -31,7 +32,7 @@ const BaseLayout: React.FC<LayoutProps> = ({
           {bottomChild}
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

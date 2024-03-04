@@ -1,6 +1,9 @@
-import { Stack } from "react-bootstrap";
+import { ButtonGroup, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+/**
+ * note the mechanism with new window is based on this
+ */
 type PopoutLinkProps = {
   path: string;
   width?: number;
@@ -10,25 +13,24 @@ type PopoutLinkProps = {
 const DEFAULT_WIDTH = 600;
 const DEFAULT_HEIGHT = 400;
 
-export function PopoutLink({
-  path,
-  width = DEFAULT_WIDTH,
-  height = DEFAULT_HEIGHT,
-}: PopoutLinkProps) {
+export function PopoutLink({ path, width, height }: PopoutLinkProps) {
+  const finalWidth = width ?? DEFAULT_WIDTH;
+  const finalHeight = height ?? DEFAULT_HEIGHT;
+
   return (
-    <Stack direction="vertical">
-      <Link target="_blank" to={path}>
-        Open in own window
+    <ButtonGroup>
+      <Link className="btn btn-secondary" target="_blank" to={path}>
+        Open in new tab
       </Link>
       <a
-        style={{ textDecoration: "underline", cursor:'pointer' }}
+        className="btn btn-secondary"
         onClick={() => {
-          const sizeParams = `height=${height},width=${width}`;
+          const sizeParams = `height=${finalHeight},width=${finalWidth}`;
           window.open(path, "name", sizeParams);
         }}
       >
-        Open in own window 2
+        Popout
       </a>
-    </Stack>
+    </ButtonGroup>
   );
 }

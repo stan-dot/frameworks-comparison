@@ -14,7 +14,7 @@ const oneChildRendering = ["nav", "top", "bottom", "all"] as const;
 export type OneComponentIndicator = (typeof oneChildRendering)[number];
 
 function ExperimentPanel() {
-  let [searchParams, _] = useSearchParams();
+  let [searchParams, setSearchParams] = useSearchParams();
   const layout: LayoutType =
     (searchParams.get("layout") as LayoutType) ?? "base";
 
@@ -27,26 +27,30 @@ function ExperimentPanel() {
   return (
     <div>
       <h3>ExperimentTypes</h3>
-      {/* <ButtonGroup>
+      <ButtonGroup>
         <Button
-          disabled={layout === layouts[1]}
+          variant="secondary"
+          disabled={layout !== layouts[1]}
           onClick={() => {
             console.log("changing the layout");
-            redirect("../experiments?layout=base");
+            // redirect("../experiments?layout=base");
+            setSearchParams({ layout: "base" });
           }}
         >
           Change layout to base
         </Button>
         <Button
-          disabled={layout === layouts[0]}
+          variant="secondary"
+          disabled={layout !== layouts[0]}
           onClick={() => {
             console.log("changing the layout");
-            redirect("../experiments?layout=i10");
+            // redirect("../experiments?layout=i10");
+            setSearchParams({ layout: "i10" });
           }}
         >
-          Change layout to i10
+          Change layout to i10-like
         </Button>
-      </ButtonGroup> */}
+      </ButtonGroup>
       {oneElement === "nav" && <Component1 />}
       {oneElement === "top" && <Component2 />}
       {oneElement === "bottom" && <Component3 />}

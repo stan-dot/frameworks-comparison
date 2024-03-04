@@ -26,43 +26,46 @@ function ExperimentPanel() {
 
   return (
     <div>
-      <h3>ExperimentTypes</h3>
-      <ButtonGroup>
-        <Button
-          variant="secondary"
-          disabled={layout !== layouts[1]}
-          onClick={() => {
-            console.log("changing the layout");
-            // redirect("../experiments?layout=base");
-            setSearchParams({ layout: "base" });
-          }}
-        >
-          Change layout to base
-        </Button>
-        <Button
-          variant="secondary"
-          disabled={layout !== layouts[0]}
-          onClick={() => {
-            console.log("changing the layout");
-            // redirect("../experiments?layout=i10");
-            setSearchParams({ layout: "i10" });
-          }}
-        >
-          Change layout to i10-like
-        </Button>
-      </ButtonGroup>
       {oneElement === "nav" && <Component1 />}
       {oneElement === "top" && <Component2 />}
       {oneElement === "bottom" && <Component3 />}
       {oneElement === "all" && (
-        <LayoutManager
-          layout={layout}
-          layoutParams={{
-            navChild: <Component1 />,
-            topChild: <Component2 />,
-            bottomChild: <Component3 />,
-          }}
-        />
+        <>
+          <h3>ExperimentTypes</h3>
+          <ButtonGroup>
+            <Button
+              variant="secondary"
+              disabled={layout !== layouts[1]}
+              onClick={() => {
+                console.log("changing the layout");
+                // redirect("../experiments?layout=base");
+                setSearchParams({ layout: "base" });
+              }}
+            >
+              Change layout to base
+            </Button>
+            <Button
+              variant="secondary"
+              disabled={layout !== layouts[0]}
+              onClick={() => {
+                console.log("changing the layout");
+                // redirect("../experiments?layout=i10");
+                setSearchParams({ layout: "i10" });
+              }}
+            >
+              Change layout to i10-like
+            </Button>
+          </ButtonGroup>
+          <LayoutManager
+            layout={layout}
+            layoutParams={{
+              navChild: <Component1 />,
+              topChild: <Component2 />,
+              bottomChild: <Component3 />,
+            }}
+          />
+          )
+        </>
       )}
     </div>
   );

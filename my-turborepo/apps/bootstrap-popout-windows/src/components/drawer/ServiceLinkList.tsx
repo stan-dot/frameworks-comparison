@@ -17,6 +17,7 @@ const ServiceLinkList: React.FC<Props> = ({ services }) => {
       <div className="list-group">
         {services.map((service, index) => (
           <a
+            target="_blank"
             key={index}
             href={service.url}
             className="list-group-item list-group-item-action d-flex align-items-center"

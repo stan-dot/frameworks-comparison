@@ -26,7 +26,7 @@ export function PopoutLink({ path, width, height }: PopoutLinkProps) {
         className="btn btn-secondary"
         onClick={() => {
           const sizeParams = `height=${finalHeight},width=${finalWidth}`;
-          window.open(path, "name", sizeParams);
+          window.open(path, `name-${path}`, sizeParams);
         }}
       >
         Popout

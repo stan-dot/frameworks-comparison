@@ -1,9 +1,9 @@
-import { redirect, useSearchParams } from "react-router-dom";
+import { Component1, Component2, Component3 } from "@repo/ui/test-components";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom";
 import BaseLayout from "../../../components/layouts/BaseLayout";
 import I10Layout from "../../../components/layouts/I10Layout";
 import { LayoutProps } from "../../../components/layouts/LayoutProps";
-import { Component1, Component2, Component3 } from "@repo/ui/test-components";
-import { Button, ButtonGroup } from "react-bootstrap";
 
 const layouts = ["base", "i10"] as const;
 
@@ -23,10 +23,18 @@ function ExperimentPanel() {
   console.log("search params: ", searchParams);
   console.log("layout: ", layout);
   console.log("one component: ", oneElement);
+  if(oneElement !== 'all'){
+    document.title = `${oneElement} Window`
+  }
 
   return (
     <div>
-      {oneElement === "nav" && <Component1 />}
+      {oneElement === "nav" && (
+        <div style={{ width: "200vw", display: "absolute", height: "200vh" }}>
+          {/* this is not working, overriding the outlet does not work quite the best */}
+          <Component1 />
+        </div>
+      )}
       {oneElement === "top" && <Component2 />}
       {oneElement === "bottom" && <Component3 />}
       {oneElement === "all" && (

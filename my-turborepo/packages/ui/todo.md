@@ -2,6 +2,7 @@
 ## standardized components
 - [ ] navbar
 - [ ] button
+- [ ] cursor visual feedback
 
 - [ ] split libraries into smart and display? to have stateful components treated separately
 

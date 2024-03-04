@@ -1,8 +1,9 @@
-import { useSearchParams } from "react-router-dom";
+import { redirect, useSearchParams } from "react-router-dom";
 import BaseLayout from "../../../components/layouts/BaseLayout";
 import I10Layout from "../../../components/layouts/I10Layout";
 import { LayoutProps } from "../../../components/layouts/LayoutProps";
 import { Component1, Component2, Component3 } from "@repo/ui/test-components";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 const layouts = ["base", "i10"] as const;
 
@@ -17,42 +18,66 @@ function ExperimentPanel() {
   const layout: LayoutType =
     (searchParams.get("layout") as LayoutType) ?? "base";
 
-  const oneComponent: OneComponentIndicator = (searchParams.get('component') as OneComponentIndicator) ?? "all";
-  console.log('search params: ', searchParams);
-  console.log('layout: ', layout);
-  console.log('one component: ', oneComponent);
+  const oneElement: OneComponentIndicator =
+    (searchParams.get("element") as OneComponentIndicator) ?? "all";
+  console.log("search params: ", searchParams);
+  console.log("layout: ", layout);
+  console.log("one component: ", oneElement);
 
   return (
     <div>
-      <h3>
-        ExperimentTypes
-      </h3>
-      {oneComponent === 'nav' && <Component1 />}
-      {oneComponent === 'top' && <Component2 />}
-      {oneComponent === 'bottom' && <Component3 />}
-      {oneComponent === 'all' && <LayoutManager layout={layout} layoutParams={{
-        navChild: <Component1 />,
-        topChild: <Component2 />,
-        bottomChild: <Component3 />,
-      }} />
-
-      }
+      <h3>ExperimentTypes</h3>
+      {/* <ButtonGroup>
+        <Button
+          disabled={layout === layouts[1]}
+          onClick={() => {
+            console.log("changing the layout");
+            redirect("../experiments?layout=base");
+          }}
+        >
+          Change layout to base
+        </Button>
+        <Button
+          disabled={layout === layouts[0]}
+          onClick={() => {
+            console.log("changing the layout");
+            redirect("../experiments?layout=i10");
+          }}
+        >
+          Change layout to i10
+        </Button>
+      </ButtonGroup> */}
+      {oneElement === "nav" && <Component1 />}
+      {oneElement === "top" && <Component2 />}
+      {oneElement === "bottom" && <Component3 />}
+      {oneElement === "all" && (
+        <LayoutManager
+          layout={layout}
+          layoutParams={{
+            navChild: <Component1 />,
+            topChild: <Component2 />,
+            bottomChild: <Component3 />,
+          }}
+        />
+      )}
     </div>
   );
 }
 
-
-
-function LayoutManager({ layout, layoutParams }: { layout: LayoutType, layoutParams: LayoutProps }) {
-  console.log('layout in manager: ', layout);
+function LayoutManager({
+  layout,
+  layoutParams,
+}: {
+  layout: LayoutType;
+  layoutParams: LayoutProps;
+}) {
+  console.log("layout in manager: ", layout);
   return (
     <div>
-      <h4> Layout manager</h4>
       {layout === "base" && <BaseLayout {...layoutParams} />}
       {layout === "i10" && <I10Layout {...layoutParams} />}
     </div>
-  )
+  );
 }
-
 
 export default ExperimentPanel;

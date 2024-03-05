@@ -5,10 +5,10 @@ RUN apk add --no-cache libc6-compat
 RUN apk update
 # Set working directory
 WORKDIR /app
-RUN yarn global add turbo
-COPY . .
-RUN turbo prune package-comparator --docker
- 
+RUN npm i -g turbo
+COPY .. .
+RUN npx turbo prune package-comparator --docker
+
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
 RUN apk add --no-cache libc6-compat
@@ -18,12 +18,12 @@ WORKDIR /app
 # First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/yarn.lock ./yarn.lock
-RUN yarn install
- 
+COPY --from=builder /app/out/package-lock.json ./package-lock.json
+RUN npm ci
+
 # Build the project
 COPY --from=builder /app/out/full/ .
-RUN yarn turbo run build --filter=package-comparator...
+RUN npx turbo run build --filter=package-comparator...
  
 FROM base AS runner
 WORKDIR /app

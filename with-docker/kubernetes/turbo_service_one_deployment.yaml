@@ -35,6 +35,9 @@ spec:
       containers:
         - name: with-docker-web
           image: gcr.io/diamond-privreg/turborepo-with-docker/with-docker-web:latest
+          env:
+            - name: NEXT_PUBLIC_API_HOST
+              value: "turbo.xma12127.svc.cluster.local:3001"
           command: ["node"]
           args: ["apps/web/server.js"]
           resources:
@@ -46,6 +49,9 @@ spec:
               containerPort: 3000
         - name: with-docker-api
           image: gcr.io/diamond-privreg/turborepo-with-docker/with-docker-api:latest
+          env:
+            - name: PORT
+              value: "3001"
           command: ["node"]
           args: ["apps/api/dist/index.js"]
           resources:

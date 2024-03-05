@@ -3,15 +3,15 @@ import { Code } from "@repo/ui/code";
 import Link from "next/link";
 import { Hero } from "./Hero";
 import styles from "./page.module.css";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
-type Link = {
+type LinkType = {
   title: string;
   href: string;
   description: string;
 };
 
-const LINKS: Link[] = [
+const LINKS: LinkType[] = [
   {
     title: "Docs",
     href: "https://dev-portal.diamond.ac.uk/guide/guidelines/typescript/",

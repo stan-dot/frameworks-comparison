@@ -1,5 +1,3 @@
-
-import React from 'react'
 import { PackageData } from '../logic'
 import { DataGrid } from '@mui/x-data-grid/DataGrid'
 import { GridColDef } from '@mui/x-data-grid/models/colDef';

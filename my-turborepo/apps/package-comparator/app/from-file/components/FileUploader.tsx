@@ -1,7 +1,9 @@
 "use client";
-import { Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import { PackageData, parsePackageJson } from "../logic";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 type FileUploaderComponentProps = {
   addCallback: (d: PackageData) => void;
@@ -28,7 +30,7 @@ export function FileUploaderComponent({
   };
 
   return (
-    <Stack direction='column' spacing={2}>
+    <Stack direction="column" spacing={2}>
       <TextField
         type="file"
         inputProps={{ multiple: true }}

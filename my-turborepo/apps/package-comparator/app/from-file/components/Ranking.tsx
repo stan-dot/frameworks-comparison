@@ -1,12 +1,11 @@
-import {
-    Grid,
-    List,
-    ListItem,
-    ListItemText,
-    Paper,
-    Typography,
-} from "@mui/material";
+
+import ListItemText from "@mui/material/ListItemText";
 import { PackageData } from "../logic";
+import ListItem from "@mui/material/ListItem";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 
 type RankingProps = {
     packageDataArray: PackageData[];

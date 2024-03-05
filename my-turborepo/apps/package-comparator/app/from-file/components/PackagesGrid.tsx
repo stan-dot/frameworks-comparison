@@ -1,5 +1,5 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import React from "react";
+import { DataGrid } from "@mui/x-data-grid/DataGrid";
+import { GridColDef } from "@mui/x-data-grid/models/colDef";
 
 const cols: GridColDef[] = [
   { field: "Package name" },

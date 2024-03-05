@@ -1,18 +1,19 @@
 "use client";
-import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
+import ConfirmModal from "@repo/ui/confirm-modal";
 import { useState } from "react";
 import styles from "../page.module.css";
 import { FileUploaderComponent } from "./components/FileUploader";
-import { PackageData, PackageLine } from "./logic";
-import PackageVersionDataGrid from "./components/PackageVersionDataGrid";
-import { InvertedPackageDataGrid } from "./components/InvertedPackageDataGrid";
-import { ButtonGroup, Grid, Stack, Typography } from "@mui/material";
-import Ranking from "./components/Ranking";
 import GitHubFileFetcher from "./components/GithubFileFetcher";
-import ConfirmModal from "@repo/ui/confirm-modal";
+import { InvertedPackageDataGrid } from "./components/InvertedPackageDataGrid";
 import ManualDataEntry from "./components/ManualDataEntry";
+import PackageVersionDataGrid from "./components/PackageVersionDataGrid";
 import ProjectList from "./components/ProjectList";
+import Ranking from "./components/Ranking";
 import SoloPackagesList from "./components/SoloPackagesList";
+import { PackageData } from "./logic";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 
 function page() {
   const [data, setData] = useState<PackageData[]>([]);

@@ -1,6 +1,9 @@
-import React from "react";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Typography from "@mui/material/Typography";
 import { PackageData } from "../logic";
-import { Box, Link, List, ListItem, Stack, Typography } from "@mui/material";
 
 function ProjectList({ data }: { data: PackageData[] }) {
   return (

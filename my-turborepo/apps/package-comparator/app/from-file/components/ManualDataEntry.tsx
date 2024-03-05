@@ -4,7 +4,10 @@ import {
   parsePackageJson,
   parseTextIntoPackageData,
 } from "../logic";
-import { Box, Button, Stack, TextareaAutosize } from "@mui/material";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 type ManualDataEntryProps = {
   onPackageDataProcessed: (d: PackageData) => void;

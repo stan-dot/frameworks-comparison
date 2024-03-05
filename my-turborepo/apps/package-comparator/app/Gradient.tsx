@@ -1,12 +1,16 @@
 import styles from "./page.module.css";
 
-export function Gradient({
-  conic, className, small,
-}: {
+type GradientProps = {
   small?: boolean;
   conic?: boolean;
   className?: string;
-}): JSX.Element {
+};
+
+export function Gradient({
+  conic,
+  className,
+  small,
+}: GradientProps): JSX.Element {
   return (
     <span
       className={[
@@ -16,6 +20,7 @@ export function Gradient({
         className,
       ]
         .filter(Boolean)
-        .join(" ")} />
+        .join(" ")}
+    />
   );
 }

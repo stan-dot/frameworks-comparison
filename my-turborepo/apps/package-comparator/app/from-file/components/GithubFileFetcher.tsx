@@ -1,12 +1,20 @@
-import React, { useState } from "react";
-import { PackageData, parsePackageJson } from "../logic";
-import { Box, Button, Input } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Input from "@mui/material/Input";
 import ConfirmModal from "@repo/ui/confirm-modal";
+import { useState } from "react";
+import { PackageData, parsePackageJson } from "../logic";
 import { diamondUrls } from "./diamondUrls";
 
 type GithubFileFetcherProps = {
   onPackageDataFetched: (d: PackageData) => void;
 };
+
+function getRawUrl(url: string): string {
+  return url
+    .replace("github.com", "raw.githubusercontent.com")
+    .replace("/blob/", "/");
+}
 
 const isValidGitHubUrl = (url: string) => {
   // Simple pattern check; you might want to expand this for more specific cases
@@ -75,8 +83,3 @@ const GitHubFileFetcher = ({
 };
 
 export default GitHubFileFetcher;
-function getRawUrl(url: string) {
-  return url
-    .replace("github.com", "raw.githubusercontent.com")
-    .replace("/blob/", "/");
-}

@@ -1,8 +1,9 @@
 import styles from "../page.module.css";
-import { GridColDef, DataGrid } from "@mui/x-data-grid";
 import React, { useState } from "react";
 import { FileUploaderComponent } from "./FileUploader";
 import { PackageData, PackageLine } from "../logic";
+import { GridColDef } from "@mui/x-data-grid/models/colDef";
+import { DataGrid } from "@mui/x-data-grid/DataGrid";
 
 const firstCol: GridColDef = {
   field: "projectName",

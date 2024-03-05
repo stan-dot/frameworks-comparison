@@ -1,7 +1,9 @@
-import * as React from "react";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { GridColDef } from "@mui/x-data-grid/models/colDef";
 import { PackageData } from "../logic";
-import { Link, List, ListItem } from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Link from "@mui/material/Link";
+import { DataGrid } from "@mui/x-data-grid/DataGrid";
 
 // Step 1: Data Transformation
 const transformDataForDataGrid = (

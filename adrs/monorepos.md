@@ -6,6 +6,11 @@ do (NOT) this
 https://www.youtube.com/watch?v=zvYb7XCLQzU
 
 
+some setup, intesresting
+
+https://alanmasciangelo.github.io/posts/seeking-ci-with-gitlab-helm-and-monorepos
+
+
 # my thoughts
 
 lage failed to download

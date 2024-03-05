@@ -9,7 +9,7 @@ export type GeneratorSetup = {
 // todo transform into a list of packages later
 
 function Container() {
-  const [first, setfirst] = useState(second);
+  const [first, setfirst] = useState("");
   return <div>Container</div>;
 }
 

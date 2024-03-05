@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: turbo
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: turbo
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: turbo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: turbo
+  template:
+    metadata:
+      labels:
+        app: turbo
+    spec:
+      containers:
+        - name: with-docker-web
+          image: gcr.io/diamond-privreg/turborepo-with-docker/with-docker-web:latest
+          command: ["node"]
+          args: ["apps/web/server.js"]
+          resources:
+            limits:
+              cpu: "1"
+              memory: 300M
+          ports:
+            - name: http
+              containerPort: 3000
+          env
+        - name: api
+        - name: with-docker-api
+          image: gcr.io/diamond-privreg/turborepo-with-docker/with-docker-api:latest
+          command: ["node"]
+          args: ["apps/api/dist/index.js"]
+          resources:
+            limits:
+              cpu: "1"
+              memory: 300M
+          ports:
+            - name: http
+              containerPort: 3001

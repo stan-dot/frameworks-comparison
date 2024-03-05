@@ -1,10 +1,13 @@
-FROM docker.io/library/node:20.11.0-alpine3.19 as build
+FROM node:20-alpine as build
 
 WORKDIR /usr/src/app
 
 ARG DEPLOY_TYPE="production"
 ARG API_ENDPOINT="http://localhost:8000/"
-ARG AUTH_ENDPOINT="http://localhost:8050/"
+
+# not used now
+ARG AUTH_ENDPOINT="http://localhost:8050/" 
+
 ARG STAGING_HOST="ebic-pato-staging.diamond.ac.uk"
 ARG DEV_CONTACT="stanislaw.malinowski@diamond.ac.uk"
 ARG VERSION=0.1.0
@@ -18,10 +21,9 @@ ENV REACT_APP_DEV_CONTACT=${DEV_CONTACT}
 ENV REACT_APP_AUTH_TYPE="oidc"
 
 # Cache this layer unless dependencies change
-COPY package.json yarn.lock .yarnrc.yml .
-COPY ./.yarn ./.yarn
+COPY package.json .
 
-RUN yarn install --immutable --check-cache
+RUN npm install --immutable --check-cache
 
 COPY . ./
 RUN yarn build

@@ -7,7 +7,7 @@ RUN apk update
 WORKDIR /app
 RUN yarn global add turbo
 COPY . .
-RUN turbo prune web --docker
+RUN turbo prune package-comparator --docker
  
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
@@ -23,7 +23,7 @@ RUN yarn install
  
 # Build the project
 COPY --from=builder /app/out/full/ .
-RUN yarn turbo run build --filter=web...
+RUN yarn turbo run build --filter=package-comparator...
  
 FROM base AS runner
 WORKDIR /app
@@ -33,13 +33,13 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
  
-COPY --from=installer /app/apps/web/next.config.js .
-COPY --from=installer /app/apps/web/package.json .
+COPY --from=installer /app/apps/package-comparator/next.config.js .
+COPY --from=installer /app/apps/package-comparator/package.json .
  
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
+COPY --from=installer --chown=nextjs:nodejs /app/apps/package-comparator/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/package-comparator/.next/static ./apps/web/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/package-comparator/public ./apps/web/public
  
-CMD node apps/web/server.js
+CMD node apps/package-comparator/server.js

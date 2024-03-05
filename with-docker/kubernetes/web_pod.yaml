@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-docker-web
+spec:
+  containers:
+  - name: with-docker-web
+    image: gcr.io/diamond-privreg/turborepo-with-docker/with-docker-web:latest
+    command: ["node"]
+    args: ["apps/web/server.js"]
+    resources:
+      limits:
+        cpu: "1"
+        memory: 300M

@@ -2,6 +2,15 @@
 
 This is an official Docker starter Turborepo.
 
+URL
+https://github.com/vercel/turbo/tree/main/examples/with-docker
+had to change the package manager to npm (as yarn is not on our machines) 
+- in root package.json
+- in each of the 2 dockerfiles
+
+also running without the buildkit, as it was pulling 2 same images
+https://github.com/moby/buildkit/tree/master/examples/kubernetes
+
 ## Using this example
 
 Run the following command:

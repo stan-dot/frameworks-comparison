@@ -1,0 +1,14 @@
+apiVersion: v2
+name: turborepo-with-docker
+description: Test Deployment of an app from TurboRepo with Docker
+
+type: Deployment
+
+# Chart version - do not edit; this is updated automatically by CI
+version: 0.1.0
+
+dependencies:
+  - name: with-docker-web
+    repository: oci://gcr.io/diamond-privreg
+    # version: 11.16.2
+    

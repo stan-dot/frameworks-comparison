@@ -8,7 +8,8 @@ RUN apk update
 # Set working directory
 WORKDIR /app
 RUN npm i -g turbo
-COPY .. .
+COPY . .
+# COPY .. .
 RUN npx turbo prune package-comparator --docker
 
 # Add lockfile and package.json's of isolated subworkspace
@@ -18,10 +19,10 @@ RUN apk update
 WORKDIR /app
  
 # First install the dependencies (as they change less often)
-COPY .gitignore .gitignore
+# COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/package-lock.json ./package-lock.json
-RUN npm ci
+RUN npm ci --omit=dev
 
 # Build the project
 COPY --from=builder /app/out/full/ .

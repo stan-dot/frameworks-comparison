@@ -8,7 +8,7 @@ module load argus
 gcloud auth login 
 gcloud auth configure-docker
 dockerfile_path="deployments/Dockefile.$tmp_location"
-podman build --format docker 
+podman build --format docker -f $dockerfile_path -t $tmp_location:latest .
 new_tag="gcr.io/diamond-privreg/$tmp_location:latest"
 podman tag $tmp_location:latest $new_tag
 

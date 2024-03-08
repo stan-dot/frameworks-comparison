@@ -31,12 +31,10 @@ spec:
     spec:
       containers:
         - name: package-comparator
-          image: gcr.io/diamond-privreg/package-comparator/package-comparator:latest
+          image: gcr.io/diamond-privreg/package-comparator:0.2.0
           env:
             - name: NEXT_PUBLIC_API_HOST # not used
               value: "package-comparator.xma12127.svc.cluster.local:3001"
-          command: ["node"]
-          args: ["apps/web/server.js"]
           resources:
             limits:
               cpu: "1"

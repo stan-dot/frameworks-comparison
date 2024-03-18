@@ -1,12 +1,14 @@
 {
-  "name": "@repo/refactored-periodic-table",
-  "version": "0.2.1",
+  "name": "@diamondlightsource/periodic-table",
+  "version": "0.2.3",
   "private": false,
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
   "main": "src/PeriodicTable.tsx",
+  "module": "./dist/periodic-table.mjs",
+  "types": "./dist/PeriodicTable.d.ts",
   "exports": {
     "./refactored-periodic-table": "./src/PeriodicTable.tsx"
   },
@@ -21,7 +23,7 @@
     "build": "rm -rf dist && tsc --project tsconfig.build.json && npm run copy-package && npm run copy-readme",
     "copy-package": "cp package.dist.json ./dist/package.json",
     "copy-readme": "cp README.dist.md ./dist/README.md",
-    "publish": "npm version patch --no-git-tag-version && cd dist && npm version patch && cp package.json ../package.dist.json && npm publish"
+    "publish-package": "npm version patch --no-git-tag-version && cd dist && npm version patch && cp package.json ../package.dist.json && npm publish"
   },
   "eslintConfig": {
     "extends": [

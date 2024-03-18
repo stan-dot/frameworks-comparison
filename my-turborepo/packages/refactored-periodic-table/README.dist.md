@@ -3,12 +3,12 @@ Periodic Table of Elements
 ## Install
 
 ```
-  npm install @dls/periodic-table
+  npm install @diamondlightsource/periodic-table
 ```
 
 ## Usage
 ```tsx
-  import PeriodicTable, { OnClick } from '@repo/refactored-periodic-table';
+  import PeriodicTable, { OnClick } from '@diamondlightsource/periodic-table';
 
   function App() {
     const handleClick = ( element) => {

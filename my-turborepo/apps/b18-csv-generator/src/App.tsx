@@ -12,7 +12,7 @@ import {
   defaultGeneratorSetup,
   generateRows,
 } from "./utils/sampleHolderSize";
-import EditableTable from "./components/editable-table/EditableTable";
+// import EditableTable from "./components/editable-table/EditableTable";
 
 function App() {
   const [form, setForm] = useState<GeneratorSetup>(defaultGeneratorSetup);

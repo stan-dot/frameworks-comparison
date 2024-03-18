@@ -2,28 +2,28 @@
 
 - [x] per beamline
 - [x] add a button to go to the multiple component screen
-- [ ] add a layout component using bootstrap and accepting 4 children
+- [x] add a layout component using bootstrap and accepting 4 children
 
 ## links
 
 chat
-https://chat.openai.com/g/g-n7Rs0IK86-grimoire/c/a517d3aa-0831-4f43-a240-2d959dd6059c
+<https://chat.openai.com/g/g-n7Rs0IK86-grimoire/c/a517d3aa-0831-4f43-a240-2d959dd6059c>
 
-https://react-bootstrap.netlify.app/docs/getting-started/introduction
+<https://react-bootstrap.netlify.app/docs/getting-started/introduction>
 
 examples
-https://codesandbox.io/examples/package/react-bootstrap
+<https://codesandbox.io/examples/package/react-bootstrap>
 
 # features
 
-- [ ] themes https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours--docs
-- [ ] see the different layouts / perspectives
-- [ ] link out into a new window
+- [ ] themes <https://diamondlightsource.github.io/web-ui-components/?path=/docs/theme-colours--docs>
 - [ ] add technical UI validation component from joi
-      https://react-bootstrap.netlify.app/docs/getting-started/introduction/#customize-bootstrap
 - [ ] save meatadata to supabase
       <https://github.com/supabase-community/supabase-kubernetes>
 
+- [x] see the different layouts / perspectives
+- [x] link out into a new window
+      <https://react-bootstrap.netlify.app/docs/getting-started/introduction/#customize-bootstrap>
 
 ## specific paths
 
@@ -50,9 +50,8 @@ experiment types are requsable
 
 /beamline/{beamline}/experiment/{experimentType}/id/{experimentId}/scan/{scanId}
 
-# metadata db
 
-## terrible!
+## terrible
 
 the useloader data is too bad!
-https://github.com/remix-run/react-router/discussions/9792
+<https://github.com/remix-run/react-router/discussions/9792>

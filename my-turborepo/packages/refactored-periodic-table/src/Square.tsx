@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type SquareProps = {
   size: number;
@@ -7,11 +7,7 @@ type SquareProps = {
 };
 
 export function Square({ size, margin, children }: SquareProps) {
-  return (
-    <div style={{ height: size, width: size, margin }}>
-      {children}
-    </div>
-  );
+  return <div style={{ height: size, width: size, margin }}>{children}</div>;
 }
 
 type RectangleProps = {

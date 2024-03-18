@@ -19,12 +19,10 @@ export function RowOfElementSquares({
 }: RowOfElementSquaresProps) {
   const arr = range(start, end);
   return (
-    <div id={`row-starting-with-${start}`}>
-      {
-        arr.map((n) => (
-          <ElementSquare atomicNumber={n} callback={callback} />
-        ))
-      }
-    </div >
+    <div id={`row-starting-with-${start}`} style={{ display: "flex" }}>
+      {arr.map((n) => (
+        <ElementSquare atomicNumber={n} callback={callback} />
+      ))}
+    </div>
   );
 }

@@ -1,11 +1,11 @@
 import { ElementType, elements } from "./elements";
 
-type Props = {
+type ElementProps = {
   atomicNumber: number;
   callback: (e: ElementType) => void;
 };
 
-const BG_COLORS = {
+const BG_COLORS: Record<string, string> = {
   metalloid: "#fef7e0",
   "post transition metal": "#d6f9e8",
   nonmetal: "#e2eeff",
@@ -18,19 +18,18 @@ const BG_COLORS = {
   actinide: "#ffe6d4",
 };
 
-export default function Element({ atomicNumber, callback }: Props) {
+export default function Element({ atomicNumber, callback }: ElementProps) {
   const element = elements[atomicNumber - 1];
   if (!element) {
     return <div></div>;
   }
 
-  const bgcolor =
-    BG_COLORS[element.Type as keyof typeof BG_COLORS] ?? "inherit";
+  const bgcolor: string = BG_COLORS[element.Type] ?? "inherit";
 
   return (
     <div
       className="element"
-      onClick={_ => callback(element)}
+      onClick={(_) => callback(element)}
       style={{
         cursor: "pointer",
         backgroundColor: bgcolor,

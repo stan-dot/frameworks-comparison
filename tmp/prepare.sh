@@ -1,5 +1,5 @@
 
-tmp_location="bootstrap-popout-windows"
+tmp_location="package-comparator"
 # todo assign which registry - private or public
 # todo consider creating the dockerfile dynamically from a template
 

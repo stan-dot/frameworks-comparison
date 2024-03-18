@@ -20,7 +20,7 @@ export function PeriodicTable({
       <div style={{ display: "flex", flexDirection: "column" }}>
         {/* H He*/}
         <div className="period-1" style={{ display: "flex" }}>
-          <ElementSquare atomicNumber={0} callback={callback} />
+          <ElementSquare atomicNumber={1} callback={callback} />
           <Rectangle
             height={squareSize}
             width={16.5 * squareSize + margin * 2 * 16}

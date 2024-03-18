@@ -1,6 +1,6 @@
 FROM node:21-alpine3.18 AS base
  
-# this should be here http://172.23.169.113:3000/
+# this should be here vhttp://172.23.169.113:3000/
 
 FROM base AS builder
 RUN apk add --no-cache libc6-compat

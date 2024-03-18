@@ -31,7 +31,7 @@ function App() {
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
   console.log('rows: ', rows);
 
-  return <EditableTable />;
+  // return <EditableTable />;
   // todo add verification if it's ready or going with the default values
   if (isLargerThan1280) {
     return (

@@ -49,6 +49,7 @@ export default function Element({ atomicNumber, callback }: ElementProps) {
         className="name"
         style={{
           fontSize: "small",
+          color: "black",
           width: "100%",
           overflow: "hidden",
           textOverflow: "ellipsis",

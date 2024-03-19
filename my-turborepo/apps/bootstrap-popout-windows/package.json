@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@repo/eslint-config": "*",
-    "@repo/refactored-periodic-table": "*",
+    "@diamondlightsource/periodic-table": "*",
     "@repo/science": "*",
     "@repo/typescript-config": "*",
     "@repo/ui": "*",

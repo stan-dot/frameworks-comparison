@@ -16,7 +16,7 @@
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
     "@faker-js/faker": "^8.4.1",
-    "@repo/refactored-periodic-table": "*",
+    "@diamondlightsource/periodic-table": "*",
     "@repo/science": "*",
     "@repo/ui": "*",
     "@repo/utils": "*",

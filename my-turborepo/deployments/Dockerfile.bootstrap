@@ -28,22 +28,15 @@ COPY --from=builder /app/out/full/ .
 RUN npx turbo run build --filter=bootstrap-popout-windows...
  
 #  RUNNER STAGE
-FROM base AS runner
+FROM docker.io/nginxinc/nginx-unprivileged:alpine3.18-slim
 WORKDIR /app
- 
 # Don't run production as root
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 serve-spa
-USER serve-spa
- 
-COPY --from=installer /app/apps/bootstrap-popout-windows/vite.config.ts .
-COPY --from=installer /app/apps/bootstrap-popout-windows/package.json .
- 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=serve-spa:nodejs /app/apps/bootstrap-popout-windows/.next/standalone ./
-COPY --from=installer --chown=serve-spa:nodejs /app/apps/bootstrap-popout-windows/.next/static ./apps/bootstrap-popout-windows/.next/static
-COPY --from=installer --chown=serve-spa:nodejs /app/apps/bootstrap-popout-windows/public ./apps/bootstrap-popout-windows/public
- 
-# CMD node apps/bootstrap-popout-windows/server.js
-CMD serve -s /app/apps/bootstrap-popout-windows/dist
+# RUN addgroup --system --gid 1001 nginx
+# RUN adduser --system --uid 1001 nginx
+# USER nginx
+
+COPY --from=installer /app/apps/bootstrap-popout-windows/dist /usr/share/nginx/html
+COPY nginx/conf.d /etc/nginx/nginx.conf
+
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]

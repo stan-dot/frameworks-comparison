@@ -10,7 +10,7 @@
   "module": "./dist/periodic-table.mjs",
   "types": "./dist/PeriodicTable.d.ts",
   "exports": {
-    "./refactored-periodic-table": "./src/PeriodicTable.tsx"
+    "./table": "./src/PeriodicTable.tsx"
   },
   "dependencies": {
     "react": "^18.0.0",

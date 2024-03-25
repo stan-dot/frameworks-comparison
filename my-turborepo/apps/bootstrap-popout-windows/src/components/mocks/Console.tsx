@@ -1,5 +1,4 @@
-import terminal from "../../../public/terminal.png";
-import React from "react";
+import terminal from "./terminal.png"
 
 function Console() {
   return <div>

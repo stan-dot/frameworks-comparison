@@ -1,4 +1,4 @@
-import tree from "../../../public/tree.png";
+import tree from './tree.png'
 
 function Tree() {
   return (

@@ -15,7 +15,7 @@ spec:
   externalTrafficPolicy: Cluster
 
 ---
-apiVersion: apps/v1
+apiVersion: apps/vhere1
 kind: Deployment
 metadata:
   name: bootstrap

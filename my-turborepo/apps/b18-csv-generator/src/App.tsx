@@ -13,6 +13,7 @@ import {
 } from "./utils/sampleHolderSize";
 import { PeriodicTable } from "@diamondlightsource/periodic-table/table";
 import { NewTable } from "./editable-table/NewTable";
+import { NewSamplesTable } from "./editable-table/NewSamplesTable";
 
 function App() {
   const [form, setForm] = useState<GeneratorSetup>(defaultGeneratorSetup);
@@ -31,6 +32,9 @@ function App() {
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
   console.log('rows: ', rows);
 
+  return <ChakraProvider>
+    <NewSamplesTable />
+  </ChakraProvider>
   return <NewTable />;
   // todo add verification if it's ready or going with the default values
   if (isLargerThan1280) {

@@ -10,7 +10,7 @@ export type Person = {
   subRows?: Person[];
 };
 
-const range = (len: number) => {
+export const range = (len: number) => {
   const arr: number[] = [];
   for (let i = 0; i < len; i++) {
     arr.push(i);
@@ -33,7 +33,7 @@ const newPerson = (): Person => {
   };
 };
 
-export function makeData(...lens: number[]) {
+export function makePersonData(...lens: number[]):Person[] {
   const makeDataLevel = (depth = 0): Person[] => {
     const len = lens[depth]!;
     return range(len).map((_) => {
@@ -46,3 +46,4 @@ export function makeData(...lens: number[]) {
 
   return makeDataLevel();
 }
+

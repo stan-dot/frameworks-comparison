@@ -39,11 +39,11 @@ export const defaultGeneratorSetup: GeneratorSetup = {
   samplesNumber: 10,
   defaultRepetitionsNumber: 2,
   holder: smallSampleHolder,
-  defaultElement: allowedElements[0]
+  defaultElement: allowedElements[0],
 };
 
 export type GeneratorSetup = {
-  defaultElement:ChemicalElement;
+  defaultElement: ChemicalElement;
   defaultDetectionMode: DetectionModeType;
   sampleNamePrefix: string;
   startingCount: number;
@@ -111,7 +111,15 @@ export function autogenerateSampleNames(
 export function getCsvContent(a: ReadyRow[]): string {
   const headers: string[] = Object.getOwnPropertyNames(a[0]);
   const valueRows = a.map((e) =>
-    [e.element.name, e.detectionMode, e.edge].join(",")
+    [
+      e.element.symbol,
+      e.detectionMode,
+      e.edge,
+      e.sampleName,
+      e.column_letter,
+      e.row,
+      e.repetitions,
+    ].join(",")
   );
   const finalString = [headers, ...valueRows].join("\n");
   return finalString;

@@ -1,6 +1,5 @@
 import "./App.css";
 import { Box, ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
-import { PeriodicTable } from "@repo/refactored-periodic-table/refactored-periodic-table";
 import SubmitButton from "@repo/ui/submit-button";
 import { useState } from "react";
 import Form from "./components/Form";
@@ -12,7 +11,8 @@ import {
   defaultGeneratorSetup,
   generateRows,
 } from "./utils/sampleHolderSize";
-// import EditableTable from "./components/editable-table/EditableTable";
+import { PeriodicTable } from "@diamondlightsource/periodic-table/table";
+import { NewTable } from "./editable-table/NewTable";
 
 function App() {
   const [form, setForm] = useState<GeneratorSetup>(defaultGeneratorSetup);
@@ -31,7 +31,7 @@ function App() {
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
   console.log('rows: ', rows);
 
-  // return <EditableTable />;
+  return <NewTable />;
   // todo add verification if it's ready or going with the default values
   if (isLargerThan1280) {
     return (

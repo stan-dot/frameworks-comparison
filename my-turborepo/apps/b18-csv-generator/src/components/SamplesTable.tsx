@@ -25,7 +25,7 @@ import {
 import ElementPicker from "./ElementPicker";
 import { useEffect, useState } from "react";
 import { ReadyRow } from "../utils/sampleHolderSize";
-import { useSkipper } from "./editable-table/useSkipper";
+import { useSkipper } from "../editable-table/useSkipper";
 
 // Give our default column cell renderer editing superpowers!
 const defaultColumn: Partial<ColumnDef<ReadyRow>> = {

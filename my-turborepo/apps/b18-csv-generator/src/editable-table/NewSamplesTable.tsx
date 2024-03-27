@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
 
+import { Box, Button, Input, Select, Stack } from "@chakra-ui/react";
+import { ElementType } from "@diamondlightsource/periodic-table/elements";
+import { PeriodicTable } from "@diamondlightsource/periodic-table/table";
+import { downloadFile } from "@repo/utils/download-file";
 import {
   ColumnDef,
-  useReactTable,
+  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  flexRender,
   RowData,
+  useReactTable,
 } from "@tanstack/react-table";
-import { useSkipper } from "./useSkipper";
-import { ReadyRow, getCsvContent } from "../utils/sampleHolderSize";
-import { makeSampleData } from "./makeSampleData";
-import { Button, ChakraProvider, Stack } from "@chakra-ui/react";
-import { downloadFile } from "@repo/utils/download-file";
-import { ChangeElementModal } from "./ChangeElementModal";
 import { ChemicalElement } from "../data/elements";
+import {
+  DETECTION_MODES,
+  DetectionModeType,
+  EDGES,
+} from "../utils/initialTypes";
+import { getCsvContent, ReadyRow } from "../utils/sampleHolderSize";
 import { Filter } from "./Filter";
 import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
-import { PeriodicTable } from "@diamondlightsource/periodic-table/table";
-import { ElementType } from "@diamondlightsource/periodic-table/elements";
+import { makeSampleData } from "./makeSampleData";
+import { useSkipper } from "./useSkipper";
 
 declare module "@tanstack/react-table" {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -28,10 +32,13 @@ declare module "@tanstack/react-table" {
   }
 }
 
+const nonEditableColumns: string[] = ["name", "select", "symbol"];
+
 // Give our default column cell renderer editing superpowers!
 const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
     const initialValue = getValue();
+    console.log("col id: ", id);
     // We need to keep and update the state of the cell normally
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState(initialValue);
@@ -46,8 +53,73 @@ const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
     useEffect(() => {
       setValue(initialValue);
     }, [initialValue]);
+
+    if (nonEditableColumns.includes(id)) {
+      return <p style={{ padding: 2, margin: 2 }}>{value}</p>;
+    }
+    if (id === "edge") {
+      return (
+        <Select
+          value={value}
+          id="defaultEdge"
+          className="border rounded p-1"
+          onChange={(e) => {
+            setValue(e.target.value as string);
+          }}
+          minWidth={50}
+          letterSpacing={3}
+        >
+          {EDGES.map((v, i) => {
+            return (
+              <option
+                key={`edge-option-${i}`}
+                value={v}
+                style={{ margin: 4, padding: 2 }}
+              >
+                {v + "           "}
+              </option>
+            );
+          })}
+        </Select>
+      );
+    }
+
+    if (id === "detectionMode") {
+      return (
+        <>
+          <Select
+            value={value}
+            id="defaultSelectionMode"
+            onChange={(e) => {
+              setValue(e.target.value as DetectionModeType);
+            }}
+          >
+            {DETECTION_MODES.map((v, i) => {
+              return (
+                <option key={`detection-mode-option-${i}`} value={v}>
+                  {v}
+                </option>
+              );
+            })}
+          </Select>
+        </>
+      );
+    }
+
+    if (id === "repetitions" || id === "row") {
+      return (
+        <Input
+          type="number"
+          value={value as number}
+          onChange={(e) => setValue(parseInt(e.target.value))}
+          onBlur={onBlur}
+        />
+      );
+    }
+
     return (
-      <input
+      <Input
+        type="text"
         value={value as string}
         onChange={(e) => setValue(e.target.value)}
         onBlur={onBlur}
@@ -56,7 +128,11 @@ const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
   },
 };
 
-export function NewSamplesTable() {
+type NewSamplesTableProps = {
+  data: ReadyRow[];
+};
+
+export function NewSamplesTable({ data: newData }: NewSamplesTableProps) {
   const rerender = React.useReducer(() => ({}), {})[1];
 
   const columns = React.useMemo<ColumnDef<ReadyRow>[]>(
@@ -86,7 +162,7 @@ export function NewSamplesTable() {
         ),
       },
       {
-        header: "Name",
+        header: "Element choice",
         footer: (props) => props.column.id,
         columns: [
           {
@@ -109,36 +185,37 @@ export function NewSamplesTable() {
         columns: [
           {
             accessorKey: "edge",
-            header: () => "Edge",
+            header: () => <span style={{ minWidth: 40 }}>Edge</span>,
             footer: (props) => props.column.id,
           },
           {
-            header: "Detection Mode",
-            columns: [
-              {
-                accessorKey: "detectionMode",
-                header: () => <span>Detection Mode</span>,
-                footer: (props) => props.column.id,
-              },
-              {
-                accessorKey: "sampleName",
-                header: "Sample Name",
-                footer: (props) => props.column.id,
-              },
-              {
-                accessorKey: "sampleComment",
-                header: "Comment",
-                footer: (props) => props.column.id,
-              },
-              {
-                accessorKey: "repetitions",
-                header: "Repetitions",
-                footer: (props) => props.column.id,
-              },
-            ],
+            accessorKey: "detectionMode",
+            header: () => <span>Detection Mode</span>,
+            footer: (props) => props.column.id,
           },
         ],
       },
+      {
+        header: "Custom data",
+        columns: [
+          {
+            accessorKey: "sampleName",
+            header: "Sample Name",
+            footer: (props) => props.column.id,
+          },
+          {
+            accessorKey: "sampleComment",
+            header: "Comment",
+            footer: (props) => props.column.id,
+          },
+          {
+            accessorKey: "repetitions",
+            header: "Repetitions",
+            footer: (props) => props.column.id,
+          },
+        ],
+      },
+
       {
         header: "Position in the tray",
         footer: (props) => props.column.id,
@@ -264,27 +341,6 @@ export function NewSamplesTable() {
             return (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => {
-                  //   console.log("cell values: ", cell);
-                  //   if (cell.column.id === "symbol") {
-                  //     return (
-                  //       <td key={cell.id}>
-                  //         <ChangeElementModal
-                  //           callback={(e) => {
-                  //             setData((data) => {
-                  //               data[parseInt(cell.row.id)].element = e;
-                  //               return data;
-                  //             });
-                  //           }}
-                  //         />
-                  //         {/* <Button onClick={() => {
-                  //                                 const s: string = `${cell.row.id} and col: ${cell.column.id}`
-                  //                                 window.alert(s)
-                  //                             }} >
-                  //                                 test
-                  //                             </Button> */}
-                  //       </td>
-                  //     );
-                  //   }
                   return (
                     <td key={cell.id}>
                       {flexRender(
@@ -299,36 +355,37 @@ export function NewSamplesTable() {
           })}
         </tbody>
       </table>
-      <div className="h-2" />
-      <div className="flex items-center gap-2">
-        <button
-          className="border rounded p-1"
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {"<<"}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {"<"}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          {">"}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
-        >
-          {">>"}
-        </button>
+      <div className="flex items-center gap-2 p-2">
+        <Stack direction="row" justifyItems="center">
+          <Button
+            className="border rounded p-1"
+            onClick={() => table.setPageIndex(0)}
+            disabled={!table.getCanPreviousPage()}
+          >
+            {"<<"}
+          </Button>
+          <Button
+            className="border rounded p-1"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            {"<"}
+          </Button>
+          <Button
+            className="border rounded p-1"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            {">"}
+          </Button>
+          <Button
+            className="border rounded p-1"
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            disabled={!table.getCanNextPage()}
+          >
+            {">>"}
+          </Button>
+        </Stack>
         <span className="flex items-center gap-1">
           <div>Page</div>
           <strong>
@@ -353,6 +410,7 @@ export function NewSamplesTable() {
           onChange={(e) => {
             table.setPageSize(Number(e.target.value));
           }}
+          style={{ margin: 4 }}
         >
           {[10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
@@ -360,6 +418,7 @@ export function NewSamplesTable() {
             </option>
           ))}
         </select>
+        <p>{table.getRowModel().rows.length} Rows</p>
       </div>
       <Stack direction="row">
         <Button
@@ -374,13 +433,12 @@ export function NewSamplesTable() {
         >
           Download the table
         </Button>
-        <div>{table.getRowModel().rows.length} Rows</div>
-        <div>
-          <button onClick={() => rerender()}>Force Rerender</button>
-        </div>
-        <div>
-          <button onClick={() => refreshData()}>Refresh Data</button>
-        </div>
+        <Box>
+          <Button onClick={() => rerender()}>Force Rerender</Button>
+        </Box>
+        <Box>
+          <Button onClick={() => refreshData()}>Refresh Data</Button>
+        </Box>
       </Stack>
       <PeriodicTable callback={periodicTableCallback} />
     </div>

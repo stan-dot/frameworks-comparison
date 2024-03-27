@@ -24,7 +24,6 @@ export function makeSampleData(...lens: number[]): ReadyRow[] {
         return range(len).map((_) => {
             return {
                 ...newElement(),
-                subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
             };
         });
     };

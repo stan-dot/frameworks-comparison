@@ -20,8 +20,7 @@ export type Offsets = {
 };
 
 // user defined
-const EDGES = ["K", "L", "M"] as const;
-// todo add with numbers
+export const EDGES = ["K", "L", "M"] as const;
 
 export type EdgeType = (typeof EDGES)[number];
 export const DETECTION_MODES = ["T", "F"] as const;

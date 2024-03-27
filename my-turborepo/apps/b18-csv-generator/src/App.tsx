@@ -1,19 +1,15 @@
-import "./App.css";
-import { Box, ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
+import { ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
 import SubmitButton from "@repo/ui/submit-button";
 import { useState } from "react";
+import "./App.css";
 import Form from "./components/Form";
-import GeneratedTable from "./components/GeneratedTable";
-import Selector from "./components/Selector";
+import { NewSamplesTable } from "./editable-table/NewSamplesTable";
 import {
   GeneratorSetup,
   ReadyRow,
   defaultGeneratorSetup,
   generateRows,
 } from "./utils/sampleHolderSize";
-import { PeriodicTable } from "@diamondlightsource/periodic-table/table";
-import { NewTable } from "./editable-table/NewTable";
-import { NewSamplesTable } from "./editable-table/NewSamplesTable";
 
 function App() {
   const [form, setForm] = useState<GeneratorSetup>(defaultGeneratorSetup);
@@ -26,52 +22,29 @@ function App() {
     });
   };
 
+  // derivative state
   const rows: ReadyRow[] = generateRows(form);
   console.log("new rows sample name: ", rows[0].sampleName);
 
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
-  console.log('rows: ', rows);
+  console.log("rows: ", rows);
 
-  // return <NewTable />;
-  return <ChakraProvider>
-    <NewSamplesTable />
-  </ChakraProvider>
-  // todo add verification if it's ready or going with the default values
   if (isLargerThan1280) {
     return (
-      <HStack>
-        {/* <CustomControlsExample /> */}
-        <Box>
-          {/* <Selector propRows={rows} /> */}
-          <ChakraProvider>
-            <br />
-            <GeneratedTable data={rows} />
-            <PeriodicTable callback={(e) => { window.alert(`clicked element: ${e.Name}`) }} />
-          </ChakraProvider>
-        </Box>
-        <Box>
-          <Form value={form} handler={handler} />
-        </Box>
-      </HStack>
+      <ChakraProvider>
+        <Form value={form} handler={handler} />
+        <HStack>
+          <NewSamplesTable data={rows} />
+        </HStack>
+      </ChakraProvider>
     );
   }
 
   return (
-    <>
+    <ChakraProvider>
       {ready ? (
         <>
-          <Selector propRows={rows} />
-          <ChakraProvider>
-            <button
-              style={{ backgroundColor: "green", padding: 2, margin: 2 }}
-              onClick={() => setReady(false)}
-            >
-              Go back
-            </button>
-
-            <br />
-            <GeneratedTable />
-          </ChakraProvider>
+          <NewSamplesTable data={rows} />
         </>
       ) : (
         <>
@@ -80,7 +53,7 @@ function App() {
           <SubmitButton callback={() => setReady(true)} />
         </>
       )}
-    </>
+    </ChakraProvider>
   );
 }
 

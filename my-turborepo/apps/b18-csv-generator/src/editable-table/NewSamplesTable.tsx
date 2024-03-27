@@ -38,7 +38,7 @@ const nonEditableColumns: string[] = ["name", "select", "symbol"];
 const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
     const initialValue = getValue();
-    console.log("col id: ", id);
+    // console.log("col id: ", id);
     // We need to keep and update the state of the cell normally
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState(initialValue);
@@ -116,6 +116,21 @@ const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
         />
       );
     }
+    if (id === "column_letter") {
+      return (
+        <Input
+          type="text"
+          value={value as string}
+          minLength={1}
+          maxLength={1}
+          onChange={(e) => {
+            const u = e.target.value.toUpperCase();
+            setValue(u);
+          }}
+          onBlur={onBlur}
+        />
+      );
+    }
 
     return (
       <Input
@@ -129,10 +144,10 @@ const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
 };
 
 type NewSamplesTableProps = {
-  data: ReadyRow[];
+  rowsFromForm: ReadyRow[];
 };
 
-export function NewSamplesTable({ data: newData }: NewSamplesTableProps) {
+export function NewSamplesTable({ rowsFromForm }: NewSamplesTableProps) {
   const rerender = React.useReducer(() => ({}), {})[1];
 
   const columns = React.useMemo<ColumnDef<ReadyRow>[]>(
@@ -210,7 +225,7 @@ export function NewSamplesTable({ data: newData }: NewSamplesTableProps) {
           },
           {
             accessorKey: "repetitions",
-            header: "Repetitions",
+            header: "Repetitions (integer)",
             footer: (props) => props.column.id,
           },
         ],
@@ -222,7 +237,7 @@ export function NewSamplesTable({ data: newData }: NewSamplesTableProps) {
         columns: [
           {
             accessorKey: "row",
-            header: "Row",
+            header: "Row (integer)",
             footer: (props) => props.column.id,
           },
           {
@@ -236,8 +251,14 @@ export function NewSamplesTable({ data: newData }: NewSamplesTableProps) {
     []
   );
 
-  const [data, setData] = React.useState(() => makeSampleData(100));
-  const refreshData = () => setData(() => makeSampleData(100));
+  // const [data, setData] = React.useState(() => makeSampleData(100));
+  // const refreshData = () => setData(() => makeSampleData(100));
+
+  const [data, setData] = React.useState<ReadyRow[]>(rowsFromForm);
+  useEffect(() => {
+    setData(rowsFromForm);
+  }, [rowsFromForm]);
+  const refreshData = () => setData(() => []);
 
   const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper();
   const [rowSelection, setRowSelection] = React.useState<
@@ -263,6 +284,7 @@ export function NewSamplesTable({ data: newData }: NewSamplesTableProps) {
       });
       return newData;
     });
+    setRowSelection({});
   };
 
   const table = useReactTable({

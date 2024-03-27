@@ -44,7 +44,7 @@ export default function Form({ value, handler }: FormProps) {
             id="sampleNamePrefix"
             type="text"
             minLength={0}
-            maxLength={5}
+            maxLength={15}
             value={value.sampleNamePrefix}
             onChange={(e) => {
               handler({ sampleNamePrefix: e.target.value });

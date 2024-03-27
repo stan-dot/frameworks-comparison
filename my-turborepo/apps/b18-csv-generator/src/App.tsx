@@ -1,6 +1,6 @@
 import { ChakraProvider, HStack, useMediaQuery } from "@chakra-ui/react";
 import SubmitButton from "@repo/ui/submit-button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Form from "./components/Form";
 import { NewSamplesTable } from "./editable-table/NewSamplesTable";
@@ -22,9 +22,16 @@ function App() {
     });
   };
 
+  const [rows, setRows] = useState<ReadyRow[]>([]);
   // derivative state
-  const rows: ReadyRow[] = generateRows(form);
-  console.log("new rows sample name: ", rows[0].sampleName);
+  // const rows: ReadyRow[] = gknerateRows(form);
+  useEffect(() => {
+    const newRows = generateRows(form);
+    console.log("new rows: ", newRows);
+    setRows(newRows);
+  }, [form]);
+
+  // console.log("new rows sample name: ", rows[0].sampleName);
 
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
   console.log("rows: ", rows);
@@ -34,7 +41,7 @@ function App() {
       <ChakraProvider>
         <Form value={form} handler={handler} />
         <HStack>
-          <NewSamplesTable data={rows} />
+          <NewSamplesTable rowsFromForm={rows} />
         </HStack>
       </ChakraProvider>
     );
@@ -44,7 +51,7 @@ function App() {
     <ChakraProvider>
       {ready ? (
         <>
-          <NewSamplesTable data={rows} />
+          <NewSamplesTable rowsFromForm={rows} />
         </>
       ) : (
         <>

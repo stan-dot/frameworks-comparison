@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   ColumnDef,
@@ -17,8 +17,12 @@ import { downloadFile } from "@repo/utils/download-file";
 import { ChangeElementModal } from "./ChangeElementModal";
 import { ChemicalElement } from "../data/elements";
 import { Filter } from "./Filter";
+import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
+import { PeriodicTable } from "@diamondlightsource/periodic-table/table";
+import { ElementType } from "@diamondlightsource/periodic-table/elements";
 
 declare module "@tanstack/react-table" {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface TableMeta<TData extends RowData> {
     updateData: (rowIndex: number, columnId: string, value: unknown) => void;
   }
@@ -29,7 +33,8 @@ const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
     const initialValue = getValue();
     // We need to keep and update the state of the cell normally
-    const [value, setValue] = React.useState(initialValue);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [value, setValue] = useState(initialValue);
 
     // When the input is blurred, we'll call our table meta's updateData function
     const onBlur = () => {
@@ -37,10 +42,10 @@ const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
     };
 
     // If the initialValue is changed external, sync it up with our state
-    React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
       setValue(initialValue);
     }, [initialValue]);
-
     return (
       <input
         value={value as string}
@@ -56,6 +61,30 @@ export function NewSamplesTable() {
 
   const columns = React.useMemo<ColumnDef<ReadyRow>[]>(
     () => [
+      {
+        id: "select",
+        header: ({ table }) => (
+          <IndeterminateCheckbox
+            {...{
+              checked: table.getIsAllRowsSelected(),
+              indeterminate: table.getIsSomeRowsSelected(),
+              onChange: table.getToggleAllRowsSelectedHandler(),
+            }}
+          />
+        ),
+        cell: ({ row }) => (
+          <div className="px-1">
+            <IndeterminateCheckbox
+              {...{
+                checked: row.getIsSelected(),
+                disabled: !row.getCanSelect(),
+                indeterminate: row.getIsSomeSelected(),
+                onChange: row.getToggleSelectedHandler(),
+              }}
+            />
+          </div>
+        ),
+      },
       {
         header: "Name",
         footer: (props) => props.column.id,
@@ -134,11 +163,40 @@ export function NewSamplesTable() {
   const refreshData = () => setData(() => makeSampleData(100));
 
   const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper();
+  const [rowSelection, setRowSelection] = React.useState<
+    Record<number, boolean>
+  >({});
+
+  const periodicTableCallback = (element: ElementType) => {
+    console.log("table callback: ", element);
+    const e: ChemicalElement = {
+      number: parseInt(element.Number),
+      isotopes: [],
+      symbol: element.Symbol,
+      mass: parseFloat(element["Atomic Weight"]),
+      name: element.Name,
+    };
+    console.log("row selection: ", rowSelection);
+    setData((data) => {
+      const newData = data.map((row, index) => {
+        if (rowSelection[index]) {
+          row.element = e;
+        }
+        return row;
+      });
+      return newData;
+    });
+  };
 
   const table = useReactTable({
     data,
     columns,
     defaultColumn,
+    enableRowSelection: true,
+    state: {
+      rowSelection,
+    },
+    onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -146,6 +204,7 @@ export function NewSamplesTable() {
     // Provide our updateData function to our table meta
     meta: {
       updateData: (rowIndex, columnId, value) => {
+        console.log("updating the data");
         // Skip page index reset until after next rerender
         skipAutoResetPageIndex();
         setData((old) =>
@@ -167,6 +226,13 @@ export function NewSamplesTable() {
   return (
     <div className="p-2">
       <div className="h-2" />
+      <div className="h-2">
+        <p>
+          to change element simply select a row and then click the wanted
+          element
+        </p>
+      </div>
+
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -198,27 +264,27 @@ export function NewSamplesTable() {
             return (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => {
-                  console.log("cell values: ", cell);
-                  if (cell.column.id === "symbol") {
-                    return (
-                      <td key={cell.id}>
-                        <ChangeElementModal
-                          callback={(e) => {
-                            setData((data) => {
-                              data[parseInt(cell.row.id)].element = e;
-                              return data;
-                            });
-                          }}
-                        />
-                        {/* <Button onClick={() => {
-                                                const s: string = `${cell.row.id} and col: ${cell.column.id}`
-                                                window.alert(s)
-                                            }} >
-                                                test
-                                            </Button> */}
-                      </td>
-                    );
-                  }
+                  //   console.log("cell values: ", cell);
+                  //   if (cell.column.id === "symbol") {
+                  //     return (
+                  //       <td key={cell.id}>
+                  //         <ChangeElementModal
+                  //           callback={(e) => {
+                  //             setData((data) => {
+                  //               data[parseInt(cell.row.id)].element = e;
+                  //               return data;
+                  //             });
+                  //           }}
+                  //         />
+                  //         {/* <Button onClick={() => {
+                  //                                 const s: string = `${cell.row.id} and col: ${cell.column.id}`
+                  //                                 window.alert(s)
+                  //                             }} >
+                  //                                 test
+                  //                             </Button> */}
+                  //       </td>
+                  //     );
+                  //   }
                   return (
                     <td key={cell.id}>
                       {flexRender(
@@ -315,12 +381,8 @@ export function NewSamplesTable() {
         <div>
           <button onClick={() => refreshData()}>Refresh Data</button>
         </div>
-        <ChakraProvider>
-          <ChangeElementModal
-            callback={(e) => window.alert(`changed element: ${e}`)}
-          />
-        </ChakraProvider>
       </Stack>
+      <PeriodicTable callback={periodicTableCallback} />
     </div>
   );
 }

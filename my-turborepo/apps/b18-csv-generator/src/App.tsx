@@ -32,7 +32,7 @@ function App() {
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
   console.log('rows: ', rows);
 
-  return <NewTable />;
+  // return <NewTable />;
   return <ChakraProvider>
     <NewSamplesTable />
   </ChakraProvider>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Box, Button, Input, Select, Stack } from "@chakra-ui/react";
+import { Button, Input, Select, Stack } from "@chakra-ui/react";
 import { ElementType } from "@diamondlightsource/periodic-table/elements";
 import { PeriodicTable } from "@diamondlightsource/periodic-table/table";
 import { downloadFile } from "@repo/utils/download-file";
@@ -22,7 +22,6 @@ import {
 import { getCsvContent, ReadyRow } from "../utils/sampleHolderSize";
 import { Filter } from "./Filter";
 import { IndeterminateCheckbox } from "./IndeterminateCheckbox";
-import { makeSampleData } from "./makeSampleData";
 import { useSkipper } from "./useSkipper";
 
 declare module "@tanstack/react-table" {
@@ -55,12 +54,12 @@ const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
     }, [initialValue]);
 
     if (nonEditableColumns.includes(id)) {
-      return <p style={{ padding: 2, margin: 2 }}>{value}</p>;
+      return <p style={{ padding: 2, margin: 2 }}>{value as string}</p>;
     }
     if (id === "edge") {
       return (
         <Select
-          value={value}
+          value={value as string}
           id="defaultEdge"
           className="border rounded p-1"
           onChange={(e) => {
@@ -88,7 +87,7 @@ const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
       return (
         <>
           <Select
-            value={value}
+            value={value as string}
             id="defaultSelectionMode"
             onChange={(e) => {
               setValue(e.target.value as DetectionModeType);
@@ -148,7 +147,7 @@ type NewSamplesTableProps = {
 };
 
 export function NewSamplesTable({ rowsFromForm }: NewSamplesTableProps) {
-  const rerender = React.useReducer(() => ({}), {})[1];
+  // const rerender = React.useReducer(() => ({}), {})[1];
 
   const columns = React.useMemo<ColumnDef<ReadyRow>[]>(
     () => [
@@ -258,7 +257,7 @@ export function NewSamplesTable({ rowsFromForm }: NewSamplesTableProps) {
   useEffect(() => {
     setData(rowsFromForm);
   }, [rowsFromForm]);
-  const refreshData = () => setData(() => []);
+  // const refreshData = () => setData(() => []);
 
   const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper();
   const [rowSelection, setRowSelection] = React.useState<

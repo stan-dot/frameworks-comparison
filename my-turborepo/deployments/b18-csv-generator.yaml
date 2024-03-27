@@ -1,8 +1,8 @@
 apiVersion: v1
-# at the time of writing the app lives here: http://172.23.169.56:8080/beamlines/i10/experiments
+# at the time of writing the app lives here:
 kind: Service
 metadata:
-  name: bootstrap
+  name: b18-csv-generator
 spec:
   ports:
     - name: web-http
@@ -10,7 +10,7 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app: bootstrap
+    app: b18-csv-generator
   type: LoadBalancer
   externalTrafficPolicy: Cluster
 
@@ -18,23 +18,23 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bootstrap
+  name: b18-csv-generator
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bootstrap
+      app: b18-csv-generator
   template:
     metadata:
       labels:
-        app: bootstrap
+        app: b18-csv-generator
     spec:
       containers:
-        - name: bootstrap
-          image: gcr.io/diamond-privreg/bootstrap-popout-windows:0.1.0
+        - name: b18-csv-generator
+          image: gcr.io/diamond-privreg/b18-csv-generator:0.1.0
           env:
             - name: NEXT_PUBLIC_API_HOST # not used
-              value: "bootstrap.xma12127.svc.cluster.local:3001"
+              value: "b18-csv-generator.xma12127.svc.cluster.local:3001"
           resources:
             limits:
               cpu: "1"

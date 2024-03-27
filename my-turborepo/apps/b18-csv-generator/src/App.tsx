@@ -27,14 +27,14 @@ function App() {
   // const rows: ReadyRow[] = gknerateRows(form);
   useEffect(() => {
     const newRows = generateRows(form);
-    console.log("new rows: ", newRows);
+    console.debug("new rows: ", newRows);
     setRows(newRows);
   }, [form]);
 
-  // console.log("new rows sample name: ", rows[0].sampleName);
+  // console.debug("new rows sample name: ", rows[0].sampleName);
 
   const [isLargerThan1280] = useMediaQuery("(min-width: 1280px)");
-  console.log("rows: ", rows);
+  console.debug("rows: ", rows);
 
   if (isLargerThan1280) {
     return (

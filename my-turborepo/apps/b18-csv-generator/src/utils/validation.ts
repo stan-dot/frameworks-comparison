@@ -33,5 +33,5 @@ try {
     username: "abc",
     birth_year: 1994,
   });
-  console.log(value);
+  console.debug(value);
 } catch (err) {}

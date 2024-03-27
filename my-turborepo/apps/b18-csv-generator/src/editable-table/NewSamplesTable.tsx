@@ -38,7 +38,7 @@ const nonEditableColumns: string[] = ["name", "select", "symbol"];
 const defaultColumn: Partial<ColumnDef<ReadyRow>> = {
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
     const initialValue = getValue();
-    // console.log("col id: ", id);
+    // console.debug("col id: ", id);
     // We need to keep and update the state of the cell normally
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [value, setValue] = useState(initialValue);
@@ -266,7 +266,7 @@ export function NewSamplesTable({ rowsFromForm }: NewSamplesTableProps) {
   >({});
 
   const periodicTableCallback = (element: ElementType) => {
-    console.log("table callback: ", element);
+    console.debug("table callback: ", element);
     const e: ChemicalElement = {
       number: parseInt(element.Number),
       isotopes: [],
@@ -274,7 +274,7 @@ export function NewSamplesTable({ rowsFromForm }: NewSamplesTableProps) {
       mass: parseFloat(element["Atomic Weight"]),
       name: element.Name,
     };
-    console.log("row selection: ", rowSelection);
+    console.debug("row selection: ", rowSelection);
     setData((data) => {
       const newData = data.map((row, index) => {
         if (rowSelection[index]) {
@@ -303,7 +303,7 @@ export function NewSamplesTable({ rowsFromForm }: NewSamplesTableProps) {
     // Provide our updateData function to our table meta
     meta: {
       updateData: (rowIndex, columnId, value) => {
-        console.log("updating the data");
+        console.debug("updating the data");
         // Skip page index reset until after next rerender
         skipAutoResetPageIndex();
         setData((old) =>
@@ -441,8 +441,6 @@ export function NewSamplesTable({ rowsFromForm }: NewSamplesTableProps) {
           ))}
         </select>
         <p>{table.getRowModel().rows.length} Rows</p>
-      </div>
-      <Stack direction="row">
         <Button
           onClick={() => {
             const s = getCsvContent(data);
@@ -455,12 +453,14 @@ export function NewSamplesTable({ rowsFromForm }: NewSamplesTableProps) {
         >
           Download the table
         </Button>
-        <Box>
+      </div>
+      <Stack direction="row">
+        {/* <Box>
           <Button onClick={() => rerender()}>Force Rerender</Button>
         </Box>
         <Box>
           <Button onClick={() => refreshData()}>Refresh Data</Button>
-        </Box>
+        </Box> */}
       </Stack>
       <PeriodicTable callback={periodicTableCallback} />
     </div>

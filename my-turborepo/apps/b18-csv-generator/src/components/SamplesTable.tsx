@@ -159,7 +159,7 @@ export function SamplesTable({ data: initialData, columns }: DataTableProps) {
                         <AccordionPanel pb={4}>
                           <ElementPicker
                             callback={() =>
-                              console.log("trying to change the element")
+                              console.debug("trying to change the element")
                             }
                           />
                         </AccordionPanel>

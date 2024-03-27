@@ -17,7 +17,7 @@ function ElementSquare({
   margin = MARGIN,
 }: Props) {
   return (
-    <Square size={size} margin={margin}>
+    <Square key={`square-${atomicNumber}`} size={size} margin={margin}>
       <Element atomicNumber={atomicNumber} callback={callback} />
     </Square>
   );

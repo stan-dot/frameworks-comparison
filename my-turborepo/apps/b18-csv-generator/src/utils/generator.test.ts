@@ -10,7 +10,7 @@ import {
 describe("generate rows", () => {
   it("normal case", () => {
     const r = generateRows(defaultGeneratorSetup);
-    console.log(r);
+    console.debug(r);
     expect(r).toEqual(mockData);
   });
 });

@@ -108,19 +108,23 @@ export function autogenerateSampleNames(
   return arr.map((p, i) => `${p}_${startingCount + i}`);
 }
 
-export function getCsvContent(a: ReadyRow[]): string {
-  const headers: string[] = Object.getOwnPropertyNames(a[0]);
-  const valueRows = a.map((e) =>
+export function getCsvContent(table: ReadyRow[]): string {
+  const headers: string[] = Object.getOwnPropertyNames(table[0]);
+  console.log(headers)
+  console.log(table[0])
+  const valueRows = table.map((e) =>
     [
       e.element.symbol,
       e.detectionMode,
       e.edge,
       e.sampleName,
+      e.sampleComment,
       e.column_letter,
       e.row,
-      e.repetitions,
+      e.repetitions
     ].join(",")
   );
   const finalString = [headers, ...valueRows].join("\n");
+  console.log(finalString)
   return finalString;
 }

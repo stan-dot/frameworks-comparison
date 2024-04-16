@@ -1,0 +1,7 @@
+
+> start
+> npx supabase status || npx supabase start --debug
+
+Need to install the following packages:
+supabase@1.159.1
+Ok to proceed? (y) 

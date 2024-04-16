@@ -1,0 +1,57 @@
+supabase_studio_supasample container logs:
+   ▲ Next.js 14.1.4
+   - Local:        http://localhost:3000
+   - Network:      http://0.0.0.0:3000
+
+ ✓ Ready in 251ms
+Pruned containers: [0d56ceca2749da59fd8ceafbdd742bb8cc67122d1d5dea56f8620466c93a5bd0 0d668ac4ae634dbe2451610b340569e67644bac173b28d61b088e2b44fa816af 3df7bebb67eec7424a51f633a1f7aae8ae115d8fa5c07b9b8f8f33fb16ad4d1a 44466e68920f441659089cb4bf38ee07267d58cd3bc6c7ad571f3a4b81f39928 64cad3e541d8988cdd32ed18adadc23785f025df599e2b9b061e458038a7767e ae843237d2226685a792bcc7cd48a0ab3115c4bcce46ef464f6967bd581f34d6 b279795e924774fd462b079a0576e26d3cfe00c040c55a43be064aadfe33e724 b775bac16b8d0d58d4a098417207bdc88abf298f4ae4e666071ae6458640e193 c88405d25b83e8cba855f52272ba9829bea92476eee5394e026c8887c78a7e83 ccbe72c1594d24d25eb5c4021261d6147c9f40ce722c34da3ed5469dcb87f2f1]
+Pruned network: []
+service not healthy: [supabase_auth_supasample realtime-dev.supabase_realtime_supasample supabase_rest_supasample supabase_storage_supasample supabase_pg_meta_supasample supabase_studio_supasample]
+npm ERR! Lifecycle script `start` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @supasample/supabase 
+npm ERR!   at location: /scratch/xma12127/projects/migrate/frameworks-comparison/my-turborepo/supabase 
+(base) xma12127@pc0143:.../my-turborepo/supabase ‹main› 
+$ ^C
+(base) xma12127@pc0143:.../my-turborepo/supabase ‹main› 
+$ 
+ned,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'auth.c',
+  line: '335',
+  routine: 'auth_failed'
+}
+
+Node.js v20.12.2
+2024/04/16 13:55:12 Sent Header: Host [api.moby.localhost]
+2024/04/16 13:55:12 Sent Header: User-Agent [Docker-Client/unknown-version (linux)]
+2024/04/16 13:55:12 Send Done
+2024/04/16 13:55:12 Recv First Byte
+supabase_pg_meta_supasample container logs:
+(node:1) ExperimentalWarning: Importing JSON modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"level":"info","time":"2024-04-16T12:54:42.152Z","pid":1,"hostname":"c88405d25b83","msg":"Server listening at http://0.0.0.0:8080"}
+{"level":"info","time":"2024-04-16T12:54:42.157Z","pid":1,"hostname":"c88405d25b83","msg":"Server listening at http://0.0.0.0:8081"}
+2024/04/16 13:55:12 Sent Header: Host [api.moby.localhost]
+2024/04/16 13:55:12 Sent Header: User-Agent [Docker-Client/unknown-version (linux)]
+2024/04/16 13:55:12 Send Done
+2024/04/16 13:55:12 Recv First Byte
+supabase_studio_supasample container logs:
+   ▲ Next.js 14.1.4
+   - Local:        http://localhost:3000
+   - Network:      http://0.0.0.0:3000
+
+ ✓ Ready in 251ms
+Pruned containers: [0d56ceca2749da59fd8ceafbdd742bb8cc67122d1d5dea56f8620466c93a5bd0 0d668ac4ae634dbe2451610b340569e67644bac173b28d61b088e2b44fa816af 3df7bebb67eec7424a51f633a1f7aae8ae115d8fa5c07b9b8f8f33fb16ad4d1a 44466e68920f441659089cb4bf38ee07267d58cd3bc6c7ad571f3a4b81f39928 64cad3e541d8988cdd32ed18adadc23785f025df599e2b9b061e458038a7767e ae843237d2226685a792bcc7cd48a0ab3115c4bcce46ef464f6967bd581f34d6 b279795e924774fd462b079a0576e26d3cfe00c040c55a43be064aadfe33e724 b775bac16b8d0d58d4a098417207bdc88abf298f4ae4e666071ae6458640e193 c88405d25b83e8cba855f52272ba9829bea92476eee5394e026c8887c78a7e83 ccbe72c1594d24d25eb5c4021261d6147c9f40ce722c34da3ed5469dcb87f2f1]
+Pruned network: []
+service not healthy: [supabase_auth_supasample realtime-dev.supabase_realtime_supasample supabase_rest_supasample supabase_storage_supasample supabase_pg_meta_supasample supabase_studio_supasample]
+npm ERR! Lifecycle script `start` failed with error: 
+npm ERR! Error: command failed 
+npm ERR!   in workspace: @supasample/supabase 
+npm ERR!   at location: /scratch/xma12127/projects/migrate/frameworks-comparison/my-turborepo/supabase 

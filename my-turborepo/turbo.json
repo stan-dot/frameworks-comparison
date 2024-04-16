@@ -6,11 +6,19 @@
       "dependsOn": ["^build", "^db:generate"],
       "outputs": [".next/**", "!.next/cache/**", ".vite"]
     },
+    "start":{
+      "outputs": []
+    },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["^lint", "format:check"],
+      "outputs": []
     },
     "test": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+            "outputs": ["coverage/**"]
+    },
+    "deploy": {
+      "outputs": []
     },
     "dev": {
       "dependsOn": ["^db:generate"],
@@ -23,5 +31,11 @@
     "db:push": {
       "cache": false
     }
-  }
+  },
+  "globalEnv": [
+    "NODE_ENV",
+    "SUPABASE_URL",
+    "SUPABASE_ANON_KEY",
+    "SUPABASE_SERVICE_KEY"
+  ]
 }

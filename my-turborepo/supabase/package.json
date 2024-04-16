@@ -1,10 +1,10 @@
 {
   "name": "@supasample/supabase",
   "scripts": {
-    "start": "supabase status || supabase start",
-    "reset": "supabase db reset || supabase start",
-    "test": "supabase db test",
-    "lint": "supabase db lint",
-    "deploy": "supabase link --project-ref $SUPABASE_PROJECT_REF && supabase db push"
+    "start": "npx supabase status || npx supabase start",
+    "reset": "npx supabase db reset || npx supabase start",
+    "test": "npx supabase db test",
+    "lint": "npx supabase db lint",
+    "deploy": "npx supabase link --project-ref $SUPABASE_PROJECT_REF && supabase db push"
   }
 }

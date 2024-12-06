@@ -7,4 +7,5 @@ export const diamondUrls: string[] = [
   "https://github.com/tizayi/dedi-web/blob/main/package.json",
   "https://github.com/DiamondLightSource/SynchWeb/blob/master/client/package.json",
   "https://github.com/dls-controls/cs-web-lib/blob/master/package.json",
+  "https://github.com/jacobfilik/webxdiviewer/blob/main/package.json"
 ];
